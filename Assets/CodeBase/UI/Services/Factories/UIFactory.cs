@@ -2,7 +2,7 @@
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
 using CodeBase.UI.Root;
-using CodeBase.UI.Windows.GameCanvas;
+using CodeBase.UI.Screens.Game;
 using UnityEngine;
 
 namespace CodeBase.UI.Services.Factories

@@ -10,11 +10,11 @@ using CodeBase.Core.Services.ServiceLocator;
 using CodeBase.UI.HUD.Base;
 using CodeBase.UI.HUD.Service;
 using CodeBase.UI.HUD.Supplier;
+using CodeBase.UI.Screens.Base;
+using CodeBase.UI.Screens.Service;
+using CodeBase.UI.Screens.Supplier;
 using CodeBase.UI.Services.Factories;
 using CodeBase.UI.Services.Infrastructure;
-using CodeBase.UI.Windows.Base;
-using CodeBase.UI.Windows.Service;
-using CodeBase.UI.Windows.Supplier;
 using UnityEngine;
 
 namespace CodeBase.Core.Infrastructure.States.GlobalStates
@@ -83,6 +83,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             services.RegisterSingle<ISaveService>(new SaveService(
                 services.Single<IGameFactory>(),
                 services.Single<IHUDService>(),
+                services.Single<IScreenService>(),
                 services.Single<IPersistentProgressService>(),
                 services.Single<ILogService>()));
             

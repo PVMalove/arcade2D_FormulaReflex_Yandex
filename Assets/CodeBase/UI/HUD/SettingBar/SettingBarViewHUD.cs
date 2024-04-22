@@ -11,7 +11,6 @@ namespace CodeBase.UI.HUD.SettingBar
         [SerializeField] private Button settingButton;
         
         [SerializeField] private GameObject settingsObject;
-        [SerializeField] private SoundButton musicSoundButton;
         [SerializeField] private SoundButton sfxSoundButton;
         [SerializeField] private Button resetProgressButton;
         
@@ -23,7 +22,6 @@ namespace CodeBase.UI.HUD.SettingBar
             base.Initialize(presenter);
             setting = presenter;
             setting.Enable();
-            setting.OnChangedMusicState += MusicButtonUpdateState;
             setting.OnChangedFXState += FXButtonUpdateState;
             layoutGroup = settingsObject.GetComponent<VerticalLayoutGroup>();
         }
@@ -32,13 +30,9 @@ namespace CodeBase.UI.HUD.SettingBar
         {
             base.SubscribeUpdates();
             settingButton.onClick.AddListener(OpenSettingOnClick);
-            musicSoundButton.AddListener(SoundOnClick);
             sfxSoundButton.AddListener(SFXOnClick);
             resetProgressButton.onClick.AddListener(ResetProgressOnClick);
         }
-
-        private void MusicButtonUpdateState(bool state) => 
-            musicSoundButton.ChangeStateSoundButton(state);
         
         private void FXButtonUpdateState(bool state) => 
             sfxSoundButton.ChangeStateSoundButton(state);
@@ -76,9 +70,7 @@ namespace CodeBase.UI.HUD.SettingBar
         {
             base.Cleanup();
             setting.Disable();
-            musicSoundButton.RemoveListener(SoundOnClick);
             sfxSoundButton.RemoveListener(SFXOnClick);
-            setting.OnChangedMusicState -= MusicButtonUpdateState;
             setting.OnChangedFXState -= FXButtonUpdateState;
         }
     }

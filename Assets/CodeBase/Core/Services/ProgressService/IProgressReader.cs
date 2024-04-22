@@ -1,4 +1,5 @@
-﻿using CodeBase.Core.Data;
+﻿using System.Collections.Generic;
+using CodeBase.Core.Data;
 
 namespace CodeBase.Core.Services.ProgressService
 {

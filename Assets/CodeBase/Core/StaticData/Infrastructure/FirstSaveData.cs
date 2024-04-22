@@ -6,14 +6,13 @@ namespace CodeBase.Core.StaticData.Infrastructure
     public class FirstSaveData : ScriptableObject
     {
         [SerializeField] private int coinsAmount;
-        
+        [SerializeField] private float bestTime;
         [SerializeField] private float audioVolume;
-        [SerializeField] private bool musicOn;
         [SerializeField] private bool effectsOn;
 
         public int CoinsAmount => coinsAmount;
+        public float BestTime => bestTime;
         public float AudioVolume => audioVolume;
-        public bool MusicOn => musicOn;
         public bool EffectsOn => effectsOn;
     }
 }

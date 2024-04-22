@@ -2,7 +2,7 @@ using CodeBase.Core.Data;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.UI.Services.Infrastructure;
 
-namespace CodeBase.UI.Windows.Base
+namespace CodeBase.UI.Screens.Base
 {
     public class ScreenBase<TInitializeData> : UnityFrame
     {

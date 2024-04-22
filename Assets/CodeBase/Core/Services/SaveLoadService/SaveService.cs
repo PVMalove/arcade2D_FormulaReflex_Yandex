@@ -4,6 +4,7 @@ using CodeBase.Core.Infrastructure.Factories;
 using CodeBase.Core.Services.LogService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.UI.HUD.Service;
+using CodeBase.UI.Screens.Service;
 using UnityEngine;
 using YG;
 
@@ -13,17 +14,19 @@ namespace CodeBase.Core.Services.SaveLoadService
     {
         private readonly IGameFactory gameFactory;
         private readonly IHUDService hudService;
+        private readonly IScreenService screenService;
+
         private readonly IPersistentProgressService progressService;
-        private readonly ILogService log;
-        private readonly string filePath;
 
         public SaveService(IGameFactory gameFactory,
             IHUDService hudService,
+            IScreenService screenService,
             IPersistentProgressService progressService,
             ILogService log)
         {
             this.gameFactory = gameFactory;
             this.hudService = hudService;
+            this.screenService = screenService;
             this.progressService = progressService;
             this.log = log;
 #if UNITY_EDITOR
@@ -31,11 +34,17 @@ namespace CodeBase.Core.Services.SaveLoadService
 #endif
         }
 
+        private readonly ILogService log;
+
+        private readonly string filePath;
+
         public void SaveProgress()
         {
             foreach (IProgressSaver progressWriter in gameFactory.ProgressWriters) 
                 progressWriter.UpdateProgress(progressService.GetProgress());
             foreach (IProgressSaver progressWriter in hudService.ProgressWriters) 
+                progressWriter.UpdateProgress(progressService.GetProgress());
+            foreach (IProgressSaver progressWriter in screenService.ProgressWriters) 
                 progressWriter.UpdateProgress(progressService.GetProgress());
 
             string json = progressService.GetProgress().ToJson();

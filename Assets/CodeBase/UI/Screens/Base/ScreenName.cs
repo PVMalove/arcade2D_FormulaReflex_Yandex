@@ -1,4 +1,4 @@
-﻿namespace CodeBase.UI.Windows.Base
+﻿namespace CodeBase.UI.Screens.Base
 {
     public enum ScreenName
     {

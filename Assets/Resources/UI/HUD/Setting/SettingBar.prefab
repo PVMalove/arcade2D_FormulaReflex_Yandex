@@ -29,15 +29,14 @@ RectTransform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2498563083845436698}
-  - {fileID: 3188862817679653459}
   - {fileID: 7637903288533762912}
+  - {fileID: 3188862817679653459}
   m_Father: {fileID: 5048718343773691971}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -110.5}
-  m_SizeDelta: {x: 100, y: 360}
+  m_AnchoredPosition: {x: 0, y: 182.2583}
+  m_SizeDelta: {x: 100, y: 197.2583}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &4304067111578465193
 MonoBehaviour:
@@ -56,7 +55,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 1
+  m_ChildAlignment: 7
   m_Spacing: 0
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
@@ -100,11 +99,11 @@ RectTransform:
   - {fileID: 4090562898714372243}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -100, y: -100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 50, y: 50}
   m_SizeDelta: {x: 128, y: 128}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!222 &894125421379301623
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -126,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.12156863, g: 0.41960785, b: 0.59607846, a: 1}
+  m_Color: {r: 0.4392157, g: 0.81960785, b: 0.3529412, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -157,7 +156,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingButton: {fileID: 4719392357112034637}
   settingsObject: {fileID: 2529852030892585204}
-  musicSoundButton: {fileID: 6499010509298370533}
   sfxSoundButton: {fileID: 168889464450334768}
   resetProgressButton: {fileID: 1299935095258059132}
 --- !u!114 &4719392357112034637
@@ -313,7 +311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -300}
+  m_AnchoredPosition: {x: 50, y: -60}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1299935095258059132
@@ -360,119 +358,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!1001 &7139444712921364579
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 4090562898714372243}
-    m_Modifications:
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -60
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8158864506866917774, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-      propertyPath: m_Name
-      value: MuteMusic_button
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
---- !u!224 &2498563083845436698 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4735757937697684857, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-  m_PrefabInstance: {fileID: 7139444712921364579}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6499010509298370533 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4117830183844937606, guid: e931d14bc8251b64cb7e1da5f28a05be, type: 3}
-  m_PrefabInstance: {fileID: 7139444712921364579}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e64f559d4ab0421ea42d4ef54465a0c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8432675198763157973
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -484,6 +369,18 @@ PrefabInstance:
     - target: {fileID: 1852139315233430204, guid: 110b923f82a5227459cd54cadfc1231c, type: 3}
       propertyPath: m_Name
       value: MuteSFX_button
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028608844531933103, guid: 110b923f82a5227459cd54cadfc1231c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.3529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028608844531933103, guid: 110b923f82a5227459cd54cadfc1231c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.81960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028608844531933103, guid: 110b923f82a5227459cd54cadfc1231c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4392157
       objectReference: {fileID: 0}
     - target: {fileID: 6433388477604787078, guid: 110b923f82a5227459cd54cadfc1231c, type: 3}
       propertyPath: m_Pivot.x

@@ -7,8 +7,8 @@ using CodeBase.Core.Services.LogService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.Service;
+using CodeBase.UI.Screens.Service;
 using CodeBase.UI.Services.Factories;
-using CodeBase.UI.Windows.Service;
 using UnityEngine;
 
 namespace CodeBase.Core.Infrastructure.States.GlobalStates
@@ -68,13 +68,11 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
         {
             buildInfoConfig = new BuildInfoConfig();
             buildInfoConfig.BuildNumber = Application.version;
-            
+
             uiFactory.CreateUIRoot();
             hudService.ShowSettingBar();
             hudService.ShowBuildInfo(buildInfoConfig);
             screenService.ShowGameView();
-            
-            
             LoadProgressReader();
         }
         
@@ -84,7 +82,10 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
                 progressReader.LoadProgress(progressService.GetProgress());
             foreach (IProgressReader progressReader in hudService.ProgressReaders)
                 progressReader.LoadProgress(progressService.GetProgress());
-            log.LogState("Notify progress reader complete load data for object", this);
+            foreach (IProgressReader progressReader in screenService.ProgressReaders)
+                progressReader.LoadProgress(progressService.GetProgress());
+            
+            log.LogState($"Notify progress reader complete load data for object - {progressService.GetProgress().BestTimeData.Value}", this);
         }
     }
 }

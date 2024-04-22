@@ -8,12 +8,14 @@ namespace CodeBase.Core.Data
     {
         public AudioControlData AudioControlData;
         public CoinData CoinData;
+        public BestTimeData BestTimeData;
         
         public PlayerProgress(AudioControlData audioControlData,
-            CoinData coinData)
+            CoinData coinData, BestTimeData bestTimeData)
         {
             AudioControlData = audioControlData;
             CoinData = coinData;
+            BestTimeData = bestTimeData;
         }
     }
 }

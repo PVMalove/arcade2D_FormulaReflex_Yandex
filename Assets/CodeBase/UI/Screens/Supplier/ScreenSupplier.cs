@@ -1,10 +1,10 @@
 ﻿using System;
+using CodeBase.UI.Screens.Base;
+using CodeBase.UI.Screens.Game;
 using CodeBase.UI.Services.Factories;
 using CodeBase.UI.Services.Infrastructure;
-using CodeBase.UI.Windows.Base;
-using CodeBase.UI.Windows.GameCanvas;
 
-namespace CodeBase.UI.Windows.Supplier
+namespace CodeBase.UI.Screens.Supplier
 {
     public class ScreenSupplier : FrameSupplier<ScreenName, UnityFrame>
     {

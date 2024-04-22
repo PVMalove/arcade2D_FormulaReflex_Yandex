@@ -7,6 +7,7 @@ using CodeBase.Core.Services.ServiceLocator;
 using CodeBase.UI.HUD.Base;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
+using CodeBase.UI.Screens.Service;
 using CodeBase.UI.Services.Infrastructure;
 
 namespace CodeBase.UI.HUD.Service
@@ -41,6 +42,7 @@ namespace CodeBase.UI.HUD.Service
                 AllServices.Container.Single<IAssetProvider>(),
                 AllServices.Container.Single<IGameFactory>(),
                 AllServices.Container.Single<IHUDService>(),
+                AllServices.Container.Single<IScreenService>(),
                 AllServices.Container.Single<IAudioService>());
             
             RegisterProgress(presenter);

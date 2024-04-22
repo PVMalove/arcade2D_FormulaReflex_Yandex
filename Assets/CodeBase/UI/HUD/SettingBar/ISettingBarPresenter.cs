@@ -6,7 +6,6 @@ namespace CodeBase.UI.HUD.SettingBar
 {
     public interface ISettingBarPresenter : IProgressSaver, IService
     {
-        event Action<bool> OnChangedMusicState;
         event Action<bool> OnChangedFXState;
         
         float AudioVolume { get; }

@@ -65,18 +65,21 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
 
             AudioControlData audioControl = new AudioControlData(
                 newSaveData.AudioVolume,
-                newSaveData.MusicOn,
                 newSaveData.EffectsOn
             );
 
             CoinData coinData = new CoinData(
                 newSaveData.CoinsAmount
             );
-
+            
+            BestTimeData bestTimeData = new BestTimeData(
+                newSaveData.BestTime
+            );
 
             PlayerProgress progress = new PlayerProgress(
                 audioControl,
-                coinData);
+                coinData,
+                bestTimeData);
 
             log.LogState("Init new player progress", this);
             return progress;
