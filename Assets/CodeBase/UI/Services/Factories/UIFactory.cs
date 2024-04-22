@@ -2,6 +2,7 @@
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
 using CodeBase.UI.Root;
+using CodeBase.UI.Windows.GameCanvas;
 using UnityEngine;
 
 namespace CodeBase.UI.Services.Factories
@@ -19,6 +20,7 @@ namespace CodeBase.UI.Services.Factories
         public void CreateUIRoot()
         {
             GameObject uiRoot = assetProvider.Instantiate(InfrastructurePath.UIRootPath);
+            uiRoot.name = "GameUICanvas";
             UIRoot = uiRoot.GetComponent<IUIRoot>();
         }
 
@@ -32,6 +34,12 @@ namespace CodeBase.UI.Services.Factories
         {
             GameObject view = assetProvider.Instantiate(InfrastructurePath.SettingBarViewPath);
             return view.GetComponent<SettingBarViewHUD>();
+        }
+
+        public GameViewScreen CreateGameView()
+        {
+            GameObject view = assetProvider.Instantiate(InfrastructurePath.GameMenuViewScreen);
+            return view.GetComponent<GameViewScreen>();
         }
 
         public void Cleanup()

@@ -10,6 +10,7 @@ using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.ServiceLocator;
 using CodeBase.UI.HUD.Service;
 using CodeBase.UI.Services.Factories;
+using CodeBase.UI.Windows.Service;
 
 namespace CodeBase.Core.Infrastructure.States.Infrastructure
 {
@@ -28,6 +29,7 @@ namespace CodeBase.Core.Infrastructure.States.Infrastructure
                 services.Single<IGameFactory>(),
                 services.Single<IUIFactory>(),
                 services.Single<IHUDService>(),
+                services.Single<IScreenService>(),
                 services.Single<ILogService>()));
             RegisterState(new GameLoopState(services.Single<ILogService>()));
         }

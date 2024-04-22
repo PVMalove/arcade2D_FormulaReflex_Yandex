@@ -8,6 +8,7 @@ using CodeBase.Core.Services.ProgressService;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.Service;
 using CodeBase.UI.Services.Factories;
+using CodeBase.UI.Windows.Service;
 using UnityEngine;
 
 namespace CodeBase.Core.Infrastructure.States.GlobalStates
@@ -21,6 +22,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
         private readonly IGameFactory gameFactory;
         private readonly IUIFactory uiFactory;
         private readonly IHUDService hudService;
+        private readonly IScreenService screenService;
 
         public GameLoadSceneState(GameStateMachine gameStateMachine, 
             ISceneLoader sceneLoader,
@@ -29,16 +31,18 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             IGameFactory gameFactory,
             IUIFactory uiFactory, 
             IHUDService hudService, 
+            IScreenService screenService,
             ILogService log)
         {
             this.gameStateMachine = gameStateMachine;
             this.sceneLoader = sceneLoader;
             this.loadingCurtain = loadingCurtain;
-            this.uiFactory = uiFactory;
-            this.hudService = hudService;
-            this.log = log;
             this.progressService = progressService;
             this.gameFactory = gameFactory;
+            this.uiFactory = uiFactory;
+            this.hudService = hudService;
+            this.screenService = screenService;
+            this.log = log;
         }
 
         private readonly ILogService log;
@@ -68,6 +72,8 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             uiFactory.CreateUIRoot();
             hudService.ShowSettingBar();
             hudService.ShowBuildInfo(buildInfoConfig);
+            screenService.ShowGameView();
+            
             
             LoadProgressReader();
         }

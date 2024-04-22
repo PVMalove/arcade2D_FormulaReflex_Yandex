@@ -12,6 +12,9 @@ using CodeBase.UI.HUD.Service;
 using CodeBase.UI.HUD.Supplier;
 using CodeBase.UI.Services.Factories;
 using CodeBase.UI.Services.Infrastructure;
+using CodeBase.UI.Windows.Base;
+using CodeBase.UI.Windows.Service;
+using CodeBase.UI.Windows.Supplier;
 using UnityEngine;
 
 namespace CodeBase.Core.Infrastructure.States.GlobalStates
@@ -23,8 +26,10 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
         private readonly IAudioService audioService;
         private readonly AllServices services;
 
-
-        public GameBootstrapState(GameStateMachine gameStateMachine, ISceneLoader sceneLoader, IAudioService audioService, AllServices services)
+        public GameBootstrapState(GameStateMachine gameStateMachine, 
+            ISceneLoader sceneLoader,
+            IAudioService audioService,
+            AllServices services)
         {
             this.gameStateMachine = gameStateMachine;
             this.sceneLoader = sceneLoader;
@@ -68,6 +73,12 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             
             services.RegisterSingle<IHUDService>(new HUDService( 
                 services.Single<IFrameSupplier<HUDName, UnityFrame>>()));
+            
+            services.RegisterSingle<IFrameSupplier<ScreenName, UnityFrame>>(new ScreenSupplier(
+                services.Single<IUIFactory>()));
+            
+            services.RegisterSingle<IScreenService>(new ScreenService( 
+                services.Single<IFrameSupplier<ScreenName, UnityFrame>>()));
 
             services.RegisterSingle<ISaveService>(new SaveService(
                 services.Single<IGameFactory>(),
