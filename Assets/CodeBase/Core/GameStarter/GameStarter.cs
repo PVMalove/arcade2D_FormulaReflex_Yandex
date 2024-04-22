@@ -16,7 +16,7 @@ namespace CodeBase.Core.GameStarter
         {
             if (YandexGame.SDKEnabled)
             {
-                Debug.Log("Load complete yandex SDK");
+                Debug.Log("[GameStarter] -> Load complete yandex SDK");
                 GameBootstrapper bootstrapper = FindObjectOfType<GameBootstrapper>();
                 if (bootstrapper == null)
                     Instantiate(bootstrapperPrefab);

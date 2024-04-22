@@ -2,11 +2,11 @@
 using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.Core.Infrastructure.Factories;
 using CodeBase.Core.Infrastructure.SceneManagement;
-using CodeBase.Core.Infrastructure.SceneManagement.Services;
 using CodeBase.Core.Infrastructure.States.Infrastructure;
 using CodeBase.Core.Services.LogService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.SaveLoadService;
+using CodeBase.Core.Services.ServiceLocator;
 using CodeBase.UI.HUD.Base;
 using CodeBase.UI.HUD.Service;
 using CodeBase.UI.HUD.Supplier;

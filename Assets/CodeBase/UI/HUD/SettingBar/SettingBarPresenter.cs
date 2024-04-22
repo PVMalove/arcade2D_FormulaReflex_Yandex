@@ -93,11 +93,11 @@ namespace CodeBase.UI.HUD.SettingBar
             audioService.ToggleEffects(EffectsOn);
         }
 
-        private async void NewProgress()
+        private void NewProgress()
         {
             Debug.Log("Reset player progress");
             YandexGame.ResetSaveProgress();
-            FirstSaveData newSaveData = await assetProvider.LoadAsync<FirstSaveData>(InfrastructurePath.NewSaveDataPath);
+            FirstSaveData newSaveData = assetProvider.Load<FirstSaveData>(InfrastructurePath.NewSaveDataPath);
 
             AudioControlData audioControl = new AudioControlData(
                 newSaveData.AudioVolume, 

@@ -1,4 +1,4 @@
-namespace CodeBase.Core.Infrastructure.SceneManagement.Services
+namespace CodeBase.Core.Services.ServiceLocator
 {
     public class AllServices
     {

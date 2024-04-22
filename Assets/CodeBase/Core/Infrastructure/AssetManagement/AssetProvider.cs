@@ -17,6 +17,13 @@ namespace CodeBase.Core.Infrastructure.AssetManagement
             return request.asset as TAsset;
         }
         
+        public TAsset Load<TAsset>(string path) where TAsset : Object
+        {
+            var request = Resources.Load<TAsset>(path);
+
+            return request;
+        }
+        
         public GameObject Instantiate(string path)
         {
             GameObject prefab = Resources.Load<GameObject>(path);

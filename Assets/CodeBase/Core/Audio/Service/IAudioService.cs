@@ -1,5 +1,5 @@
 using System;
-using CodeBase.Core.Infrastructure.SceneManagement.Services;
+using CodeBase.Core.Services.ServiceLocator;
 
 namespace CodeBase.Core.Audio.Service
 {

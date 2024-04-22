@@ -12,21 +12,12 @@ namespace CodeBase.Core.Infrastructure.SceneManagement
             string nextScene = sceneName.ToString();
             
             if (SceneManager.GetActiveScene().name == nextScene) return;
-            
+
             Application.backgroundLoadingPriority = ThreadPriority.High;
-            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Single);
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(nextScene);
 
-            while (!asyncOperation.isDone) 
-                await Task.Delay(100);
-
-            if (asyncOperation.isDone)
-            {
-                Debug.Log($"Scene {nextScene} loaded successfully.");
-            }
-            else
-            {
-                Debug.LogError($"Failed to load scene {nextScene}.");
-            }
+            while (!asyncOperation!.isDone) 
+                await Task.Yield();
         }
     }
 }

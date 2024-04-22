@@ -1,4 +1,4 @@
-﻿using CodeBase.Core.Infrastructure.SceneManagement.Services;
+﻿using CodeBase.Core.Services.ServiceLocator;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
 using CodeBase.UI.Root;

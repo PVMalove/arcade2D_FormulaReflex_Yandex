@@ -1,4 +1,4 @@
-using CodeBase.Core.Infrastructure.SceneManagement.Services;
+using CodeBase.Core.Services.ServiceLocator;
 
 namespace CodeBase.UI.Services.Infrastructure
 {

@@ -1,8 +1,8 @@
 using CodeBase.Core.Audio.Service;
 using CodeBase.Core.Infrastructure.SceneManagement;
-using CodeBase.Core.Infrastructure.SceneManagement.Services;
 using CodeBase.Core.Infrastructure.States.Infrastructure;
 using CodeBase.Core.Infrastructure.UI.LoadingCurtain;
+using CodeBase.Core.Services.ServiceLocator;
 
 namespace CodeBase.Core.Infrastructure.States
 {

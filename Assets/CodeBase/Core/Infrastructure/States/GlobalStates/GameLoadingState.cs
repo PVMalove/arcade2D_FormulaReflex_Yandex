@@ -55,13 +55,13 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
         {
             PlayerProgress progress = await loadService.LoadProgress();
 
-            progressService.Initialize(progress ?? await NewProgress());
+            progressService.Initialize(progress ?? NewProgress());
             log.LogState($"CompleteLoadData player progress: {progressService.GetProgress().ToJson()}", this);
         }
 
-        private async Task<PlayerProgress> NewProgress()
+        private PlayerProgress NewProgress()
         {
-            FirstSaveData newSaveData = await assetProvider.LoadAsync<FirstSaveData>(InfrastructurePath.NewSaveDataPath);
+            FirstSaveData newSaveData = assetProvider.Load<FirstSaveData>(InfrastructurePath.NewSaveDataPath);
 
             AudioControlData audioControl = new AudioControlData(
                 newSaveData.AudioVolume,

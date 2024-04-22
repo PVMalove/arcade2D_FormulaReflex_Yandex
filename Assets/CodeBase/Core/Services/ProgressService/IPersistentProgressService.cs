@@ -1,5 +1,5 @@
 ﻿using CodeBase.Core.Data;
-using CodeBase.Core.Infrastructure.SceneManagement.Services;
+using CodeBase.Core.Services.ServiceLocator;
 
 namespace CodeBase.Core.Services.ProgressService
 {

@@ -2,8 +2,8 @@
 using CodeBase.Core.Audio.Service;
 using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.Core.Infrastructure.Factories;
-using CodeBase.Core.Infrastructure.SceneManagement.Services;
 using CodeBase.Core.Services.ProgressService;
+using CodeBase.Core.Services.ServiceLocator;
 using CodeBase.UI.HUD.Base;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
