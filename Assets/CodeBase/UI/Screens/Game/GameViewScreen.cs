@@ -3,6 +3,7 @@ using System.Collections;
 using CodeBase.UI.Screens.Base;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 using Random = UnityEngine.Random;
 
 namespace CodeBase.UI.Screens.Game
@@ -11,7 +12,8 @@ namespace CodeBase.UI.Screens.Game
     {
         IDLE,
         RUNNING,
-        WAITING
+        LOST,
+        ENDED,
     }
     
     public class GameViewScreen : ScreenBase<IGamePresenter>
@@ -22,7 +24,12 @@ namespace CodeBase.UI.Screens.Game
         [SerializeField] private float minDelay = 1.2f;
         [SerializeField] private float maxDelay = 2.5f;
 
+        [SerializeField] private GameObject startGameUI;
+        [SerializeField] private GameObject failGameUI;
+        [SerializeField] private GameObject textPanel;
+        
         [SerializeField] private Text resultText;
+        [SerializeField] private Text rulesText;
         [SerializeField] private Text bestTimeText;
 
         [SerializeField] private Button startGameButton;
@@ -39,8 +46,7 @@ namespace CodeBase.UI.Screens.Game
         {
             base.Initialize(presenter);
             this.presenter = presenter;
-            bestTime = presenter.BestTime;
-            UpdateBestTimeText();
+            presenter.OnBestTimeChanged += OnBestTimeChanged;
         }
 
         protected override void SubscribeUpdates()
@@ -57,6 +63,18 @@ namespace CodeBase.UI.Screens.Game
             openSkinsShopButton.onClick.RemoveListener(OnOpenSkinsShop);
         }
 
+        protected override void Cleanup()
+        {
+            base.Cleanup();
+            presenter.OnBestTimeChanged -= OnBestTimeChanged;
+        }
+
+        private void OnBestTimeChanged(float value)
+        {
+            bestTime = value;
+            UpdateBestTimeText();
+        }
+
         private void OnStartGame()
         {
             switch (currentState)
@@ -65,9 +83,12 @@ namespace CodeBase.UI.Screens.Game
                     StartGame();
                     break;
                 case GameStates.RUNNING:
-                    StopGame();
+                    LostGame();
                     break;
-                case GameStates.WAITING:
+                case GameStates.LOST:
+                    RestartGame();
+                    break;
+                case GameStates.ENDED:
                     EndGame();
                     break;
                 default:
@@ -77,16 +98,19 @@ namespace CodeBase.UI.Screens.Game
 
         private void StartGame()
         {
+            startGameUI.SetActive(false);
             currentState = GameStates.RUNNING;
             runningCoroutine = StartCoroutine(StartLights());
         }
         
-        private void StopGame()
+        private void LostGame()
         {
             ClearLights();
             StopCoroutine(runningCoroutine);
-            resultText.text = "Jump Start!";
-            currentState = GameStates.IDLE;
+            failGameUI.SetActive(true);
+
+            resultText.gameObject.SetActive(true);
+            currentState = GameStates.LOST;
         }
         
         private void EndGame()
@@ -99,7 +123,15 @@ namespace CodeBase.UI.Screens.Game
                 presenter.SetBestTime(bestTime);
                 UpdateBestTimeText();
             }
-            presenter.EndGame();
+            resultText.gameObject.SetActive(true);
+            rulesText.text = "Click again to reload game!";
+            currentState = GameStates.LOST;
+        }
+        
+        private void RestartGame()
+        {
+            startGameUI.SetActive(true);
+            failGameUI.SetActive(false);
             currentState = GameStates.IDLE;
         }
         
@@ -118,12 +150,12 @@ namespace CodeBase.UI.Screens.Game
             yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
             ClearLights();
             startTime = Time.time;
-            currentState = GameStates.WAITING;
+            currentState = GameStates.ENDED;
         }
 
         private void UpdateBestTimeText()
         {
-            bestTimeText.text = $"Best Time: {FormatTime(bestTime)}";
+            bestTimeText.text = FormatTime(bestTime);
         }
 
         private string FormatTime(float time)

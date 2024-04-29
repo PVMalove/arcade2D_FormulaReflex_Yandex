@@ -14,9 +14,10 @@ using CodeBase.UI.Services.Factories;
 
 namespace CodeBase.Core.Infrastructure.States.Infrastructure
 {
-    public class GameStateMachine : StateMachine
+    public class GlobalStateMachine : StateMachine
     {
-        public GameStateMachine(ISceneLoader sceneLoader, ILoadingCurtain loadingCurtain, IAudioService audioService, AllServices services)
+        public GlobalStateMachine(ISceneLoader sceneLoader, ILoadingCurtain loadingCurtain, IAudioService audioService,
+            AllServices services)
         {
             RegisterState(new GameBootstrapState(this, sceneLoader,audioService, services));
             RegisterState(new GameLoadingState(this, loadingCurtain,
@@ -35,6 +36,5 @@ namespace CodeBase.Core.Infrastructure.States.Infrastructure
         }
         
         public void Start() => Enter<GameBootstrapState>();
-        
     }
 }

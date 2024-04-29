@@ -14,7 +14,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
 {
     public class GameLoadingState : IState
     {
-        private readonly GameStateMachine gameStateMachine;
+        private readonly GlobalStateMachine globalStateMachine;
         private readonly ILoadingCurtain loadingCurtain;
         private readonly IPersistentProgressService progressService;
         private readonly ILoadService loadService;
@@ -22,14 +22,14 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
         private readonly ILogService log;
 
 
-        public GameLoadingState(GameStateMachine gameStateMachine,
+        public GameLoadingState(GlobalStateMachine globalStateMachine,
             ILoadingCurtain loadingCurtain,
             IPersistentProgressService progressService,
             ILoadService loadService,
             IAssetProvider assetProvider,
             ILogService log)
         {
-            this.gameStateMachine = gameStateMachine;
+            this.globalStateMachine = globalStateMachine;
             this.loadingCurtain = loadingCurtain;
             this.progressService = progressService;
             this.loadService = loadService;
@@ -42,7 +42,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             log.LogState("Enter", this);
             loadingCurtain.Show();
             await CompleteLoadData();
-            gameStateMachine.Enter<GameLoadSceneState>();
+            globalStateMachine.Enter<GameLoadSceneState>();
         }
 
         public void Exit()

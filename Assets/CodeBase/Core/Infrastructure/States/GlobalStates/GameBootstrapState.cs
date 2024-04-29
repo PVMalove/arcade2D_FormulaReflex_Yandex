@@ -21,17 +21,17 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
 {
     public class GameBootstrapState : IState
     {
-        private readonly GameStateMachine gameStateMachine;
+        private readonly GlobalStateMachine globalStateMachine;
         private readonly ISceneLoader sceneLoader;
         private readonly IAudioService audioService;
         private readonly AllServices services;
 
-        public GameBootstrapState(GameStateMachine gameStateMachine, 
+        public GameBootstrapState(GlobalStateMachine globalStateMachine, 
             ISceneLoader sceneLoader,
             IAudioService audioService,
             AllServices services)
         {
-            this.gameStateMachine = gameStateMachine;
+            this.globalStateMachine = globalStateMachine;
             this.sceneLoader = sceneLoader;
             this.services = services;
             this.audioService = audioService;
@@ -42,7 +42,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
         {
             Debug.Log("[StateMachine] - GameBootstrapState: Enter");
             await sceneLoader.Load(SceneNames.BoostrapScene);
-            gameStateMachine.Enter<GameLoadingState>();
+            globalStateMachine.Enter<GameLoadingState>();
         }
 
         public void Exit()
@@ -52,7 +52,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
 
         private void RegisterServices()
         {
-            services.RegisterSingle<IStateMachine>(gameStateMachine);
+            services.RegisterSingle<IStateMachine>(globalStateMachine);
             
             services.RegisterSingle<ILogService>(new LogService());
             

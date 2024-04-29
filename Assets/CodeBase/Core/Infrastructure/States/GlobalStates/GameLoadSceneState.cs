@@ -15,7 +15,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
 {
     public class GameLoadSceneState : IState
     {
-        private readonly GameStateMachine gameStateMachine;
+        private readonly GlobalStateMachine globalStateMachine;
         private readonly ISceneLoader sceneLoader;
         private readonly ILoadingCurtain loadingCurtain;
         private readonly IPersistentProgressService progressService;
@@ -24,7 +24,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
         private readonly IHUDService hudService;
         private readonly IScreenService screenService;
 
-        public GameLoadSceneState(GameStateMachine gameStateMachine, 
+        public GameLoadSceneState(GlobalStateMachine globalStateMachine, 
             ISceneLoader sceneLoader,
             ILoadingCurtain loadingCurtain,
             IPersistentProgressService progressService,
@@ -34,7 +34,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             IScreenService screenService,
             ILogService log)
         {
-            this.gameStateMachine = gameStateMachine;
+            this.globalStateMachine = globalStateMachine;
             this.sceneLoader = sceneLoader;
             this.loadingCurtain = loadingCurtain;
             this.progressService = progressService;
@@ -55,7 +55,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             loadingCurtain.Show();
             await sceneLoader.Load(SceneNames.GameScene);
             InitGameWorld();
-            gameStateMachine.Enter<GameLoopState>();
+            globalStateMachine.Enter<GameLoopState>();
         }
 
         public void Exit()

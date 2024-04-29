@@ -13,5 +13,6 @@ namespace CodeBase.UI.Screens.Game
         void StopGame();
         void EndGame();
         void SetBestTime(float time);
+        event Action<float> OnBestTimeChanged;
     }
 }

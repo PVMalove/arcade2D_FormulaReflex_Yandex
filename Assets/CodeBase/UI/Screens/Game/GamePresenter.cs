@@ -1,3 +1,4 @@
+using System;
 using CodeBase.Core.Data;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.SaveLoadService;
@@ -6,11 +7,10 @@ namespace CodeBase.UI.Screens.Game
 {
     public sealed class GamePresenter : IGamePresenter
     {
+        public event Action<float> OnBestTimeChanged; 
         public int CoinsAmount { get; private set; }
         public float BestTime { get; private set; }
-
         public PlayerProgress Progress => progressService.GetProgress();
-        
         
         private readonly IPersistentProgressService progressService;
         private readonly ISaveService saveService;
@@ -23,7 +23,6 @@ namespace CodeBase.UI.Screens.Game
 
         public void StartGame()
         {
-            
 
         }
 
@@ -44,14 +43,14 @@ namespace CodeBase.UI.Screens.Game
 
         public void LoadProgress(PlayerProgress progress)
         {
+            OnBestTimeChanged?.Invoke(progress.BestTimeData.Value);
             CoinsAmount = progressService.GetProgress().CoinData.CoinsAmount;
-            BestTime = progressService.GetProgress().BestTimeData.Value;
         }
 
         public void UpdateProgress(PlayerProgress progress)
         {
-            progressService.GetProgress().CoinData.CoinsAmount = CoinsAmount;
-            progressService.GetProgress().BestTimeData.Value = BestTime;
+            progress.CoinData.CoinsAmount = CoinsAmount;
+            progress.BestTimeData.Value = BestTime;
         }
     }
 }

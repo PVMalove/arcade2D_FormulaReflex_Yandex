@@ -8,10 +8,10 @@ namespace CodeBase.Core.Infrastructure.States
 {
     public class Game
     {
-        private readonly GameStateMachine _stateMachine;
+        private readonly GlobalStateMachine _stateMachine;
 
         public Game(LoadingCurtain curtain, IAudioService audioService) => 
-            _stateMachine = new GameStateMachine(new SceneLoader(), curtain,audioService, AllServices.Container);
+            _stateMachine = new GlobalStateMachine(new SceneLoader(), curtain,audioService, AllServices.Container);
 
         public void Start() => _stateMachine.Start();
     }
