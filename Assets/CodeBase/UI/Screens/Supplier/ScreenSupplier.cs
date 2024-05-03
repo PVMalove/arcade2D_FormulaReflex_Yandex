@@ -21,11 +21,26 @@ namespace CodeBase.UI.Screens.Supplier
             {
                 case ScreenName.None:
                     break;
-                case ScreenName.GAME:
-                    GameViewScreen gameView = uiFactory.CreateGameView();
-                    gameView.transform.SetParent(uiFactory.UIRoot.ContainerScreen, false);
-                    gameView.name = "GameView";
-                    return gameView;
+                case ScreenName.IDLE:
+                    IdleGameViewScreen idleView = uiFactory.CreateIdleGameView();
+                    idleView.transform.SetParent(uiFactory.UIRoot.ContainerScreen, false);
+                    idleView.name = "IdleView";
+                    return idleView;
+                case ScreenName.RUNNING:
+                    RunningGameViewScreen runningView = uiFactory.CreateRunningGameView();
+                    runningView.transform.SetParent(uiFactory.UIRoot.ContainerScreen, false);
+                    runningView.name = "RunningView";
+                    return runningView;
+                case ScreenName.LOST:
+                    LostGameViewScreen lostView = uiFactory.CreateLostGameView();
+                    lostView.transform.SetParent(uiFactory.UIRoot.ContainerScreen, false);
+                    lostView.name = "LostView";
+                    return lostView;
+                case ScreenName.ENDED:
+                    EndedGameViewScreen endedView = uiFactory.CreateEndedGameView();
+                    endedView.transform.SetParent(uiFactory.UIRoot.ContainerScreen, false);
+                    endedView.name = "EndedView";
+                    return endedView;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(key), key, null);
             }

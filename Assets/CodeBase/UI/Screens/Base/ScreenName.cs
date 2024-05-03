@@ -3,6 +3,10 @@
     public enum ScreenName
     {
         None = 0,
-        GAME = 1,
+        IDLE = 1,
+        RUNNING = 2,
+        LOST = 3,
+        ENDED = 4,
+        GAME = 5,
     }
 }

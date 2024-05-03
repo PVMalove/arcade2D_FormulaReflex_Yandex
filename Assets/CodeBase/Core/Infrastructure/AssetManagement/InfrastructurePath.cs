@@ -11,6 +11,9 @@
         public const string UIRootPath = "Infrastructure/UI/GameUICanvas";
         public const string BuildInfoViewPath = "UI/HUD/BuildInfo";
         public const string SettingBarViewPath = "UI/HUD/Setting/SettingBar";
-        public const string GameMenuViewScreen = "UI/Screen/GameView";
+        public const string IdleGameViewScreen = "UI/Screen/IdleGameView";
+        public const string RunningGameViewScreen = "UI/Screen/RunningGameView";
+        public const string LostGameViewScreen = "UI/Screen/LostGameView";
+        public const string EndedGameViewScreen = "UI/Screen/EndedGameView";
     }
 }

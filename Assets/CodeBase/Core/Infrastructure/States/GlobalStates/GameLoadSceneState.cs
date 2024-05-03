@@ -72,8 +72,11 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             uiFactory.CreateUIRoot();
             hudService.ShowSettingBar();
             hudService.ShowBuildInfo(buildInfoConfig);
-            screenService.ShowGameView();
+            
+            screenService.CreateGamePresenter();
             LoadProgressReader();
+            
+            screenService.ShowIdleGameView();
         }
         
         private void LoadProgressReader()

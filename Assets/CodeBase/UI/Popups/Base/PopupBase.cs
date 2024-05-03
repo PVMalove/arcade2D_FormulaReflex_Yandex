@@ -1,11 +1,14 @@
-using CodeBase.Core.Data;
-using CodeBase.Core.Services.ProgressService;
+﻿using System.Threading.Tasks;
 using CodeBase.UI.Services.Infrastructure;
 
-namespace CodeBase.UI.Screens.Base
+
+
+namespace CodeBase.UI.Popups.Base
 {
-    public class ScreenBase<TInitializeData> : UnityFrame
+    public abstract class PopupBase<TInitializeData> : UnityFrame
     {
+        private TaskCompletionSource<object> taskCompletionSource;
+        
         private void Awake() => 
             OnAwake();
 
@@ -15,18 +18,19 @@ namespace CodeBase.UI.Screens.Base
             gameObject.SetActive(true);
         }
 
-        protected void Hide() => 
+        protected virtual void Hide() => 
             gameObject.SetActive(false);
 
         private void OnEnable()
         {
             SubscribeUpdates();
         }
+
         private void OnDisable()
         {
             UnsubscribeUpdates();
         }
-
+        
         private void OnDestroy() => 
             Cleanup();
 

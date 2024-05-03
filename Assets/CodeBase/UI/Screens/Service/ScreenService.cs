@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Threading;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.ServiceLocator;
@@ -15,25 +14,47 @@ namespace CodeBase.UI.Screens.Service
         public List<IProgressSaver> ProgressWriters { get; } = new List<IProgressSaver>();
         
         private readonly IFrameSupplier<ScreenName, UnityFrame> supplier;
-        private readonly CancellationTokenSource ctn;
+        private IGamePresenter presenter;
 
         public ScreenService(IFrameSupplier<ScreenName, UnityFrame> supplier)
         {
-            this.supplier = supplier;
+            this.supplier = supplier; 
+        }
+        
+        public void ShowIdleGameView()
+        {
+            if (supplier.LoadFrame(ScreenName.IDLE) is not IdleGameViewScreen view) return;
+            view.Show(presenter);
+        }
+        
+        public void ShowRunningGameView()
+        {
+            if (supplier.LoadFrame(ScreenName.RUNNING) is not RunningGameViewScreen view) return;
+            view.Show(presenter);
         }
 
-        public void ShowGameView()
+        public void ShowLostGameView()
         {
-            if (supplier.LoadFrame(ScreenName.GAME) is not GameViewScreen gameView) return;
-            
-            IGamePresenter presenter = new GamePresenter(
+            if (supplier.LoadFrame(ScreenName.LOST) is not LostGameViewScreen view) return;
+            view.Show(presenter);
+        }
+
+        public void ShowEndedGameView()
+        {
+            if (supplier.LoadFrame(ScreenName.ENDED) is not EndedGameViewScreen view) return;
+            view.Show(presenter);
+        }
+
+
+        public void CreateGamePresenter()
+        {
+            presenter = new GamePresenter(
+                AllServices.Container.Single<IScreenService>(),
                 AllServices.Container.Single<IPersistentProgressService>(),
                 AllServices.Container.Single<ISaveService>());
             RegisterProgress(presenter);
-            
-            gameView.Show(presenter);
         }
-        
+
         private void RegisterProgress(IProgressReader progressReader)
         {
             if (progressReader is IProgressSaver progressWriter)

@@ -12,7 +12,9 @@ namespace CodeBase.UI.Services.Factories
         void CreateUIRoot();
         BuildInfoViewHUD CreateBuildInfoView();
         SettingBarViewHUD CreateSettingBarView();
-        GameViewScreen CreateGameView();
-        void Cleanup();
+        IdleGameViewScreen CreateIdleGameView();
+        RunningGameViewScreen CreateRunningGameView();
+        LostGameViewScreen CreateLostGameView();
+        EndedGameViewScreen CreateEndedGameView();
     }
 }

@@ -6,13 +6,14 @@ namespace CodeBase.UI.Screens.Game
 {
     public interface IGamePresenter : IProgressSaver
     {
+        string BestTime { get; }
         int CoinsAmount { get; }
-        float BestTime { get; }
-        PlayerProgress Progress { get; }
+        string TimeDiff { get; }
         void StartGame();
         void StopGame();
-        void EndGame();
+        void RestartGame();
         void SetBestTime(float time);
-        event Action<float> OnBestTimeChanged;
+        void SetStartTime(float time);
+        void EndGame();
     }
 }

@@ -36,14 +36,28 @@ namespace CodeBase.UI.Services.Factories
             return view.GetComponent<SettingBarViewHUD>();
         }
 
-        public GameViewScreen CreateGameView()
+        public IdleGameViewScreen CreateIdleGameView()
         {
-            GameObject view = assetProvider.Instantiate(InfrastructurePath.GameMenuViewScreen);
-            return view.GetComponent<GameViewScreen>();
+            GameObject view = assetProvider.Instantiate(InfrastructurePath.IdleGameViewScreen);
+            return view.GetComponent<IdleGameViewScreen>();
         }
 
-        public void Cleanup()
+        public RunningGameViewScreen CreateRunningGameView()
         {
+            GameObject view = assetProvider.Instantiate(InfrastructurePath.RunningGameViewScreen);
+            return view.GetComponent<RunningGameViewScreen>();
+        }
+
+        public LostGameViewScreen CreateLostGameView()
+        {
+            GameObject view = assetProvider.Instantiate(InfrastructurePath.LostGameViewScreen);
+            return view.GetComponent<LostGameViewScreen>();
+        }
+        
+        public EndedGameViewScreen CreateEndedGameView()
+        {
+            GameObject view = assetProvider.Instantiate(InfrastructurePath.EndedGameViewScreen);
+            return view.GetComponent<EndedGameViewScreen>();
         }
     }
 }

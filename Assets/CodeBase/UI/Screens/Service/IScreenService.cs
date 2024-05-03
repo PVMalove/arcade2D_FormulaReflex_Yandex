@@ -8,6 +8,10 @@ namespace CodeBase.UI.Screens.Service
     {
         List<IProgressReader> ProgressReaders { get; }
         List<IProgressSaver> ProgressWriters { get; }
-        void ShowGameView();
+        void CreateGamePresenter();
+        void ShowIdleGameView();
+        void ShowRunningGameView();
+        void ShowLostGameView();
+        void ShowEndedGameView();
     }
 }
