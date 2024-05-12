@@ -1,5 +1,3 @@
-using CodeBase.Core.Data;
-using CodeBase.Core.Services.ProgressService;
 using CodeBase.UI.Services.Infrastructure;
 
 namespace CodeBase.UI.Screens.Base

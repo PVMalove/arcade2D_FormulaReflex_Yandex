@@ -373,6 +373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startGameButton: {fileID: 2547630421192705405}
   openSkinsShopButton: {fileID: 6899495239149434063}
+  openLeaderboardButton: {fileID: 8280974359838194118}
   bestTimeText: {fileID: 1184153693880707075}
 --- !u!1 &2746347552227780687
 GameObject:
@@ -489,7 +490,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -150}
-  m_SizeDelta: {x: 1100, y: 100}
+  m_SizeDelta: {x: 1100, y: 130}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &4878113821200941710
 GameObject:

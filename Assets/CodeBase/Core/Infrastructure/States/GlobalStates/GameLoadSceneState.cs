@@ -73,7 +73,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             hudService.ShowSettingBar();
             hudService.ShowBuildInfo(buildInfoConfig);
             
-            screenService.CreateGamePresenter();
+            screenService.InitializePresenter();
             LoadProgressReader();
             
             screenService.ShowIdleGameView();

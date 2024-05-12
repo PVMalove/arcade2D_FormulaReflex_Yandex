@@ -53,7 +53,7 @@ namespace YG
         private bool timeTypeConvert;
 
         [SerializeField, ConditionallyVisible("timeTypeConvert"),
-            Range(0, 3), Tooltip("Размер десятичной части счёта (при использовании Time type).\n  Например:\n  0 = 00:00\n  1 = 00:00.0\n  2 = 00:00.00\n  3 = 00:00.000\nВы можете проверить это в Unity не прибегая к тестированию в сборке.")]
+            Range(0, 4), Tooltip("Размер десятичной части счёта (при использовании Time type).\n  Например:\n  0 = 00:00\n  1 = 00:00.0\n  2 = 00:00.00\n  3 = 00:00.000\nВы можете проверить это в Unity не прибегая к тестированию в сборке.")]
         private int decimalSize = 1;
 
         [SerializeField]

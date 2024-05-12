@@ -20,7 +20,6 @@ namespace CodeBase.Core.Infrastructure.AssetManagement
         public TAsset Load<TAsset>(string path) where TAsset : Object
         {
             var request = Resources.Load<TAsset>(path);
-
             return request;
         }
         

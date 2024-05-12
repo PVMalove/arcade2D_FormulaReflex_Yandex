@@ -3,6 +3,7 @@ using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
 using CodeBase.UI.Root;
 using CodeBase.UI.Screens.Game;
+using CodeBase.UI.Screens.Leaderboard;
 using UnityEngine;
 
 namespace CodeBase.UI.Services.Factories
@@ -58,6 +59,12 @@ namespace CodeBase.UI.Services.Factories
         {
             GameObject view = assetProvider.Instantiate(InfrastructurePath.EndedGameViewScreen);
             return view.GetComponent<EndedGameViewScreen>();
+        }
+
+        public LeaderboardViewScreen CreateLeaderboardView()
+        {
+            GameObject view = assetProvider.Instantiate(InfrastructurePath.LeaderboardViewScreen);
+            return view.GetComponent<LeaderboardViewScreen>();
         }
     }
 }

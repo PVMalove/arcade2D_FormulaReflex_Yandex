@@ -8,6 +8,7 @@ namespace CodeBase.UI.Screens.Game
     {
         [SerializeField] private Button startGameButton;
         [SerializeField] private Button openSkinsShopButton;
+        [SerializeField] private Button openLeaderboardButton;
         [SerializeField] private Text bestTimeText;
 
         private IGamePresenter presenter;
@@ -24,6 +25,7 @@ namespace CodeBase.UI.Screens.Game
             base.SubscribeUpdates();
             startGameButton.onClick.AddListener(OnStartGame);
             openSkinsShopButton.onClick.AddListener(OnOpenSkinsShop);
+            openLeaderboardButton.onClick.AddListener(OnOpenLeaderboard);
         }
 
         protected override void UnsubscribeUpdates()
@@ -31,6 +33,7 @@ namespace CodeBase.UI.Screens.Game
             base.UnsubscribeUpdates();
             startGameButton.onClick.RemoveListener(OnStartGame);
             openSkinsShopButton.onClick.RemoveListener(OnOpenSkinsShop);
+            openLeaderboardButton.onClick.RemoveListener(OnOpenLeaderboard);
         }
 
         private void OnStartGame()
@@ -38,9 +41,12 @@ namespace CodeBase.UI.Screens.Game
             Hide();
             presenter.StartGame();
         }
-        
+
         private void OnOpenSkinsShop()
         {
         }
+
+        private void OnOpenLeaderboard() => 
+            presenter.OpenLeaderboard();
     }
 }

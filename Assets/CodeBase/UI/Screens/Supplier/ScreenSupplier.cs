@@ -1,6 +1,7 @@
 ﻿using System;
 using CodeBase.UI.Screens.Base;
 using CodeBase.UI.Screens.Game;
+using CodeBase.UI.Screens.Leaderboard;
 using CodeBase.UI.Services.Factories;
 using CodeBase.UI.Services.Infrastructure;
 
@@ -41,6 +42,11 @@ namespace CodeBase.UI.Screens.Supplier
                     endedView.transform.SetParent(uiFactory.UIRoot.ContainerScreen, false);
                     endedView.name = "EndedView";
                     return endedView;
+                case ScreenName.LEADERBOARD:
+                    LeaderboardViewScreen leaderboardView = uiFactory.CreateLeaderboardView();
+                    leaderboardView.transform.SetParent(uiFactory.UIRoot.ContainerScreen, false);
+                    leaderboardView.name = "LeaderboardView";
+                    return leaderboardView;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(key), key, null);
             }

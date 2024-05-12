@@ -4,6 +4,7 @@ using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.UI.Screens.Service;
 using UnityEngine;
+using YG;
 
 namespace CodeBase.UI.Screens.Game
 {
@@ -51,15 +52,17 @@ namespace CodeBase.UI.Screens.Game
             if (timeDiff < bestTime || bestTime == 0f)
             {
                 bestTime = timeDiff;
+                YandexGame.NewLBScoreTimeConvert("BestTimeRecord2", bestTime);
             }
             saveService.SaveProgress();
             screenService.ShowEndedGameView();
         }
         
-        public void SetBestTime(float time)
+        public void OpenLeaderboard()
         {
-            bestTime = time;
+            screenService.ShowLeaderboardView();
         }
+
 
         public void SetStartTime(float time)
         {

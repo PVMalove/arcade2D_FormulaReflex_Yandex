@@ -5,6 +5,7 @@ using CodeBase.Core.Infrastructure.SceneManagement;
 using CodeBase.Core.Infrastructure.States.Infrastructure;
 using CodeBase.Core.Services.LogService;
 using CodeBase.Core.Services.ProgressService;
+using CodeBase.Core.Services.Randomizer;
 using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.ServiceLocator;
 using CodeBase.UI.HUD.Base;
@@ -89,6 +90,8 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             
             services.RegisterSingle<ILoadService>(new LoadService(
                 services.Single<ILogService>()));
+            
+            services.RegisterSingle<IRandomService>(new RandomService());
         }
     }
 }

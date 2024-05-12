@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.Core.Services.ProgressService;
+using CodeBase.Core.Services.Randomizer;
 using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.ServiceLocator;
 using CodeBase.UI.Screens.Base;
 using CodeBase.UI.Screens.Game;
+using CodeBase.UI.Screens.Leaderboard;
 using CodeBase.UI.Services.Infrastructure;
 
 namespace CodeBase.UI.Screens.Service
@@ -14,45 +17,55 @@ namespace CodeBase.UI.Screens.Service
         public List<IProgressSaver> ProgressWriters { get; } = new List<IProgressSaver>();
         
         private readonly IFrameSupplier<ScreenName, UnityFrame> supplier;
-        private IGamePresenter presenter;
+        private IGamePresenter gamePresenter;
+        private ILeaderboardPresenter leaderboardPresenter;
 
         public ScreenService(IFrameSupplier<ScreenName, UnityFrame> supplier)
         {
             this.supplier = supplier; 
         }
-        
+
+        public void InitializePresenter()
+        {
+            gamePresenter = new GamePresenter(
+                AllServices.Container.Single<IScreenService>(),
+                AllServices.Container.Single<IPersistentProgressService>(),
+                AllServices.Container.Single<ISaveService>());
+            RegisterProgress(gamePresenter);
+
+            leaderboardPresenter = new LeaderboardPresenter(
+                AllServices.Container.Single<IRandomService>(),
+                AllServices.Container.Single<IAssetProvider>());
+        }
+
         public void ShowIdleGameView()
         {
             if (supplier.LoadFrame(ScreenName.IDLE) is not IdleGameViewScreen view) return;
-            view.Show(presenter);
+            view.Show(gamePresenter);
         }
-        
+
         public void ShowRunningGameView()
         {
             if (supplier.LoadFrame(ScreenName.RUNNING) is not RunningGameViewScreen view) return;
-            view.Show(presenter);
+            view.Show(gamePresenter);
         }
 
         public void ShowLostGameView()
         {
             if (supplier.LoadFrame(ScreenName.LOST) is not LostGameViewScreen view) return;
-            view.Show(presenter);
+            view.Show(gamePresenter);
         }
 
         public void ShowEndedGameView()
         {
             if (supplier.LoadFrame(ScreenName.ENDED) is not EndedGameViewScreen view) return;
-            view.Show(presenter);
+            view.Show(gamePresenter);
         }
 
-
-        public void CreateGamePresenter()
+        public void ShowLeaderboardView()
         {
-            presenter = new GamePresenter(
-                AllServices.Container.Single<IScreenService>(),
-                AllServices.Container.Single<IPersistentProgressService>(),
-                AllServices.Container.Single<ISaveService>());
-            RegisterProgress(presenter);
+            if (supplier.LoadFrame(ScreenName.LEADERBOARD) is not LeaderboardViewScreen view) return;
+            view.Show(leaderboardPresenter);
         }
 
         private void RegisterProgress(IProgressReader progressReader)

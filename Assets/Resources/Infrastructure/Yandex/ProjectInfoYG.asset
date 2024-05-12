@@ -131,30 +131,22 @@ MonoBehaviour:
     thisPlayer:
       rank: 0
       score: 0
-  - technoName: time
-    entries: 'Test LeaderBoard
-
-      Name: time
-
-      1. anonymous: 10
-
-      2.
-      Max: 15
-
-      3. Maria: 23'
-    isDefault: 0
-    isInvertSortOrder: 0
-    decimalOffset: 0
+  - technoName: BestTimeRecord2
+    entries: "Best Time Record\nName: time\n1. \u0441\u043A\u0440\u044B\u0442: 10\n2.
+      Max: 15\n3. Maria: 23"
+    isDefault: 1
+    isInvertSortOrder: 1
+    decimalOffset: 4
     type: numeric
     players:
     - rank: 1
       name: anonymous
-      score: 7123
+      score: 2
       photo: https://justplaygames.ru/public/icon_player.png
       uniqueID: 789
     - rank: 2
       name: Max
-      score: 15321
+      score: 1
       photo: https://justplaygames.ru/public/icon_player.png
       uniqueID: 987
     - rank: 3
@@ -177,8 +169,28 @@ MonoBehaviour:
       score: 340000
       photo: https://justplaygames.ru/public/icon_player.png
       uniqueID: 321
+    - rank: 6
+      name: Player6
+      score: 340000
+      photo: https://justplaygames.ru/public/icon_player.png
+      uniqueID: 321
+    - rank: 6
+      name: Player6
+      score: 340000
+      photo: https://justplaygames.ru/public/icon_player.png
+      uniqueID: 321
+    - rank: 6
+      name: Player6
+      score: 340000
+      photo: https://justplaygames.ru/public/icon_player.png
+      uniqueID: 321
+    - rank: 6
+      name: Player6
+      score: 340000
+      photo: https://justplaygames.ru/public/icon_player.png
+      uniqueID: 321
     thisPlayer:
-      rank: 2
+      rank: 4
       score: 10
   LocalizationEnable: 1
   callingLanguageCheck: 0
@@ -218,36 +230,6 @@ MonoBehaviour:
   fonts:
     defaultFont:
     - {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
-    ru: []
-    en: []
-    tr: []
-    az: []
-    be: []
-    he: []
-    hy: []
-    ka: []
-    et: []
-    fr: []
-    kk: []
-    ky: []
-    lt: []
-    lv: []
-    ro: []
-    tg: []
-    tk: []
-    uk: []
-    uz: []
-    es: []
-    pt: []
-    ar: []
-    id: []
-    ja: []
-    it: []
-    de: []
-    hi: []
-  fontsTMP:
-    defaultFont:
-    - {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     ru: []
     en: []
     tr: []

@@ -7,6 +7,6 @@
         RUNNING = 2,
         LOST = 3,
         ENDED = 4,
-        GAME = 5,
+        LEADERBOARD = 5,
     }
 }

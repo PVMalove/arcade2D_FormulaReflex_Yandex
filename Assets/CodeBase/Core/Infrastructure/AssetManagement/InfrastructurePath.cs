@@ -15,5 +15,9 @@
         public const string RunningGameViewScreen = "UI/Screen/RunningGameView";
         public const string LostGameViewScreen = "UI/Screen/LostGameView";
         public const string EndedGameViewScreen = "UI/Screen/EndedGameView";
+        public const string LeaderboardViewScreen = "UI/Screen/LeaderboardView";
+        
+        //Configs
+        public const string BolideDataPath = "Configs/BolideData";
     }
 }

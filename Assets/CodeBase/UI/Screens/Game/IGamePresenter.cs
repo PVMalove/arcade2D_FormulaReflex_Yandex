@@ -12,8 +12,8 @@ namespace CodeBase.UI.Screens.Game
         void StartGame();
         void StopGame();
         void RestartGame();
-        void SetBestTime(float time);
-        void SetStartTime(float time);
         void EndGame();
+        void SetStartTime(float time);
+        void OpenLeaderboard();
     }
 }

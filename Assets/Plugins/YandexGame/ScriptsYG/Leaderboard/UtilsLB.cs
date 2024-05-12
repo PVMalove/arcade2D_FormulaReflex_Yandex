@@ -75,6 +75,8 @@ namespace YG.Utils.LB
                 return TimeSpan.FromMilliseconds(score).ToString("mm':'ss'.'ff");
             else if (decimalSize == 3)
                 return TimeSpan.FromMilliseconds(score).ToString("mm':'ss'.'fff");
+            else if (decimalSize == 4)
+                return TimeSpan.FromMilliseconds(score).ToString("ss'.'fff");
             else
                 return TimeSpan.FromMilliseconds(score).ToString("mm':'ss");
         }
