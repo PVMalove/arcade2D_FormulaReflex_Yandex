@@ -1,4 +1,3 @@
-using System;
 using CodeBase.Core.Data;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.SaveLoadService;
@@ -62,7 +61,11 @@ namespace CodeBase.UI.Screens.Game
         {
             screenService.ShowLeaderboardView();
         }
-
+        
+        public void OpenShop()
+        {
+            screenService.ShowShopView();
+        }
 
         public void SetStartTime(float time)
         {

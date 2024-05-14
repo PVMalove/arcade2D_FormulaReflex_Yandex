@@ -4,35 +4,32 @@ namespace CodeBase.Core.Services.LogService
 {
     public class LogService : ILogService
     {
-        private const bool StateLog = true;
-        private const bool ServiceLog = true;
-        private const bool yandexLog = true;
-        private const bool audioLog = true;
+        private const bool isStateLog = true;
+        private const bool isLog = true;
+        private const bool isYandexLog = true;
+        private const bool isAudioLog = true;
         
-        public void Log(string msg) => 
-            Debug.Log(msg);
-        
-        public void LogState(string msg, object obj)
+        public void Log(string msg, object obj)
         {
-            if (StateLog)
+            if (isLog)
             {
                 string className = obj.GetType().Name;
                 Debug.Log($"[State] -> [{className}] -> {msg}");
             }
         }
 
-        void ILogService.LogService(string msg, object obj)
+        public void LogState(string msg, object obj)
         {
-            if (ServiceLog)
+            if (isStateLog)
             {
                 string className = obj.GetType().Name;
-                Debug.Log($"[Service] -> [{className}] -> {msg}");
+                Debug.Log($"[State] -> [{className}] -> {msg}");
             }
         }
 
         public void LogYandex(string msg, object obj)
         {
-            if (yandexLog)
+            if (isYandexLog)
             {
                 string className = obj.GetType().Name;
                 Debug.Log($"[YandexGame] -> [{className}] -> {msg}");
@@ -41,7 +38,7 @@ namespace CodeBase.Core.Services.LogService
 
         public void LogAudio(string msg, object obj)
         {
-            if (audioLog)
+            if (isAudioLog)
             {
                 string className = obj.GetType().Name;
                 Debug.Log($"[Audio] --> [{className}] -> {msg}");

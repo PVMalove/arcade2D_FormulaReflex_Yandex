@@ -14,5 +14,6 @@ namespace CodeBase.UI.Screens.Service
         void ShowLostGameView();
         void ShowEndedGameView();
         void ShowLeaderboardView();
+        void ShowShopView();
     }
 }

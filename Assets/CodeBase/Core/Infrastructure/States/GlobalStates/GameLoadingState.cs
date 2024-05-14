@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using CodeBase.Core.Data;
 using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.Core.Infrastructure.States.Infrastructure;
@@ -6,7 +7,9 @@ using CodeBase.Core.Infrastructure.UI.LoadingCurtain;
 using CodeBase.Core.Services.LogService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.SaveLoadService;
+using CodeBase.Core.Services.StaticDataService;
 using CodeBase.Core.StaticData.Infrastructure;
+using CodeBase.Core.StaticData.UI.Shop;
 using UnityEngine;
 
 
@@ -16,6 +19,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
     {
         private readonly GlobalStateMachine globalStateMachine;
         private readonly ILoadingCurtain loadingCurtain;
+        private readonly IStaticDataService staticDataService;
         private readonly IPersistentProgressService progressService;
         private readonly ILoadService loadService;
         private readonly IAssetProvider assetProvider;
@@ -24,10 +28,10 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
 
         public GameLoadingState(GlobalStateMachine globalStateMachine,
             ILoadingCurtain loadingCurtain,
+            IStaticDataService staticDataService,
             IPersistentProgressService progressService,
             ILoadService loadService,
-            IAssetProvider assetProvider,
-            ILogService log)
+            IAssetProvider assetProvider, ILogService log)
         {
             this.globalStateMachine = globalStateMachine;
             this.loadingCurtain = loadingCurtain;
@@ -35,12 +39,14 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             this.loadService = loadService;
             this.assetProvider = assetProvider;
             this.log = log;
+            this.staticDataService = staticDataService;
         }
 
         public async void Enter()
         {
             log.LogState("Enter", this);
             loadingCurtain.Show();
+            staticDataService.Initialize();
             await CompleteLoadData();
             globalStateMachine.Enter<GameLoadSceneState>();
         }
@@ -63,11 +69,11 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
         {
             FirstSaveData newSaveData = assetProvider.Load<FirstSaveData>(InfrastructurePath.NewSaveDataPath);
 
-            AudioControlData audioControl = new AudioControlData(
-                newSaveData.AudioVolume,
-                newSaveData.EffectsOn
+            PlayerCarData playerCarData = new PlayerCarData(
+                new List<CarViewType> { newSaveData.DefaultCarViewType },
+                newSaveData.DefaultCarViewType
             );
-
+            
             CoinData coinData = new CoinData(
                 newSaveData.CoinsAmount
             );
@@ -76,10 +82,16 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
                 newSaveData.BestTime
             );
 
+            AudioControlData audioControl = new AudioControlData(
+                newSaveData.AudioVolume,
+                newSaveData.EffectsOn
+            );
+            
             PlayerProgress progress = new PlayerProgress(
-                audioControl,
+                playerCarData,
                 coinData,
-                bestTimeData);
+                bestTimeData,
+                audioControl);
 
             log.LogState("Init new player progress", this);
             return progress;

@@ -2,6 +2,7 @@
 using CodeBase.UI.Screens.Base;
 using CodeBase.UI.Screens.Game;
 using CodeBase.UI.Screens.Leaderboard;
+using CodeBase.UI.Screens.Shop;
 using CodeBase.UI.Services.Factories;
 using CodeBase.UI.Services.Infrastructure;
 
@@ -47,6 +48,11 @@ namespace CodeBase.UI.Screens.Supplier
                     leaderboardView.transform.SetParent(uiFactory.UIRoot.ContainerScreen, false);
                     leaderboardView.name = "LeaderboardView";
                     return leaderboardView;
+                case ScreenName.SHOP:
+                    ShopViewScreen shopView = uiFactory.CreateShopView();
+                    shopView.transform.SetParent(uiFactory.UIRoot.ContainerScreen, false);
+                    shopView.name = "ShopView";
+                    return shopView;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(key), key, null);
             }

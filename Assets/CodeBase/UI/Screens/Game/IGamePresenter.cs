@@ -15,5 +15,6 @@ namespace CodeBase.UI.Screens.Game
         void EndGame();
         void SetStartTime(float time);
         void OpenLeaderboard();
+        void OpenShop();
     }
 }

@@ -6,16 +6,19 @@ namespace CodeBase.Core.Data
     [Serializable]
     public class PlayerProgress
     {
-        public AudioControlData AudioControlData;
+        [FormerlySerializedAs("playerCarViewData")] [FormerlySerializedAs("CarViewData")] public PlayerCarData playerCarData;
         public CoinData CoinData;
         public BestTimeData BestTimeData;
-        
-        public PlayerProgress(AudioControlData audioControlData,
-            CoinData coinData, BestTimeData bestTimeData)
+        public AudioControlData AudioControlData;
+
+        public PlayerProgress(PlayerCarData playerCarData,
+            CoinData coinData, BestTimeData bestTimeData, 
+            AudioControlData audioControlData)
         {
-            AudioControlData = audioControlData;
+            this.playerCarData = playerCarData;
             CoinData = coinData;
             BestTimeData = bestTimeData;
+            AudioControlData = audioControlData;
         }
     }
 }

@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 using CodeBase.Core.Infrastructure.AssetManagement;
+using CodeBase.Core.Services.PoolService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.Randomizer;
 using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.ServiceLocator;
+using CodeBase.Core.Services.StaticDataService;
 using CodeBase.UI.Screens.Base;
 using CodeBase.UI.Screens.Game;
 using CodeBase.UI.Screens.Leaderboard;
+using CodeBase.UI.Screens.Shop;
+using CodeBase.UI.Screens.Shop.Item;
 using CodeBase.UI.Services.Infrastructure;
 
 namespace CodeBase.UI.Screens.Service
@@ -19,6 +23,7 @@ namespace CodeBase.UI.Screens.Service
         private readonly IFrameSupplier<ScreenName, UnityFrame> supplier;
         private IGamePresenter gamePresenter;
         private ILeaderboardPresenter leaderboardPresenter;
+        private IShopPresenter shopPresenter;
 
         public ScreenService(IFrameSupplier<ScreenName, UnityFrame> supplier)
         {
@@ -36,6 +41,11 @@ namespace CodeBase.UI.Screens.Service
             leaderboardPresenter = new LeaderboardPresenter(
                 AllServices.Container.Single<IRandomService>(),
                 AllServices.Container.Single<IAssetProvider>());
+
+            shopPresenter = new ShopPresenter(
+                AllServices.Container.Single<IPersistentProgressService>(),
+                AllServices.Container.Single<IStaticDataService>()
+            );
         }
 
         public void ShowIdleGameView()
@@ -66,6 +76,17 @@ namespace CodeBase.UI.Screens.Service
         {
             if (supplier.LoadFrame(ScreenName.LEADERBOARD) is not LeaderboardViewScreen view) return;
             view.Show(leaderboardPresenter);
+        }
+
+        public void ShowShopView()
+        {
+            if (supplier.LoadFrame(ScreenName.SHOP) is not ShopViewScreen view) return;
+            view.GetComponent<ShopItemsPresenter>().Construct(
+                AllServices.Container.Single<IPersistentProgressService>(),
+                AllServices.Container.Single<IStaticDataService>(),
+                AllServices.Container.Single<IPoolFactory>());
+            view.GetComponent<ShopItemsPresenter>().Initialize();
+            view.Show(shopPresenter);
         }
 
         private void RegisterProgress(IProgressReader progressReader)

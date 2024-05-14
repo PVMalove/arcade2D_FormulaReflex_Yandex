@@ -39,16 +39,7 @@ namespace CodeBase.UI.HUD.SettingBar
 
         private void OpenSettingOnClick()
         {
-            float startValue = -40f;
-            float endValue = 0f;
-            float duration = 0.5f;
-            
             settingsObject.SetActive(!settingsObject.activeSelf);
-
-            if (settingsObject.activeSelf == false)
-            {
-                layoutGroup.spacing = endValue;
-            }
         }
 
         private void SoundOnClick()

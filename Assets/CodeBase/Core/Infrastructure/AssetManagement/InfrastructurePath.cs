@@ -16,8 +16,11 @@
         public const string LostGameViewScreen = "UI/Screen/LostGameView";
         public const string EndedGameViewScreen = "UI/Screen/EndedGameView";
         public const string LeaderboardViewScreen = "UI/Screen/LeaderboardView";
-        
+        public const string ShopViewScreen = "UI/Screen/ShopView";
+
+
         //Configs
-        public const string BolideDataPath = "Configs/BolideData";
+        public const string AllCarViewConfigPath = "Configs/AllCarViewConfig";
+        public const string ConfigPath = "Configs";
     }
 }

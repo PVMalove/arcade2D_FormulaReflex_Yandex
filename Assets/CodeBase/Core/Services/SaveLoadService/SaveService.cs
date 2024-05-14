@@ -48,7 +48,7 @@ namespace CodeBase.Core.Services.SaveLoadService
                 progressWriter.UpdateProgress(progressService.GetProgress());
 
             string json = progressService.GetProgress().ToJson();
-            log.LogService($"SaveService -> json {json}", this);
+            log.Log($"SaveService -> json {json}", this);
 #if UNITY_WEBGL && !UNITY_EDITOR
             YandexGame.SaveProgressPlayerData(json);
 #elif UNITY_EDITOR

@@ -4,10 +4,12 @@ using CodeBase.Core.Infrastructure.Factories;
 using CodeBase.Core.Infrastructure.SceneManagement;
 using CodeBase.Core.Infrastructure.States.Infrastructure;
 using CodeBase.Core.Services.LogService;
+using CodeBase.Core.Services.PoolService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.Randomizer;
 using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.ServiceLocator;
+using CodeBase.Core.Services.StaticDataService;
 using CodeBase.UI.HUD.Base;
 using CodeBase.UI.HUD.Service;
 using CodeBase.UI.HUD.Supplier;
@@ -59,9 +61,15 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             
             services.RegisterSingle<IAudioService>(audioService);
             
-            services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
+            services.RegisterSingle<IStaticDataService>(new StaticDataService(
+                services.Single<ILogService>()));
+            
+            services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService(
+                services.Single<IStaticDataService>()));
             
             services.RegisterSingle<IAssetProvider>(new AssetProvider());
+            
+            services.RegisterSingle<IPoolFactory>(new PoolFactory());
             
             services.RegisterSingle<IGameFactory>(new GameFactory(
                 services.Single<IPersistentProgressService>()));

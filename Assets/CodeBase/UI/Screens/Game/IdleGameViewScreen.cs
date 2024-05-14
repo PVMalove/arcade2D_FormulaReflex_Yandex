@@ -44,6 +44,7 @@ namespace CodeBase.UI.Screens.Game
 
         private void OnOpenSkinsShop()
         {
+            presenter.OpenShop();
         }
 
         private void OnOpenLeaderboard() => 

@@ -4,6 +4,7 @@ using CodeBase.UI.HUD.SettingBar;
 using CodeBase.UI.Root;
 using CodeBase.UI.Screens.Game;
 using CodeBase.UI.Screens.Leaderboard;
+using CodeBase.UI.Screens.Shop;
 
 namespace CodeBase.UI.Services.Factories
 {
@@ -18,5 +19,6 @@ namespace CodeBase.UI.Services.Factories
         LostGameViewScreen CreateLostGameView();
         EndedGameViewScreen CreateEndedGameView();
         LeaderboardViewScreen CreateLeaderboardView();
+        ShopViewScreen CreateShopView();
     }
 }

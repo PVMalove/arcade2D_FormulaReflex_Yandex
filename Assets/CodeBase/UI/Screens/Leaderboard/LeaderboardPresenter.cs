@@ -19,16 +19,16 @@ namespace CodeBase.UI.Screens.Leaderboard
             this.randomService = randomService;
             this.assetProvider = assetProvider;
             
-            CreateRandomSprite(12);
+            CreateRandomSprite(15);
         }
 
         public void CreateRandomSprite(int count)
         {
-            BolideData bolideData = assetProvider.Load<BolideData>(InfrastructurePath.BolideDataPath);
+            AllCarViewConfig allCarViewConfig = assetProvider.Load<AllCarViewConfig>(InfrastructurePath.AllCarViewConfigPath);
             for (int i = 0; i < count; i++)
             {
-                Sprite bolideSprite = bolideData.ImagesContainer[randomService.Next(0, bolideData.ImagesContainer.Length)];
-                randomSprites.Add(bolideSprite);
+                Sprite car = allCarViewConfig.ImagesContainer[randomService.Next(0, allCarViewConfig.ImagesContainer.Length)];
+                randomSprites.Add(car);
             }
         }
     }

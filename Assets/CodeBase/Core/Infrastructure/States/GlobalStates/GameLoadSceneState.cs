@@ -23,6 +23,9 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
         private readonly IUIFactory uiFactory;
         private readonly IHUDService hudService;
         private readonly IScreenService screenService;
+        private readonly ILogService log;
+        
+        private BuildInfoConfig buildInfoConfig;
 
         public GameLoadSceneState(GlobalStateMachine globalStateMachine, 
             ISceneLoader sceneLoader,
@@ -44,10 +47,6 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             this.screenService = screenService;
             this.log = log;
         }
-
-        private readonly ILogService log;
-
-        private BuildInfoConfig buildInfoConfig;
 
         public async void Enter()
         {

@@ -8,6 +8,7 @@ using CodeBase.Core.Services.LogService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.ServiceLocator;
+using CodeBase.Core.Services.StaticDataService;
 using CodeBase.UI.HUD.Service;
 using CodeBase.UI.Screens.Service;
 using CodeBase.UI.Services.Factories;
@@ -21,6 +22,7 @@ namespace CodeBase.Core.Infrastructure.States.Infrastructure
         {
             RegisterState(new GameBootstrapState(this, sceneLoader,audioService, services));
             RegisterState(new GameLoadingState(this, loadingCurtain,
+                services.Single<IStaticDataService>(),
                 services.Single<IPersistentProgressService>(),
                 services.Single<ILoadService>(),
                 services.Single<IAssetProvider>(),

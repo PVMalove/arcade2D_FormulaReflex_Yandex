@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22280a71d02b46aeb6bd090ca4e1419b, type: 3}
-  m_Name: BolideData
+  m_Name: AllCarViewConfig
   m_EditorClassIdentifier: 
   imagesContainer:
   - {fileID: 1000727360, guid: 50f70b012008c374b95cefe8931d8fae, type: 3}

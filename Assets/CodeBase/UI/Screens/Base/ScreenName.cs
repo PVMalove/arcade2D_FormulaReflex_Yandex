@@ -8,5 +8,6 @@
         LOST = 3,
         ENDED = 4,
         LEADERBOARD = 5,
+        SHOP = 6
     }
 }

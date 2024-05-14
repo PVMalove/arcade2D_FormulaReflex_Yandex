@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using CodeBase.Core.Audio.Service;
 using CodeBase.Core.Data;
 using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.Core.Infrastructure.Factories;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.StaticData.Infrastructure;
+using CodeBase.Core.StaticData.UI.Shop;
 using CodeBase.UI.HUD.Service;
 using CodeBase.UI.Screens.Service;
 using UnityEngine;
@@ -94,11 +96,11 @@ namespace CodeBase.UI.HUD.SettingBar
             YandexGame.ResetSaveProgress();
             FirstSaveData newSaveData = assetProvider.Load<FirstSaveData>(InfrastructurePath.NewSaveDataPath);
 
-            AudioControlData audioControl = new AudioControlData(
-                newSaveData.AudioVolume,
-                newSaveData.EffectsOn
+            PlayerCarData playerCarData = new PlayerCarData(
+                new List<CarViewType> { newSaveData.DefaultCarViewType },
+                newSaveData.DefaultCarViewType
             );
-            
+
             CoinData coinData = new CoinData(
                 newSaveData.CoinsAmount
             );
@@ -106,11 +108,17 @@ namespace CodeBase.UI.HUD.SettingBar
             BestTimeData bestTimeData = new BestTimeData(
                 newSaveData.BestTime
             );
+            
+            AudioControlData audioControl = new AudioControlData(
+                newSaveData.AudioVolume,
+                newSaveData.EffectsOn
+            );
 
             PlayerProgress progress = new PlayerProgress(
-                audioControl,
+                playerCarData,
                 coinData,
-                bestTimeData);
+                bestTimeData,
+                audioControl);
 
             progressService.Initialize(progress);
             

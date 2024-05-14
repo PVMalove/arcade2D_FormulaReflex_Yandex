@@ -4,6 +4,7 @@ using CodeBase.UI.HUD.SettingBar;
 using CodeBase.UI.Root;
 using CodeBase.UI.Screens.Game;
 using CodeBase.UI.Screens.Leaderboard;
+using CodeBase.UI.Screens.Shop;
 using UnityEngine;
 
 namespace CodeBase.UI.Services.Factories
@@ -65,6 +66,12 @@ namespace CodeBase.UI.Services.Factories
         {
             GameObject view = assetProvider.Instantiate(InfrastructurePath.LeaderboardViewScreen);
             return view.GetComponent<LeaderboardViewScreen>();
+        }
+
+        public ShopViewScreen CreateShopView()
+        {
+            GameObject view = assetProvider.Instantiate(InfrastructurePath.ShopViewScreen);
+            return view.GetComponent<ShopViewScreen>();
         }
     }
 }

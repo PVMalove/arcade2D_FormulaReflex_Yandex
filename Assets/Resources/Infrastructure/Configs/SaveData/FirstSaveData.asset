@@ -12,12 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e199b1adc734f148510ef52485e5580, type: 3}
   m_Name: FirstSaveData
   m_EditorClassIdentifier: 
-  circleHeroDataReference:
-    m_AssetGUID: 6a61f1d25ebdffe47981c898f5dd2ffa
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  coinsAmount: 2000
+  defaultCarViewType: 0
+  coinsAmount: 1000
+  bestTime: 0
   audioVolume: 0.5
-  musicOn: 1
   effectsOn: 1

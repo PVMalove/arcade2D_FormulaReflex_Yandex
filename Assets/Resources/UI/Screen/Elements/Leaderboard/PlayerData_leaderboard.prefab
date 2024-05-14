@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: 8676388984379712386}
   - component: {fileID: 5187851853310887397}
   m_Layer: 5
-  m_Name: PlayerData_leaderboard_2
+  m_Name: PlayerData_leaderboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
