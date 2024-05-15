@@ -3,6 +3,6 @@
     public enum PoolObjectType
     {
         Unknown = 0,
-        ShopViewItem = 1,
+        StoreItem = 1,
     }
 }

@@ -10,6 +10,8 @@ namespace CodeBase.UI.Screens.Game
         [SerializeField] private Button openSkinsShopButton;
         [SerializeField] private Button openLeaderboardButton;
         [SerializeField] private Text bestTimeText;
+        [SerializeField] private Text coinsAmountText;
+        [SerializeField] private Image CarSprite;
 
         private IGamePresenter presenter;
 
@@ -18,8 +20,12 @@ namespace CodeBase.UI.Screens.Game
             base.Initialize(presenter);
             this.presenter = presenter;
             bestTimeText.text = presenter.BestTime;
+            presenter.Subscribe();
+            presenter.ChangedCoinsAmount += OnCoinsAmountChanged;
+            //presenter.ChangedSelectedCar += OnSelectedCarChanged;
+            OnCoinsAmountChanged();
         }
-        
+
         protected override void SubscribeUpdates()
         {
             base.SubscribeUpdates();
@@ -38,6 +44,9 @@ namespace CodeBase.UI.Screens.Game
 
         private void OnStartGame()
         {
+            presenter.Unsubscribe();
+            presenter.ChangedCoinsAmount -= OnCoinsAmountChanged;
+            //presenter.ChangedSelectedCar -= OnSelectedCarChanged;
             Hide();
             presenter.StartGame();
         }
@@ -49,5 +58,11 @@ namespace CodeBase.UI.Screens.Game
 
         private void OnOpenLeaderboard() => 
             presenter.OpenLeaderboard();
+        
+        private void OnCoinsAmountChanged() => 
+            coinsAmountText.text = presenter.CoinsAmount;
+        
+        private void OnSelectedCarChanged(Sprite view) => 
+            CarSprite.sprite = view;
     }
 }

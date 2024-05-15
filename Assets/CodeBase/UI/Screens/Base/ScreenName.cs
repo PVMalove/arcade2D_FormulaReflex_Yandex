@@ -3,11 +3,12 @@
     public enum ScreenName
     {
         None = 0,
-        IDLE = 1,
-        RUNNING = 2,
-        LOST = 3,
-        ENDED = 4,
-        LEADERBOARD = 5,
-        SHOP = 6
+        CAR = 1,
+        IDLE = 2,
+        RUNNING = 3,
+        LOST = 4,
+        ENDED = 5,
+        LEADERBOARD = 6,
+        SHOP = 7
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CodeBase.Core.StaticData.UI.Shop
 {
-    public enum CarViewType
+    public enum CarType
     {
         f1_car_0,
         f1_car_1,

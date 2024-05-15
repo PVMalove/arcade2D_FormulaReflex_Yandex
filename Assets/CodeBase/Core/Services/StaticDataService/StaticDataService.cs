@@ -12,11 +12,11 @@ namespace CodeBase.Core.Services.StaticDataService
 {
     public class StaticDataService : IStaticDataService
     {
-        public PoolObjectConfig GetPoolConfigByType(PoolObjectType type) => poolObjectConfigsCache.Value[type];
-        public ShopItemsCatalog ShopItemsCatalog { get; private set; }
-
-        private Lazy<Dictionary<PoolObjectType, PoolObjectConfig>> poolObjectConfigsCache;
         private readonly ILogService log;
+        private Lazy<Dictionary<PoolObjectType, PoolObjectConfig>> poolObjectConfigsCache;
+
+        public PoolObjectConfig GetPoolConfigByType(PoolObjectType type) => poolObjectConfigsCache.Value[type];
+        public StoreItemsCatalog StoreItemsCatalog { get; private set; }
 
         public StaticDataService(ILogService log)
         {
@@ -38,9 +38,9 @@ namespace CodeBase.Core.Services.StaticDataService
 
         private void LoadSkinsItemConfig()
         {
-            List<ShopItemsCatalog> configs = GetConfigs<ShopItemsCatalog>(InfrastructurePath.ConfigPath);
+            List<StoreItemsCatalog> configs = GetConfigs<StoreItemsCatalog>(InfrastructurePath.ConfigPath);
             if (configs.Count > 0)
-                ShopItemsCatalog = configs.First();
+                StoreItemsCatalog = configs.First();
             else
                 log.LogError("There are no shop items config founded!");
         }

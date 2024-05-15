@@ -28,7 +28,7 @@ namespace CodeBase.UI.Screens.Base
         private void OnDestroy() => 
             Cleanup();
 
-        protected virtual void OnAwake() { }
+        protected virtual void OnAwake() => Hide();
         protected virtual void Initialize(TInitializeData with){}
         protected virtual void SubscribeUpdates(){}
         protected virtual void UnsubscribeUpdates() { }

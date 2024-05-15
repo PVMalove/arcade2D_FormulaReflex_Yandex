@@ -1,14 +1,20 @@
 using System;
-using CodeBase.Core.Data;
 using CodeBase.Core.Services.ProgressService;
+using UnityEngine;
 
 namespace CodeBase.UI.Screens.Game
 {
     public interface IGamePresenter : IProgressSaver
     {
+        event Action ChangedCoinsAmount;
+        event Action<Sprite> ChangedSelectedCar; 
+        
         string BestTime { get; }
-        int CoinsAmount { get; }
+        string CoinsAmount { get; }
         string TimeDiff { get; }
+        
+        void Subscribe();
+        void Unsubscribe();
         void StartGame();
         void StopGame();
         void RestartGame();

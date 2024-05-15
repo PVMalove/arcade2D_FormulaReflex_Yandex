@@ -330,6 +330,8 @@ MonoBehaviour:
   openSkinsShopButton: {fileID: 6899495239149434063}
   openLeaderboardButton: {fileID: 8280974359838194118}
   bestTimeText: {fileID: 1184153693880707075}
+  coinsAmountText: {fileID: 8569323406102940098}
+  CarSprite: {fileID: 1847724222026970110}
 --- !u!1 &2746347552227780687
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +344,7 @@ GameObject:
   - component: {fileID: 8523910210889876282}
   - component: {fileID: 8569323406102940098}
   m_Layer: 5
-  m_Name: text
+  m_Name: amount_coins_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1195,11 +1197,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: bolid_view_panel
       objectReference: {fileID: 0}
+    - target: {fileID: 4651973341925971136, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
+--- !u!114 &1847724222026970110 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2293245302951915249, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
+  m_PrefabInstance: {fileID: 465930216045632783}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3654928857541700604 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3805466361881016051, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}

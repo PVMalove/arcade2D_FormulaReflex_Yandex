@@ -36,48 +36,44 @@ namespace CodeBase.UI.Screens.Shop.Item
         public void Initialize()
         {
             objectPool = new ObjectPool<ShopItemView>(poolFactory);
-            PoolObjectConfig poolConfig = staticDataService.GetPoolConfigByType(PoolObjectType.ShopViewItem);
+            PoolObjectConfig poolConfig = staticDataService.GetPoolConfigByType(PoolObjectType.StoreItem);
             objectPool.Initialize(poolConfig.AssetReference, poolConfig.StartCapacity, poolConfig.Type, poolContainer);
         }
         
-        public void SetShopItems(IEnumerable<CarShopItemConfig> items)
+        public void SetShopItems(IEnumerable<CarStoreItemConfig> items)
         {
-            foreach (CarShopItemConfig shopItem in items)
+            foreach (CarStoreItemConfig storeItem in items)
             {
                 ShopItemView viewItem = objectPool.Get(itemContainer.position, itemContainer);
                 
-                SetItem(viewItem, shopItem.CarView, shopItem.RequiredCoins,
-                    () => BuySkinItem(shopItem.Type, shopItem.RequiredCoins),
-                    () => SelectSkinItem(shopItem.Type));
+                SetItem(viewItem, storeItem.CarSprite, storeItem.RequiredCoins,
+                    () => BuyCarItem(storeItem.Type, storeItem.RequiredCoins),
+                    () => SelectCarItem(storeItem.Type));
                 
-                if (!progressService.IsPlayerOwnCarView(shopItem.Type))
+                if (!progressService.IsPlayerOwnCar(storeItem.Type))
                 {
                     continue;
                 }
                 
                 viewItem.Unlock();
                 
-                if (progressService.SelectedCarView.Type == shopItem.Type)
+                if (progressService.SelectedCar.Type == storeItem.Type)
                 {
                     viewItem.Select();
                 }
             }
         }
 
-        private void BuySkinItem(CarViewType type, int price)
+        private void BuyCarItem(CarType type, int price)
         {
-            progressService.OpenCarView(type);
+            progressService.OpenCarItem(type);
             progressService.RemoveCoins(price);
         }
         
-        private void SelectSkinItem(CarViewType type)
+        private void SelectCarItem(CarType type)
         {
             UnselectAllItems();
-            // progressService.SelectedCircleHeroSkin(reference);
-            
-            // CircleHeroData heroData = await assetProvider.Load<CircleHeroData>(progressService.SelectedCircleDataReference);
-            // CircleHeroView view = await circleHeroViewFactory.Create(heroData.Prefab);
-            // gameFactory.CurrentCircleHero.SetView(view.GameObject());
+            progressService.SelectedCarItem(type);
         }
 
         

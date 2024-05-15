@@ -1,27 +1,28 @@
-﻿using System;
-using CodeBase.UI.Screens.Base;
-using CodeBase.UI.Screens.Service;
+﻿using CodeBase.UI.Screens.Base;
 using CodeBase.UI.Screens.Shop.Item;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace CodeBase.UI.Screens.Shop
 {
-    public class ShopViewScreen : ScreenBase<IShopPresenter>
+    public class StoreViewScreen : ScreenBase<IStorePresenter>
     {
+        [SerializeField] private Text coinsAmountText;
         [SerializeField] private Button closeScreenButton;
         [SerializeField] private ShopItemsPresenter shopItemList;
         
-        private IShopPresenter presenter;
+        private IStorePresenter presenter;
 
-        protected override void Initialize(IShopPresenter presenter)
+        protected override void Initialize(IStorePresenter presenter)
         {
             base.Initialize(presenter);
             this.presenter = presenter;
             presenter.InitializeShopItems();
-            shopItemList.SetShopItems(presenter.SkinItems);
+            shopItemList.SetShopItems(presenter.CarItems);
             
             presenter.Subscribe();
+            presenter.ChangedCoinsAmount += OnCoinsAmountChanged;
+            OnCoinsAmountChanged();
         }
 
         protected override void SubscribeUpdates()
@@ -33,13 +34,16 @@ namespace CodeBase.UI.Screens.Shop
         protected override void UnsubscribeUpdates()
         {   
             base.UnsubscribeUpdates();
-            presenter.Unsubscribe();
             shopItemList.Cleanup();
             closeScreenButton.onClick.RemoveListener(CloseScreen);
         }
 
+        private void OnCoinsAmountChanged() => 
+            coinsAmountText.text = presenter.CoinsAmount;
+        
         private void CloseScreen()
         {
+            presenter.Unsubscribe();
             Hide();
         }
     }

@@ -65,16 +65,17 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
 
         private void InitGameWorld()
         {
-            buildInfoConfig = new BuildInfoConfig();
-            buildInfoConfig.BuildNumber = Application.version;
+            //buildInfoConfig = new BuildInfoConfig();
+            //buildInfoConfig.BuildNumber = Application.version;
 
             uiFactory.CreateUIRoot();
             hudService.ShowSettingBar();
-            hudService.ShowBuildInfo(buildInfoConfig);
+            //hudService.ShowBuildInfo(buildInfoConfig);
             
             screenService.InitializePresenter();
             LoadProgressReader();
             
+            screenService.ShowCarView();
             screenService.ShowIdleGameView();
         }
         

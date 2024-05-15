@@ -1,5 +1,6 @@
 ﻿using System;
 using CodeBase.UI.Screens.Base;
+using CodeBase.UI.Screens.Car;
 using CodeBase.UI.Screens.Game;
 using CodeBase.UI.Screens.Leaderboard;
 using CodeBase.UI.Screens.Shop;
@@ -23,6 +24,11 @@ namespace CodeBase.UI.Screens.Supplier
             {
                 case ScreenName.None:
                     break;
+                case ScreenName.CAR:
+                    CarViewScreen carView = uiFactory.CreateCarView();
+                    carView.transform.SetParent(uiFactory.UIRoot.ContainerScreen, false);
+                    carView.name = "CarView";
+                    return carView;
                 case ScreenName.IDLE:
                     IdleGameViewScreen idleView = uiFactory.CreateIdleGameView();
                     idleView.transform.SetParent(uiFactory.UIRoot.ContainerScreen, false);
@@ -49,10 +55,10 @@ namespace CodeBase.UI.Screens.Supplier
                     leaderboardView.name = "LeaderboardView";
                     return leaderboardView;
                 case ScreenName.SHOP:
-                    ShopViewScreen shopView = uiFactory.CreateShopView();
-                    shopView.transform.SetParent(uiFactory.UIRoot.ContainerScreen, false);
-                    shopView.name = "ShopView";
-                    return shopView;
+                    StoreViewScreen storeView = uiFactory.CreateStoreView();
+                    storeView.transform.SetParent(uiFactory.UIRoot.ContainerScreen, false);
+                    storeView.name = "StoreView";
+                    return storeView;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(key), key, null);
             }

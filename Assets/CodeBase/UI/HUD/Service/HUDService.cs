@@ -48,6 +48,9 @@ namespace CodeBase.UI.HUD.Service
             RegisterProgress(presenter);
             settingBarView.Show(presenter);
         }
+        
+        
+
 
 
         private void RegisterProgress(IProgressReader progressReader)

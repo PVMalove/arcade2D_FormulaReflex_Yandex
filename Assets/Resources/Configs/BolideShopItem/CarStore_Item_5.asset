@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13974c16955c47cebb6e92a9ea63ba93, type: 3}
-  m_Name: CarShopItem_1
+  m_Name: CarStore_Item_5
   m_EditorClassIdentifier: 
-  <Type>k__BackingField: 1
-  <CarView>k__BackingField: {fileID: 1828504148, guid: 50f70b012008c374b95cefe8931d8fae, type: 3}
-  <RequiredCoins>k__BackingField: 1000
+  <Type>k__BackingField: 5
+  <CarSprite>k__BackingField: {fileID: 1057713687, guid: 50f70b012008c374b95cefe8931d8fae, type: 3}
+  <RequiredCoins>k__BackingField: 999

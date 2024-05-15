@@ -889,7 +889,7 @@ MonoBehaviour:
       - m_Target: {fileID: 8774893212848676949}
         m_TargetAssemblyTypeName: CodeBase.UI.Screens.Leaderboard.LeaderboardViewScreen,
           Assembly-CSharp
-        m_MethodName: SetImageBolideList
+        m_MethodName: SetImageCarList
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

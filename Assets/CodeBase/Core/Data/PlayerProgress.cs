@@ -1,12 +1,11 @@
 ﻿using System;
-using UnityEngine.Serialization;
 
 namespace CodeBase.Core.Data
 {
     [Serializable]
     public class PlayerProgress
     {
-        [FormerlySerializedAs("playerCarViewData")] [FormerlySerializedAs("CarViewData")] public PlayerCarData playerCarData;
+        public PlayerCarData PlayerCarData;
         public CoinData CoinData;
         public BestTimeData BestTimeData;
         public AudioControlData AudioControlData;
@@ -15,7 +14,7 @@ namespace CodeBase.Core.Data
             CoinData coinData, BestTimeData bestTimeData, 
             AudioControlData audioControlData)
         {
-            this.playerCarData = playerCarData;
+            PlayerCarData = playerCarData;
             CoinData = coinData;
             BestTimeData = bestTimeData;
             AudioControlData = audioControlData;

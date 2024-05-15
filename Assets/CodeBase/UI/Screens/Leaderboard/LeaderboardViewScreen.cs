@@ -21,11 +21,9 @@ namespace CodeBase.UI.Screens.Leaderboard
             base.Initialize(presenter);
             this.presenter = presenter;
 
-            if (!YandexGame.auth)
-            {
-                yandexRegistrationObject.SetActive(true);
-                yandexRegistrationButton.onClick.AddListener(RegistrationOnClick);
-            }
+            if (YandexGame.auth) return;
+            yandexRegistrationObject.SetActive(true);
+            yandexRegistrationButton.onClick.AddListener(RegistrationOnClick);
         }
         
         protected override void SubscribeUpdates()
@@ -41,11 +39,11 @@ namespace CodeBase.UI.Screens.Leaderboard
             yandexRegistrationButton.onClick.RemoveListener(RegistrationOnClick);
         }
 
-        public void SetImageBolideList()
+        public void SetImageCarList()
         {
             for (int i = 0; i < rootSpawnPlayersData.childCount; i++)
             {
-                rootSpawnPlayersData.GetChild(i).GetComponent<BolideView>().SetSprite(presenter.RandomSprites[i]);
+                rootSpawnPlayersData.GetChild(i).GetComponent<CarView>().SetSprite(presenter.RandomSprites[i]);
             }
         }
 

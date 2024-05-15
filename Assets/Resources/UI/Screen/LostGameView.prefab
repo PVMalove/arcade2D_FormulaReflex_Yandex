@@ -737,6 +737,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bolid_view_panel
       objectReference: {fileID: 0}
+    - target: {fileID: 4651973341925971136, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

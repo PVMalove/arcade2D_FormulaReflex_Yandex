@@ -19,13 +19,8 @@ namespace CodeBase.UI.Screens.Shop.Item
         
         public bool IsSelected => selectLabel.gameObject.activeSelf;
 
-        private IPersistentProgressService progressService;
+        private readonly IPersistentProgressService progressService = AllServices.Container.Single<IPersistentProgressService>();
         private int requiredCoinsAmount;
-
-        private void Awake()
-        {
-            progressService = AllServices.Container.Single<IPersistentProgressService>();
-        }
 
         private void OnEnable()
         {

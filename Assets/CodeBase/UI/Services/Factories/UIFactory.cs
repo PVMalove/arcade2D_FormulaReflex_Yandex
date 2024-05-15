@@ -2,6 +2,7 @@
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
 using CodeBase.UI.Root;
+using CodeBase.UI.Screens.Car;
 using CodeBase.UI.Screens.Game;
 using CodeBase.UI.Screens.Leaderboard;
 using CodeBase.UI.Screens.Shop;
@@ -38,6 +39,11 @@ namespace CodeBase.UI.Services.Factories
             return view.GetComponent<SettingBarViewHUD>();
         }
 
+        public CarViewScreen CreateCarView()
+        {
+            GameObject view = assetProvider.Instantiate(InfrastructurePath.CarViewScreen);
+            return view.GetComponent<CarViewScreen>();
+        }
         public IdleGameViewScreen CreateIdleGameView()
         {
             GameObject view = assetProvider.Instantiate(InfrastructurePath.IdleGameViewScreen);
@@ -68,10 +74,10 @@ namespace CodeBase.UI.Services.Factories
             return view.GetComponent<LeaderboardViewScreen>();
         }
 
-        public ShopViewScreen CreateShopView()
+        public StoreViewScreen CreateStoreView()
         {
-            GameObject view = assetProvider.Instantiate(InfrastructurePath.ShopViewScreen);
-            return view.GetComponent<ShopViewScreen>();
+            GameObject view = assetProvider.Instantiate(InfrastructurePath.StoreViewScreen);
+            return view.GetComponent<StoreViewScreen>();
         }
     }
 }

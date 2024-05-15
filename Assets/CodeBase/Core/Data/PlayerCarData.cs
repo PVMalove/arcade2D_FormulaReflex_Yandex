@@ -7,11 +7,11 @@ namespace CodeBase.Core.Data
     [Serializable]
     public struct PlayerCarData
     {
-        public List<CarViewType> ItemsCar;
-        public CarViewType SelectedCarType;
-        public PlayerCarData(List<CarViewType> itemsCar, CarViewType selectedCarType)
+        public List<CarType> OwnedItemsCar;
+        public CarType SelectedCarType;
+        public PlayerCarData(List<CarType> ownedItemsCar, CarType selectedCarType)
         {
-            ItemsCar = itemsCar;
+            OwnedItemsCar = ownedItemsCar;
             SelectedCarType = selectedCarType;
         } 
     }

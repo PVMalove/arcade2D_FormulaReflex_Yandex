@@ -7,24 +7,27 @@ using CodeBase.Core.StaticData.UI.Shop;
 
 namespace CodeBase.UI.Screens.Shop
 {
-    public class ShopPresenter : IShopPresenter
+    public class StorePresenter : IStorePresenter
     {
         public event Action ChangedCoinsAmount;
         
         private readonly IPersistentProgressService progressService;
         private readonly IStaticDataService staticDataService;
+        
+        public string CoinsAmount => 
+            progressService.CoinsAmount.ToString();
 
-        public ShopPresenter(IPersistentProgressService progressService, IStaticDataService staticDataService)
+        public StorePresenter(IPersistentProgressService progressService, IStaticDataService staticDataService)
         {
             this.progressService = progressService;
             this.staticDataService = staticDataService;
         }
         
-        public IReadOnlyCollection<CarShopItemConfig> SkinItems{ get; set; }
+        public IReadOnlyCollection<CarStoreItemConfig> CarItems{ get; set; }
         
         public void InitializeShopItems()
         {
-            SkinItems = staticDataService.ShopItemsCatalog.CarItems.Values.ToList().AsReadOnly();
+            CarItems = staticDataService.StoreItemsCatalog.CarItems.Values.ToList().AsReadOnly();
         }
         
         public void Subscribe()

@@ -7,7 +7,7 @@ namespace CodeBase.Core.Services.StaticDataService
     public interface IStaticDataService : IService
     {
         void Initialize();
-        ShopItemsCatalog ShopItemsCatalog { get; } 
+        StoreItemsCatalog StoreItemsCatalog { get; } 
         PoolObjectConfig GetPoolConfigByType(PoolObjectType type);
     }
 }

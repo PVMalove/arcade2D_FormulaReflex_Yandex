@@ -535,7 +535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a60a54058c2b4c7abc7bce9df3c31d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageBolide: {fileID: 8872044504610615673}
+  imageCar: {fileID: 8872044504610615673}
 --- !u!222 &5187851853310887397
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -714,7 +714,7 @@ GameObject:
   - component: {fileID: 4067951473201888450}
   - component: {fileID: 8872044504610615673}
   m_Layer: 5
-  m_Name: bolide_image
+  m_Name: car_image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -864,7 +864,7 @@ GameObject:
   - component: {fileID: 2637003142727003587}
   - component: {fileID: 1876303742005863171}
   m_Layer: 5
-  m_Name: Bolide
+  m_Name: CarView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

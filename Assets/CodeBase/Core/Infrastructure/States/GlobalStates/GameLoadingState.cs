@@ -70,8 +70,8 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             FirstSaveData newSaveData = assetProvider.Load<FirstSaveData>(InfrastructurePath.NewSaveDataPath);
 
             PlayerCarData playerCarData = new PlayerCarData(
-                new List<CarViewType> { newSaveData.DefaultCarViewType },
-                newSaveData.DefaultCarViewType
+                new List<CarType> { newSaveData.DefaultCarType },
+                newSaveData.DefaultCarType
             );
             
             CoinData coinData = new CoinData(

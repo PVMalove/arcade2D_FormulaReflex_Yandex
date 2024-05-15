@@ -1,3 +1,4 @@
+using System;
 using CodeBase.Core.Data;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.SaveLoadService;
@@ -9,16 +10,21 @@ namespace CodeBase.UI.Screens.Game
 {
     public sealed class GamePresenter : IGamePresenter
     {
-        private float bestTime;
-        private float startTime;
-        private float timeDiff;
-        public string TimeDiff => FormatTime(timeDiff);
-        public string BestTime => FormatTime(bestTime);
-        public int CoinsAmount { get; private set; }
+        public event Action ChangedCoinsAmount;
+        public event Action<Sprite> ChangedSelectedCar;
 
         private readonly IScreenService screenService;
         private readonly IPersistentProgressService progressService;
         private readonly ISaveService saveService;
+        
+        private float bestTime;
+        private float startTime;
+        private float timeDiff;
+        private int coinsAmount;
+        
+        public string TimeDiff => FormatTime(timeDiff);
+        public string BestTime => FormatTime(bestTime);
+        public string CoinsAmount => coinsAmount.ToString();
 
         public GamePresenter(IScreenService screenService,
             IPersistentProgressService progressService, ISaveService saveService)
@@ -26,6 +32,18 @@ namespace CodeBase.UI.Screens.Game
             this.screenService = screenService;
             this.progressService = progressService;
             this.saveService = saveService;
+        }
+        
+        public void Subscribe()
+        {
+            progressService.CoinsAmountChanged += OnCoinsAmountChanged;
+            progressService.SelectedCarChanged += OnSelectedCarChanged;
+        }
+
+        public void Unsubscribe()
+        {
+            progressService.CoinsAmountChanged -= OnCoinsAmountChanged;
+            progressService.SelectedCarChanged -= OnSelectedCarChanged;
         }
 
         public void StartGame()
@@ -56,12 +74,12 @@ namespace CodeBase.UI.Screens.Game
             saveService.SaveProgress();
             screenService.ShowEndedGameView();
         }
-        
+
         public void OpenLeaderboard()
         {
             screenService.ShowLeaderboardView();
         }
-        
+
         public void OpenShop()
         {
             screenService.ShowShopView();
@@ -75,14 +93,23 @@ namespace CodeBase.UI.Screens.Game
         public void LoadProgress(PlayerProgress progress)
         {
             bestTime = progress.BestTimeData.Value;
-            CoinsAmount = progressService.GetProgress().CoinData.CoinsAmount;
+            coinsAmount = progress.CoinData.CoinsAmount;
         }
 
         public void UpdateProgress(PlayerProgress progress)
         {
-            progress.CoinData.CoinsAmount = CoinsAmount;
+            progress.CoinData.CoinsAmount = coinsAmount;
             progress.BestTimeData.Value = bestTime;
         }
+
+        private void OnCoinsAmountChanged()
+        {
+            coinsAmount = progressService.CoinsAmount;
+            ChangedCoinsAmount?.Invoke();
+        }
+
+        private void OnSelectedCarChanged(Sprite view) => 
+            ChangedSelectedCar?.Invoke(view);
 
         private string FormatTime(float time)
         {

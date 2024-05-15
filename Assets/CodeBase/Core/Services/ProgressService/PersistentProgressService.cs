@@ -11,13 +11,16 @@ namespace CodeBase.Core.Services.ProgressService
     public class PersistentProgressService : IPersistentProgressService
     {
         public event Action CoinsAmountChanged;
-        public CarShopItemConfig SelectedCarView { get; private set; }
-        public PlayerProgress GetProgress() => playerProgress;
-
-        private PlayerProgress playerProgress;
-        private List<CarShopItemConfig> ownedCarView;
+        public event Action<Sprite> SelectedCarChanged;
 
         private readonly IStaticDataService staticDataService;
+        
+        private PlayerProgress playerProgress;
+        private List<CarStoreItemConfig> ownedCar;
+
+        public int CoinsAmount => playerProgress.CoinData.CoinsAmount;
+        public CarStoreItemConfig SelectedCar { get; private set; }
+        public PlayerProgress GetProgress() => playerProgress;
 
         public PersistentProgressService(IStaticDataService staticDataService)
         {
@@ -28,14 +31,14 @@ namespace CodeBase.Core.Services.ProgressService
         {
             playerProgress = progress;
 
-            if (progress.playerCarData.ItemsCar is null) 
-                progress.playerCarData.ItemsCar = new List<CarViewType> { CarViewType.f1_car_0 };
+            if (progress.PlayerCarData.OwnedItemsCar is null) 
+                progress.PlayerCarData.OwnedItemsCar = new List<CarType> { CarType.f1_car_0 };
             
-            ownedCarView = progress.playerCarData.ItemsCar
-                .Select(type => staticDataService.ShopItemsCatalog.CarItems.GetValueOrDefault(type))
+            ownedCar = progress.PlayerCarData.OwnedItemsCar
+                .Select(GetValueCarItem)
                 .ToList();
             
-            SelectedCarView = ownedCarView.Find(x => x.Type == progress.playerCarData.SelectedCarType);
+            SelectedCar = ownedCar.Find(x => x.Type == progress.PlayerCarData.SelectedCarType);
         }
         
         public void AddCoins(int amount)
@@ -60,23 +63,39 @@ namespace CodeBase.Core.Services.ProgressService
             playerProgress.CoinData.CoinsAmount -= amount;
             CoinsAmountChanged?.Invoke();
         }
-        
-        public void OpenCarView(CarViewType type)
+
+        public void OpenCarItem(CarType type)
         {
-            if (IsPlayerOwnCarView(type))
+            if (IsPlayerOwnCar(type))
             {
-                //Debug.LogError($"Player already have such skin - {circleDataReference}");
+                Debug.LogError($"Player already have such car type - {type}");
                 return;
             }
-            //
-            // ownedCircleHeroesReferences.Add(circleDataReference);
-            // playerProgress.PlayerItemsData.SkinGuids.Add(circleDataReference.AssetGUID);
-        }
- 
-        public bool IsPlayerOwnCarView(CarViewType type) => 
-            playerProgress.playerCarData.ItemsCar.Contains(type);
-        
-        public bool IsCoinsEnoughFor(int itemPrice) => playerProgress.CoinData.CoinsAmount >= itemPrice;
-    }
 
+            ownedCar.Add(GetValueCarItem(type));
+            playerProgress.PlayerCarData.OwnedItemsCar.Add(type);
+        }
+        
+        public void SelectedCarItem(CarType type)
+        {
+            if (!IsPlayerOwnCar(type))
+            {
+                Debug.LogError($"Player already have such car type - {type}");
+                return;
+            }
+            
+            SelectedCar = GetValueCarItem(type);
+            SelectedCarChanged?.Invoke(SelectedCar.CarSprite);
+            playerProgress.PlayerCarData.SelectedCarType = type;
+        }
+        
+
+        public bool IsPlayerOwnCar(CarType type) => 
+            playerProgress.PlayerCarData.OwnedItemsCar.Contains(type);
+
+        public bool IsCoinsEnoughFor(int itemPrice) => CoinsAmount >= itemPrice;
+
+        private CarStoreItemConfig GetValueCarItem(CarType type) => 
+            staticDataService.StoreItemsCatalog.CarItems.GetValueOrDefault(type);
+    }
 }

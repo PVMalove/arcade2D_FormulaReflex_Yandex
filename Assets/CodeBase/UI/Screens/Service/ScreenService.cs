@@ -7,6 +7,7 @@ using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.ServiceLocator;
 using CodeBase.Core.Services.StaticDataService;
 using CodeBase.UI.Screens.Base;
+using CodeBase.UI.Screens.Car;
 using CodeBase.UI.Screens.Game;
 using CodeBase.UI.Screens.Leaderboard;
 using CodeBase.UI.Screens.Shop;
@@ -21,9 +22,11 @@ namespace CodeBase.UI.Screens.Service
         public List<IProgressSaver> ProgressWriters { get; } = new List<IProgressSaver>();
         
         private readonly IFrameSupplier<ScreenName, UnityFrame> supplier;
+        
+        private ICarPresenter carPresenter;
         private IGamePresenter gamePresenter;
         private ILeaderboardPresenter leaderboardPresenter;
-        private IShopPresenter shopPresenter;
+        private IStorePresenter storePresenter;
 
         public ScreenService(IFrameSupplier<ScreenName, UnityFrame> supplier)
         {
@@ -32,6 +35,10 @@ namespace CodeBase.UI.Screens.Service
 
         public void InitializePresenter()
         {
+            
+            carPresenter = new CarPresenter(
+                AllServices.Container.Single<IPersistentProgressService>());
+            
             gamePresenter = new GamePresenter(
                 AllServices.Container.Single<IScreenService>(),
                 AllServices.Container.Single<IPersistentProgressService>(),
@@ -42,10 +49,16 @@ namespace CodeBase.UI.Screens.Service
                 AllServices.Container.Single<IRandomService>(),
                 AllServices.Container.Single<IAssetProvider>());
 
-            shopPresenter = new ShopPresenter(
+            storePresenter = new StorePresenter(
                 AllServices.Container.Single<IPersistentProgressService>(),
                 AllServices.Container.Single<IStaticDataService>()
             );
+        }
+
+        public void ShowCarView()
+        {
+            if (supplier.LoadFrame(ScreenName.CAR) is not CarViewScreen view) return;
+            view.Show(carPresenter);
         }
 
         public void ShowIdleGameView()
@@ -80,13 +93,13 @@ namespace CodeBase.UI.Screens.Service
 
         public void ShowShopView()
         {
-            if (supplier.LoadFrame(ScreenName.SHOP) is not ShopViewScreen view) return;
+            if (supplier.LoadFrame(ScreenName.SHOP) is not StoreViewScreen view) return;
             view.GetComponent<ShopItemsPresenter>().Construct(
                 AllServices.Container.Single<IPersistentProgressService>(),
                 AllServices.Container.Single<IStaticDataService>(),
                 AllServices.Container.Single<IPoolFactory>());
             view.GetComponent<ShopItemsPresenter>().Initialize();
-            view.Show(shopPresenter);
+            view.Show(storePresenter);
         }
 
         private void RegisterProgress(IProgressReader progressReader)
@@ -96,6 +109,5 @@ namespace CodeBase.UI.Screens.Service
 
             ProgressReaders.Add(progressReader);
         }
-        
     }
 }

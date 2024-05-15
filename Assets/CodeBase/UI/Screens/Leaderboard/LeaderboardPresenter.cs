@@ -24,11 +24,11 @@ namespace CodeBase.UI.Screens.Leaderboard
 
         public void CreateRandomSprite(int count)
         {
-            AllCarViewConfig allCarViewConfig = assetProvider.Load<AllCarViewConfig>(InfrastructurePath.AllCarViewConfigPath);
+            AllSpriteCarConfig config = assetProvider.Load<AllSpriteCarConfig>(InfrastructurePath.AllSpriteCarConfigPath);
             for (int i = 0; i < count; i++)
             {
-                Sprite car = allCarViewConfig.ImagesContainer[randomService.Next(0, allCarViewConfig.ImagesContainer.Length)];
-                randomSprites.Add(car);
+                Sprite view = config.ImagesContainer[randomService.Next(0, config.ImagesContainer.Length)];
+                randomSprites.Add(view);
             }
         }
     }
