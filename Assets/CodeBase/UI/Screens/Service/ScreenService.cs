@@ -42,7 +42,7 @@ namespace CodeBase.UI.Screens.Service
             gamePresenter = new GamePresenter(
                 AllServices.Container.Single<IScreenService>(),
                 AllServices.Container.Single<IPersistentProgressService>(),
-                AllServices.Container.Single<ISaveService>());
+                AllServices.Container.Single<ISaveService>(),carPresenter);
             RegisterProgress(gamePresenter);
 
             leaderboardPresenter = new LeaderboardPresenter(

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5465540705920544860}
   - component: {fileID: 6331939206647195752}
+  - component: {fileID: 9219800652352330158}
   m_Layer: 5
   m_Name: CarView
   m_TagString: Untagged
@@ -49,7 +50,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d25aea4650fc4a7288405c325f1d1a6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CarSprite: {fileID: 1847724222026970110}
+  carSprite: {fileID: 1847724222026970110}
+  animationCar: {fileID: 9219800652352330158}
+--- !u!114 &9219800652352330158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2411688569847757179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aced3535f4404b408aeb5a63255e81c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCar: {fileID: 8128070784278456254}
+  targetWheelFront: {fileID: 2377879485674929569}
+  targetWheelRear: {fileID: 8083893450655208022}
+  tweenSettings_TargetCar:
+    duration: 0.75
+    ease: 11
+    customEase:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    cycles: 1
+    cycleMode: 0
+    startDelay: 0
+    endDelay: 0
+    useUnscaledTime: 0
+    useFixedUpdate: 0
 --- !u!1 &5885134344627353482
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4651973341925971136, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
       propertyPath: m_Name
-      value: bolid_view_panel
+      value: car_view_panel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -230,8 +262,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &2377879485674929569 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2776677919505965230, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
+  m_PrefabInstance: {fileID: 465930216045632783}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3654928857541700604 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3805466361881016051, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
+  m_PrefabInstance: {fileID: 465930216045632783}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &8083893450655208022 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8527727880223608665, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
+  m_PrefabInstance: {fileID: 465930216045632783}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &8128070784278456254 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8555682881851144881, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
   m_PrefabInstance: {fileID: 465930216045632783}
   m_PrefabAsset: {fileID: 0}

@@ -139,7 +139,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 0.0.21
+  bundleVersion: 0.0.24
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -664,7 +664,7 @@ PlayerSettings:
   webGLPowerPreference: 2
   scriptingDefineSymbols:
     Standalone: YG_PLUGIN_YANDEX_GAME
-    WebGL: YG_PLUGIN_YANDEX_GAME;YG_NEWTONSOFT_FOR_AUTOLOCALIZATION
+    WebGL: YG_PLUGIN_YANDEX_GAME;YG_NEWTONSOFT_FOR_AUTOLOCALIZATION;PRIME_TWEEN_SAFETY_CHECKS
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

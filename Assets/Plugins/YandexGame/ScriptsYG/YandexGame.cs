@@ -350,12 +350,13 @@ namespace YG
                 int result;
                 int indexComma = secondsScore.ToString().IndexOf(",");
 
-                if (secondsScore < 1)
-                {
-                    Debug.LogError("You can't record a record below zero!");
-                    return;
-                }
-                else if (indexComma <= 0)
+                // if (secondsScore < 1)
+                // {
+                //     Debug.LogError("You can't record a record below zero!");
+                //     return;
+                // }
+
+                if (indexComma <= 0)
                 {
                     result = (int)(secondsScore);
                 }

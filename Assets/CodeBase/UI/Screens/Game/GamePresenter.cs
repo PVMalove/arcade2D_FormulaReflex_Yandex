@@ -2,6 +2,7 @@ using System;
 using CodeBase.Core.Data;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.SaveLoadService;
+using CodeBase.UI.Screens.Car;
 using CodeBase.UI.Screens.Service;
 using UnityEngine;
 using YG;
@@ -16,7 +17,8 @@ namespace CodeBase.UI.Screens.Game
         private readonly IScreenService screenService;
         private readonly IPersistentProgressService progressService;
         private readonly ISaveService saveService;
-        
+        private readonly ICarPresenter carPresenter;
+
         private float bestTime;
         private float startTime;
         private float timeDiff;
@@ -27,11 +29,13 @@ namespace CodeBase.UI.Screens.Game
         public string CoinsAmount => coinsAmount.ToString();
 
         public GamePresenter(IScreenService screenService,
-            IPersistentProgressService progressService, ISaveService saveService)
+            IPersistentProgressService progressService, ISaveService saveService,
+            ICarPresenter carPresenter)
         {
             this.screenService = screenService;
             this.progressService = progressService;
             this.saveService = saveService;
+            this.carPresenter = carPresenter;
         }
         
         public void Subscribe()
@@ -59,6 +63,7 @@ namespace CodeBase.UI.Screens.Game
         public void RestartGame()
         {
             saveService.SaveProgress();
+            carPresenter.ResetAnimation();
             screenService.ShowIdleGameView();
         }
 
@@ -72,7 +77,9 @@ namespace CodeBase.UI.Screens.Game
                 YandexGame.NewLBScoreTimeConvert("BestTimeRecord2", bestTime);
             }
             saveService.SaveProgress();
+            carPresenter.PlayAnimation();
             screenService.ShowEndedGameView();
+            //carPresenter.ResetAnimation();
         }
 
         public void OpenLeaderboard()
