@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d5839f1e0b1210447950db47aa9055ff
+guid: 22e451edba13bd74296aff42cde7af22
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - LCD5x8H
+  - Garet
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

@@ -19,34 +19,42 @@ namespace CodeBase.UI.Screens.Game
         {
             base.Initialize(presenter);
             this.presenter = presenter;
-            bestTimeText.text = presenter.BestTime;
-            presenter.Subscribe();
-            presenter.ChangedCoinsAmount += OnCoinsAmountChanged;
-            //presenter.ChangedSelectedCar += OnSelectedCarChanged;
-            OnCoinsAmountChanged();
         }
 
         protected override void SubscribeUpdates()
         {
             base.SubscribeUpdates();
+            if (presenter is null) return;
+            presenter.Subscribe();
+            presenter.ChangedCoinsAmount += OnCoinsAmountChanged;
+            presenter.ChangedSelectedCar += OnSelectedCarChanged;
             startGameButton.onClick.AddListener(OnStartGame);
             openSkinsShopButton.onClick.AddListener(OnOpenSkinsShop);
             openLeaderboardButton.onClick.AddListener(OnOpenLeaderboard);
+            
+            bestTimeText.text = presenter.BestTime;
+            OnCoinsAmountChanged();
         }
 
         protected override void UnsubscribeUpdates()
         {
             base.UnsubscribeUpdates();
+            if (presenter is null) return;
+            presenter.ChangedCoinsAmount -= OnCoinsAmountChanged;
+            presenter.ChangedSelectedCar -= OnSelectedCarChanged;
             startGameButton.onClick.RemoveListener(OnStartGame);
             openSkinsShopButton.onClick.RemoveListener(OnOpenSkinsShop);
             openLeaderboardButton.onClick.RemoveListener(OnOpenLeaderboard);
         }
 
+        protected override void Cleanup()
+        {
+            base.Cleanup();
+            presenter.Unsubscribe();
+        }
+
         private void OnStartGame()
         {
-            presenter.Unsubscribe();
-            presenter.ChangedCoinsAmount -= OnCoinsAmountChanged;
-            //presenter.ChangedSelectedCar -= OnSelectedCarChanged;
             Hide();
             presenter.StartGame();
         }

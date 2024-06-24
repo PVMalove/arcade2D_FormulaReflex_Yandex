@@ -97,6 +97,7 @@ namespace CodeBase.UI.Screens.Service
             view.GetComponent<ShopItemsPresenter>().Construct(
                 AllServices.Container.Single<IPersistentProgressService>(),
                 AllServices.Container.Single<IStaticDataService>(),
+                AllServices.Container.Single<ISaveService>(),
                 AllServices.Container.Single<IPoolFactory>());
             view.GetComponent<ShopItemsPresenter>().Initialize();
             view.Show(storePresenter);

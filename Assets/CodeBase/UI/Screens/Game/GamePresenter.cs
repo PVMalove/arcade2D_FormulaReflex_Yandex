@@ -57,6 +57,7 @@ namespace CodeBase.UI.Screens.Game
 
         public void StopGame()
         {
+            carPresenter.PlayAnimation("LostGame");
             screenService.ShowLostGameView();
         }
 
@@ -70,16 +71,19 @@ namespace CodeBase.UI.Screens.Game
         public void EndGame()
         {
             timeDiff = Time.time - startTime;
+            int coinsCount = 100;
             
             if (timeDiff < bestTime || bestTime == 0f)
             {
+                coinsAmount = 200;
                 bestTime = timeDiff;
                 YandexGame.NewLBScoreTimeConvert("BestTimeRecord2", bestTime);
             }
+            
+            progressService.AddCoins(coinsCount);
             saveService.SaveProgress();
-            carPresenter.PlayAnimation();
+            carPresenter.PlayAnimation("EndGame");
             screenService.ShowEndedGameView();
-            //carPresenter.ResetAnimation();
         }
 
         public void OpenLeaderboard()

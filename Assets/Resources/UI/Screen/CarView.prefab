@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carSprite: {fileID: 1847724222026970110}
+  coinsAmountText: {fileID: 5286040264172915093}
   animationCar: {fileID: 9219800652352330158}
 --- !u!114 &9219800652352330158
 MonoBehaviour:
@@ -67,21 +68,8 @@ MonoBehaviour:
   targetCar: {fileID: 8128070784278456254}
   targetWheelFront: {fileID: 2377879485674929569}
   targetWheelRear: {fileID: 8083893450655208022}
-  tweenSettings_TargetCar:
-    duration: 0.75
-    ease: 11
-    customEase:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    cycles: 1
-    cycleMode: 0
-    startDelay: 0
-    endDelay: 0
-    useUnscaledTime: 0
-    useFixedUpdate: 0
+  targetCoins: {fileID: 4587538142010638153}
+  targetTextCoins: {fileID: 2947611473752882120}
 --- !u!1 &5885134344627353482
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,6 +150,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 943209534080576788}
     m_Modifications:
+    - target: {fileID: 1080351250443163121, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3805466361881016051, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -242,9 +234,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4169599547789288006, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4169599547789288006, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4169599547789288006, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4169599547789288006, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -290
+      objectReference: {fileID: 0}
     - target: {fileID: 4651973341925971136, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
       propertyPath: m_Name
       value: car_view_panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5705102559597106330, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
+      propertyPath: m_Text
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -267,11 +279,32 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2776677919505965230, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
   m_PrefabInstance: {fileID: 465930216045632783}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &2947611473752882120 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3359496294960899783, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
+  m_PrefabInstance: {fileID: 465930216045632783}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3654928857541700604 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3805466361881016051, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
   m_PrefabInstance: {fileID: 465930216045632783}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &4587538142010638153 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4169599547789288006, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
+  m_PrefabInstance: {fileID: 465930216045632783}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5286040264172915093 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5705102559597106330, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}
+  m_PrefabInstance: {fileID: 465930216045632783}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8083893450655208022 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8527727880223608665, guid: b86cce3a239c16a42ba90fc318065a22, type: 3}

@@ -4,6 +4,7 @@ using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.Core.Infrastructure.Factories;
 using CodeBase.Core.Services.PoolService;
 using CodeBase.Core.Services.ProgressService;
+using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.StaticDataService;
 using CodeBase.Core.StaticData.UI.Shop;
 using UnityEngine;
@@ -19,17 +20,19 @@ namespace CodeBase.UI.Screens.Shop.Item
         private readonly List<ShopItemView> activeViews = new List<ShopItemView>();
         
         private IPersistentProgressService progressService;
-        private IAssetProvider assetProvider;
-        private IGameFactory gameFactory;
-        private IPoolFactory poolFactory;
         private IStaticDataService staticDataService;
+        private IPoolFactory poolFactory;
+        private ISaveService saveService;
+        
         private ObjectPool<ShopItemView> objectPool;
 
-        public void Construct(IPersistentProgressService progressService, IStaticDataService staticDataService,
+        public void Construct(IPersistentProgressService progressService,
+            IStaticDataService staticDataService,ISaveService saveService,
             IPoolFactory poolFactory)
         {
             this.progressService = progressService;
             this.staticDataService = staticDataService;
+            this.saveService = saveService;
             this.poolFactory = poolFactory;
         }
         
@@ -68,12 +71,14 @@ namespace CodeBase.UI.Screens.Shop.Item
         {
             progressService.OpenCarItem(type);
             progressService.RemoveCoins(price);
+            saveService.SaveProgress();
         }
         
         private void SelectCarItem(CarType type)
         {
             UnselectAllItems();
             progressService.SelectedCarItem(type);
+            saveService.SaveProgress();
         }
 
         

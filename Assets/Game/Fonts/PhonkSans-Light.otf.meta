@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: acb339a9d162f104eb7dbca11477253d
+guid: ccbd699594e8f7c478e34387c6f7e907
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Electronic Highway Sign
+  - Phonk Sans
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

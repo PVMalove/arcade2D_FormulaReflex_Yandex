@@ -139,7 +139,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 0.0.24
+  bundleVersion: 0.0.28
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -359,7 +359,7 @@ PlayerSettings:
   m_TemplateCustomTags:
     CHOOSE_LOADING_TYPE: 4
     CONFIGURE_SHADOWS_AROUND_CANVAS: 
-    CUSTOMIZE_BARS_BACKGROUND: 
+    CUSTOMIZE_BARS_BACKGROUND: backgroundColor = "#DBECF1"
     CUSTOMIZE_LOADING_SCREEN_BACKGROUND: 
     CUSTOMIZE_LOGO: 
     CUSTOM_EVENT_IF_ORIENTATION_LANDSCAPE: 

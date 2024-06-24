@@ -17,25 +17,27 @@ namespace CodeBase.UI.Screens.Shop
         {
             base.Initialize(presenter);
             this.presenter = presenter;
-            presenter.InitializeShopItems();
-            shopItemList.SetShopItems(presenter.CarItems);
-            
-            presenter.Subscribe();
-            presenter.ChangedCoinsAmount += OnCoinsAmountChanged;
-            OnCoinsAmountChanged();
         }
 
         protected override void SubscribeUpdates()
         {
             base.SubscribeUpdates();
+            if (presenter is null) return;
+            presenter.Subscribe();
+            presenter.InitializeShopItems();
+            shopItemList.SetShopItems(presenter.CarItems);
+            presenter.ChangedCoinsAmount += OnCoinsAmountChanged;
+            OnCoinsAmountChanged();
             closeScreenButton.onClick.AddListener(CloseScreen);
         }
 
         protected override void UnsubscribeUpdates()
         {   
             base.UnsubscribeUpdates();
+            if (presenter is null) return;
             shopItemList.Cleanup();
             closeScreenButton.onClick.RemoveListener(CloseScreen);
+            presenter.Unsubscribe();
         }
 
         private void OnCoinsAmountChanged() => 
@@ -43,7 +45,6 @@ namespace CodeBase.UI.Screens.Shop
         
         private void CloseScreen()
         {
-            presenter.Unsubscribe();
             Hide();
         }
     }

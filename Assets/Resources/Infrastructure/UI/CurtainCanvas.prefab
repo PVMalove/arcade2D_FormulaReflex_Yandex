@@ -62,7 +62,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &811792535530459688
 MonoBehaviour:
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.85884655, g: 0.9246074, b: 0.9433962, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -215,19 +215,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2483765231692022304, guid: 33d08bfcbdb53d64b9e6bed7b367d898, type: 3}
       propertyPath: m_Color.a
-      value: 1
+      value: 0.5529412
       objectReference: {fileID: 0}
     - target: {fileID: 2483765231692022304, guid: 33d08bfcbdb53d64b9e6bed7b367d898, type: 3}
       propertyPath: m_Color.b
-      value: 0.8784314
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2483765231692022304, guid: 33d08bfcbdb53d64b9e6bed7b367d898, type: 3}
       propertyPath: m_Color.g
-      value: 0.44685903
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2483765231692022304, guid: 33d08bfcbdb53d64b9e6bed7b367d898, type: 3}
       propertyPath: m_Color.r
-      value: 0.13725491
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2483765231692022305, guid: 33d08bfcbdb53d64b9e6bed7b367d898, type: 3}
       propertyPath: m_Pivot.x

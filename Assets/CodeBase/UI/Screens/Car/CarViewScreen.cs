@@ -1,6 +1,6 @@
 ﻿using CodeBase.UI.Screens.Base;
+using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
@@ -9,50 +9,50 @@ namespace CodeBase.UI.Screens.Car
     public class CarViewScreen : ScreenBase<ICarPresenter>
     {
         [SerializeField] private Image carSprite;
+        [SerializeField] private Text coinsAmountText;
         [SerializeField] private AnimationCar animationCar;
-        
-        
+
+        [CanBeNull] 
         private ICarPresenter presenter;
         
         protected override void Initialize(ICarPresenter presenter)
         {
             base.Initialize(presenter);
             this.presenter = presenter;
-            presenter.Subscribe();
-            presenter.ChangedSelectedCar += OnSelectedCarChanged;
-
-            OnSelectedCarChanged(presenter.SelectedCar);
         }
         
         protected override void SubscribeUpdates()
         {
             base.SubscribeUpdates();
-            presenter.PlayAnimationEndGame += OnPlayAnimation;
-            presenter.ResetAnimationEndGame += OnResetAnimation;
-            //AnimationUi.OnAnimationEnded += OnResetAnimation;
+            if (presenter is null) return;
+            presenter.Subscribe();
+            presenter.ChangedSelectedCar += OnSelectedCarChanged;
+            presenter.CoinsAmount += ChangeCoinAmountText;
+            presenter.PlayCarAnimation += OnPlayAnimation;
+            presenter.ResetCarAnimation += OnResetAnimation;
+            OnSelectedCarChanged(presenter.SelectedCar);
         }
 
         protected override void UnsubscribeUpdates()
         {
             base.UnsubscribeUpdates();
-            presenter.PlayAnimationEndGame -= OnPlayAnimation;
-            presenter.ResetAnimationEndGame -= OnResetAnimation;
+            if (presenter is null) return;
+            presenter.CoinsAmount -= ChangeCoinAmountText;
+            presenter.PlayCarAnimation -= OnPlayAnimation;
+            presenter.ResetCarAnimation -= OnResetAnimation;
+            presenter.Unsubscribe();
         }
 
         private void OnSelectedCarChanged(Sprite view) => 
             carSprite.sprite = view;
 
-        private void OnPlayAnimation()
-        {
-            animationCar.PlayAnimation();
+        private void ChangeCoinAmountText(int amount) => 
+            coinsAmountText.text = $"+{amount.ToString()}";
 
-            //AnimationUi.Play();
-        }
+        private void OnPlayAnimation(string type) => 
+            animationCar.PlayAnimation(type);
 
-        private void OnResetAnimation()
-        {
+        private void OnResetAnimation() => 
             animationCar.ResetAnimation();
-            //AnimationUi.PreviewStart();
-        }
     }
 }

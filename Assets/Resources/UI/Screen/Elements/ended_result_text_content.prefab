@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: 0.000
       objectReference: {fileID: 0}
+    - target: {fileID: 4658480993938911531, guid: cef133c7e02c2b442935cff18d266c9d, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 22e451edba13bd74296aff42cde7af22, type: 3}
     - target: {fileID: 5260047167447333485, guid: cef133c7e02c2b442935cff18d266c9d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -38,6 +38,7 @@ namespace CodeBase.UI.Screens.Game
         protected override void SubscribeUpdates()
         {
             base.SubscribeUpdates();
+            if (presenter is null) return;
             runningGameButton.onClick.AddListener(OnRunningGame);
             runningCoroutine = StartCoroutine(StartLights());
         }
@@ -45,12 +46,8 @@ namespace CodeBase.UI.Screens.Game
         protected override void UnsubscribeUpdates()
         {
             base.UnsubscribeUpdates();
+            if (presenter is null) return;
             runningGameButton.onClick.RemoveListener(OnRunningGame);
-        }
-        
-        protected override void Cleanup()
-        {
-            base.Cleanup();
         }
 
         private void OnRunningGame()

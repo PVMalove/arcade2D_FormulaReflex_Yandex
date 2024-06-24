@@ -16,18 +16,20 @@ namespace CodeBase.UI.Screens.Game
         {
             base.Initialize(presenter);
             this.presenter = presenter;
-            bestTimeText.text = presenter.BestTime;
-            resultTimeText.text = presenter.TimeDiff;
         }
 
         protected override void SubscribeUpdates()
         {
             base.SubscribeUpdates();
+            if (presenter is null) return;
             restartGameButton.onClick.AddListener(OnRestartGame);
+            bestTimeText.text = presenter.BestTime;
+            resultTimeText.text = presenter.TimeDiff;
         }
 
         protected override void UnsubscribeUpdates()
         {
+            if (presenter is null) return;
             restartGameButton.onClick.RemoveListener(OnRestartGame);
         }
 
