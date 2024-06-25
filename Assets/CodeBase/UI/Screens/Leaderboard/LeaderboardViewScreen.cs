@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using YG;
 
+
 namespace CodeBase.UI.Screens.Leaderboard
 {
     public class LeaderboardViewScreen : ScreenBase<ILeaderboardPresenter>
@@ -20,30 +21,38 @@ namespace CodeBase.UI.Screens.Leaderboard
         {
             base.Initialize(presenter);
             this.presenter = presenter;
-
-            if (YandexGame.auth) return;
-            yandexRegistrationObject.SetActive(true);
-            yandexRegistrationButton.onClick.AddListener(RegistrationOnClick);
         }
         
         protected override void SubscribeUpdates()
         {
             base.SubscribeUpdates();
+            
+            if (presenter is null) return;
+            presenter.Subscribe();
             closeScreenButton.onClick.AddListener(CloseScreen);
+            
+            if (YandexGame.auth) return;
+            yandexRegistrationObject.SetActive(true);
+            yandexRegistrationButton.onClick.AddListener(RegistrationOnClick);
         }
 
         protected override void UnsubscribeUpdates()
         {
             base.UnsubscribeUpdates();
+            
+            if (presenter is null) return;
             closeScreenButton.onClick.RemoveListener(CloseScreen);
             yandexRegistrationButton.onClick.RemoveListener(RegistrationOnClick);
+            presenter.Unsubscribe();
         }
 
         public void SetImageCarList()
         {
             for (int i = 0; i < rootSpawnPlayersData.childCount; i++)
             {
-                rootSpawnPlayersData.GetChild(i).GetComponent<CarView>().SetSprite(presenter.RandomSprites[i]);
+                rootSpawnPlayersData.GetChild(i).GetComponent<CarView>().SetSprite(presenter.ThisPlayerDataRank == i
+                    ? presenter.SelectedCar
+                    : presenter.RandomSprites[i]);
             }
         }
 

@@ -46,6 +46,7 @@ namespace CodeBase.UI.Screens.Service
             RegisterProgress(gamePresenter);
 
             leaderboardPresenter = new LeaderboardPresenter(
+                AllServices.Container.Single<IPersistentProgressService>(),
                 AllServices.Container.Single<IRandomService>(),
                 AllServices.Container.Single<IAssetProvider>());
 
