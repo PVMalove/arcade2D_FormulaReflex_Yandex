@@ -9,7 +9,6 @@ namespace CodeBase.UI.Screens.Car
     public class CarViewScreen : ScreenBase<ICarPresenter>
     {
         [SerializeField] private Image carSprite;
-        [SerializeField] private Text coinsAmountText;
         [SerializeField] private AnimationCar animationCar;
 
         [CanBeNull] 
@@ -47,7 +46,7 @@ namespace CodeBase.UI.Screens.Car
             carSprite.sprite = view;
 
         private void ChangeCoinAmountText(int amount) => 
-            coinsAmountText.text = $"+{amount.ToString()}";
+            animationCar.SetAmountCoins(amount);
 
         private void OnPlayAnimation(string type) => 
             animationCar.PlayAnimation(type);

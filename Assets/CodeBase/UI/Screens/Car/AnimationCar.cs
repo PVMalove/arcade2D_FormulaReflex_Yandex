@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Globalization;
 using PrimeTween;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 namespace CodeBase.UI.Screens.Car
@@ -14,12 +16,18 @@ namespace CodeBase.UI.Screens.Car
         [SerializeField] private RectTransform targetCoins;
         [SerializeField] private RectTransform targetTextCoins;
         
+        [SerializeField] private Text coinsAmountText;
         
         private Sequence sequence;
+        private float coinValue;
+        
+        public void SetAmountCoins(float amount) => 
+            coinValue = amount;
 
         [ContextMenu("Play_Animation")]
         public void PlayAnimation(string type)
         {
+            if (sequence.isAlive) return;
             switch (type)
             {
                 case "LostGame":
@@ -46,44 +54,45 @@ namespace CodeBase.UI.Screens.Car
 
         private void PlayLostGameAnimation()
         {
-            if (!sequence.isAlive)
-            {
-                sequence = Sequence.Create()
-                    .Group(Tween.EulerAngles(targetWheelRear.transform, startValue: Vector3.zero,
-                        endValue: new Vector3(0, 0, 1500),
-                        duration: 0.75f))
-                    .Group(Tween.EulerAngles(targetWheelFront.transform, startValue: Vector3.zero,
-                        endValue: new Vector3(0, 0, 500),
-                        duration: 1))
-                    .Insert(atTime: 0.05f, Tween.UIAnchoredPositionX(targetCar, endValue: -500f, duration:0.6f, Ease.InQuart));
-            }
+            sequence = Sequence.Create()
+                .Group(Tween.EulerAngles(targetWheelRear.transform, startValue: Vector3.zero,
+                    endValue: new Vector3(0, 0, 1500),
+                    duration: 0.75f))
+                .Group(Tween.EulerAngles(targetWheelFront.transform, startValue: Vector3.zero,
+                    endValue: new Vector3(0, 0, 500),
+                    duration: 1))
+                .Insert(atTime: 0.05f, Tween.UIAnchoredPositionX(targetCar, endValue: -500f, duration:0.6f, Ease.InQuart));
         }
 
         private void PlayEndGameAnimation()
-        {
-            if (!sequence.isAlive)
-            {
-                sequence = Sequence.Create()
-                    .Group(Tween.EulerAngles(targetWheelRear.transform, startValue: Vector3.zero,
-                        endValue: new Vector3(0, 0, 3500),
-                        duration: 0.75f))
-                    .Group(Tween.EulerAngles(targetWheelFront.transform, startValue: Vector3.zero,
-                        endValue: new Vector3(0, 0, 1500),
-                        duration: 1))
-                    .Insert(atTime: 0.1f, Tween.UIAnchoredPositionX(targetCar, endValue: -1500f, duration:0.8f, Ease.InQuart))
-                    .OnComplete(AddCoinsAnimation);
-            }
+        { 
+            sequence = Sequence.Create()
+                .Group(Tween.EulerAngles(targetWheelRear.transform, startValue: Vector3.zero,
+                    endValue: new Vector3(0, 0, 3500),
+                    duration: 0.75f))
+                .Group(Tween.EulerAngles(targetWheelFront.transform, startValue: Vector3.zero,
+                    endValue: new Vector3(0, 0, 1500),
+                    duration: 1))
+                .Insert(atTime: 0.1f, Tween.UIAnchoredPositionX(targetCar, endValue: -1500f, duration:0.8f, Ease.InQuart))
+                .OnComplete(AddCoinsAnimation);
         }
 
         private void AddCoinsAnimation()
         {
-            if (!sequence.isAlive)
-            {
-                targetCoins.gameObject.SetActive(true);
-                sequence = Sequence.Create()
-                    .Group(Tween.Scale(targetCoins, startValue: 0.9f, endValue: 1.2f, duration: 0.25f, Ease.InOutQuad))
-                    .Chain(Tween.Scale(targetCoins, startValue: 1.2f, endValue: 1f, duration: 0.25f, Ease.InOutQuad));
-            }
+            targetCoins.gameObject.SetActive(true);
+            sequence = Sequence.Create()
+                .Group(Tween.Scale(targetCoins, startValue: 0.9f,
+                    endValue: 1.2f,
+                    duration: 0.25f,
+                    Ease.InOutQuad))
+                .Group(Tween.Custom(coinsAmountText, 0, coinValue, 1, UpdateCoinsText))
+                .Chain(Tween.Scale(targetCoins, startValue: 1.2f, 
+                    endValue: 1f, 
+                    duration: 0.25f, 
+                    Ease.InOutQuad));
         }
+        
+        private void UpdateCoinsText(Text target, float newValue) => 
+            target.text = Mathf.Floor(newValue).ToString(CultureInfo.InvariantCulture);
     }
 }

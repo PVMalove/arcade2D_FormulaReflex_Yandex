@@ -19,7 +19,6 @@ namespace CodeBase.UI.Screens.Leaderboard
         
         public List<Sprite> RandomSprites => randomSprites;
         public Sprite SelectedCar => progressService.SelectedCar.CarSprite;
-
         public int ThisPlayerDataRank => thisPlayerDataRank;
 
         public LeaderboardPresenter(IPersistentProgressService progressService, IRandomService randomService, IAssetProvider assetProvider)
@@ -42,10 +41,10 @@ namespace CodeBase.UI.Screens.Leaderboard
 
         private void GetThisPlayerDataRank(LBData data)
         {
-            thisPlayerDataRank = data.thisPlayer.rank;
+            thisPlayerDataRank = data.thisPlayer.rank - 1;
         }
 
-        public void CreateRandomSprite(int count)
+        private void CreateRandomSprite(int count)
         {
             AllSpriteCarConfig config = assetProvider.Load<AllSpriteCarConfig>(InfrastructurePath.AllSpriteCarConfigPath);
             for (int i = 0; i < count; i++)

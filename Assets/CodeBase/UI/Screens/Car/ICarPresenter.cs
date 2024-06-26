@@ -13,6 +13,7 @@ namespace CodeBase.UI.Screens.Car
         void Subscribe();
         void Unsubscribe();
         void PlayAnimation(string type);
+        void SetCoin(int coinsCount);
         void ResetAnimation();
     }
 }

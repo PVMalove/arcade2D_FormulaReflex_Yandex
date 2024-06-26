@@ -51,7 +51,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carSprite: {fileID: 1847724222026970110}
-  coinsAmountText: {fileID: 5286040264172915093}
   animationCar: {fileID: 9219800652352330158}
 --- !u!114 &9219800652352330158
 MonoBehaviour:
@@ -70,6 +69,7 @@ MonoBehaviour:
   targetWheelRear: {fileID: 8083893450655208022}
   targetCoins: {fileID: 4587538142010638153}
   targetTextCoins: {fileID: 2947611473752882120}
+  coinsAmountText: {fileID: 5286040264172915093}
 --- !u!1 &5885134344627353482
 GameObject:
   m_ObjectHideFlags: 0

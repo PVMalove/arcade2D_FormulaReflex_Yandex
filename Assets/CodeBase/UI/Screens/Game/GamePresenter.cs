@@ -71,17 +71,18 @@ namespace CodeBase.UI.Screens.Game
         public void EndGame()
         {
             timeDiff = Time.time - startTime;
-            int coinsCount = 100;
+            int coinsCount = (int)(10 / timeDiff);
             
             if (timeDiff < bestTime || bestTime == 0f)
             {
-                coinsAmount = 200;
+                coinsCount = (int)(100 / timeDiff);
                 bestTime = timeDiff;
                 YandexGame.NewLBScoreTimeConvert("BestTimeRecord2", bestTime);
             }
             
             progressService.AddCoins(coinsCount);
             saveService.SaveProgress();
+            carPresenter.SetCoin(coinsCount);
             carPresenter.PlayAnimation("EndGame");
             screenService.ShowEndedGameView();
         }

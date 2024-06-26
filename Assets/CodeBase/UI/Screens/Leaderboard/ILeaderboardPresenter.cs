@@ -8,7 +8,6 @@ namespace CodeBase.UI.Screens.Leaderboard
         List<Sprite> RandomSprites { get; }
         Sprite SelectedCar { get; }
         int ThisPlayerDataRank { get; }
-        void CreateRandomSprite(int count);
         void Subscribe();
         void Unsubscribe();
     }

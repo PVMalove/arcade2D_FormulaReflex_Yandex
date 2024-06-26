@@ -22,21 +22,19 @@ namespace CodeBase.UI.Screens.Car
         public void Subscribe()
         {
             progressService.SelectedCarChanged += OnSelectedCarChanged;
-            progressService.CoinsAmountChanged += OnCoinsAmountChanged;
         }
 
         public void Unsubscribe()
         {
             progressService.SelectedCarChanged -= OnSelectedCarChanged;
-            progressService.CoinsAmountChanged -= OnCoinsAmountChanged;
         }
-
-        private void OnCoinsAmountChanged() => 
-            CoinsAmount?.Invoke(progressService.CoinsAmount);
 
         public void PlayAnimation(string type) => 
             PlayCarAnimation?.Invoke(type);
-        
+
+        public void SetCoin(int coinsCount) => 
+            CoinsAmount?.Invoke(coinsCount);
+
         public void ResetAnimation() => 
             ResetCarAnimation?.Invoke();
 
