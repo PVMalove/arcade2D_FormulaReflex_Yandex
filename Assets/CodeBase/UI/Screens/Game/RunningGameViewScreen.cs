@@ -9,7 +9,6 @@ namespace CodeBase.UI.Screens.Game
     {
         IDLE,
         RUNNING,
-        LOST,
         ENDED,
     }
     

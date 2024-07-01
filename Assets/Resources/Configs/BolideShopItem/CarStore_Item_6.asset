@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CarStore_Item_6
   m_EditorClassIdentifier: 
   <Type>k__BackingField: 6
-  <CarSprite>k__BackingField: {fileID: -1365251083, guid: 50f70b012008c374b95cefe8931d8fae, type: 3}
+  <CarSprite>k__BackingField: {fileID: -1798798578, guid: 834c0340acaf919409d6235d84321805, type: 3}
   <RequiredCoins>k__BackingField: 100
