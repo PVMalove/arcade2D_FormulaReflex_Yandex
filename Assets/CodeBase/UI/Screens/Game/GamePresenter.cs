@@ -63,8 +63,8 @@ namespace CodeBase.UI.Screens.Game
 
         public void RestartGame()
         {
-            saveService.SaveProgress();
             carPresenter.ResetAnimation();
+            saveService.SaveProgress();
             screenService.ShowIdleGameView();
         }
 

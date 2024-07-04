@@ -46,7 +46,7 @@ namespace CodeBase.UI.Screens.Car
         {
             Tween.StopAll(this);
             Sequence.Create()
-                .Group(Tween.UIAnchoredPositionX(targetCar, endValue: 0f, duration: 0.3f, Ease.InQuart));
+                .Group(Tween.UIAnchoredPositionX(targetCar, endValue: 0f, duration: 0.25f, Ease.InQuart));
             targetWheelFront.localEulerAngles = Vector3.zero;
             targetWheelRear.localEulerAngles = Vector3.zero;
             targetCoins.gameObject.SetActive(false);
@@ -54,6 +54,7 @@ namespace CodeBase.UI.Screens.Car
 
         private void PlayLostGameAnimation()
         {
+            ResetCarPosition();
             sequence = Sequence.Create()
                 .Group(Tween.EulerAngles(targetWheelRear.transform, startValue: Vector3.zero,
                     endValue: new Vector3(0, 0, 1500),
@@ -65,7 +66,8 @@ namespace CodeBase.UI.Screens.Car
         }
 
         private void PlayEndGameAnimation()
-        { 
+        {
+            ResetCarPosition();
             sequence = Sequence.Create()
                 .Group(Tween.EulerAngles(targetWheelRear.transform, startValue: Vector3.zero,
                     endValue: new Vector3(0, 0, 3500),
@@ -94,5 +96,13 @@ namespace CodeBase.UI.Screens.Car
         
         private void UpdateCoinsText(Text target, float newValue) => 
             target.text = Mathf.Floor(newValue).ToString(CultureInfo.InvariantCulture);
+
+        private void ResetCarPosition()
+        {
+            targetCar.anchoredPosition = new Vector2(0, targetCar.anchoredPosition.y);
+            targetWheelFront.localEulerAngles = Vector3.zero;
+            targetWheelRear.localEulerAngles = Vector3.zero;
+            targetCoins.gameObject.SetActive(false);
+        }
     }
 }
