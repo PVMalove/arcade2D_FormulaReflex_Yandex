@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CodeBase.Core.Audio.Service;
 using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.Core.Services.PoolService;
 using CodeBase.Core.Services.ProgressService;
@@ -42,7 +43,10 @@ namespace CodeBase.UI.Screens.Service
             gamePresenter = new GamePresenter(
                 AllServices.Container.Single<IScreenService>(),
                 AllServices.Container.Single<IPersistentProgressService>(),
-                AllServices.Container.Single<ISaveService>(),carPresenter);
+                AllServices.Container.Single<ISaveService>(),
+                AllServices.Container.Single<IAudioService>(),
+                AllServices.Container.Single<IStaticDataService>(),
+                carPresenter);
             RegisterProgress(gamePresenter);
 
             leaderboardPresenter = new LeaderboardPresenter(

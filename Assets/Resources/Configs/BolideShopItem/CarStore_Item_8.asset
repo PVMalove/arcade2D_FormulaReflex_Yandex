@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Type>k__BackingField: 8
   <CarSprite>k__BackingField: {fileID: 1243936415, guid: 834c0340acaf919409d6235d84321805, type: 3}
-  <RequiredCoins>k__BackingField: 300
+  <RequiredCoins>k__BackingField: 3500

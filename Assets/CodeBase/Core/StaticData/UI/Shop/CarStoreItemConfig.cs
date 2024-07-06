@@ -7,6 +7,6 @@ namespace CodeBase.Core.StaticData.UI.Shop
     {
         [field: SerializeField] public CarType Type { get; set; }
         [field: SerializeField] public Sprite CarSprite { get; private set; }
-        [field: SerializeField, Range(0, 1000)] public int RequiredCoins { get; private set; }
+        [field: SerializeField, Range(0, 5100)] public int RequiredCoins { get; private set; }
     }
 }

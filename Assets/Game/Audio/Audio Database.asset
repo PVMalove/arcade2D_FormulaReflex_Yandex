@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4645132edefd4c74968a0c941a98fb89, type: 3}
+  m_Name: Audio Database
+  m_EditorClassIdentifier: 
+  _items:
+  - Clip: {fileID: 8300000, guid: 04c14afafc414304a80374ceea594092, type: 3}
+    Key: f1_01
+    FolderPath: Game\Audio\
+    Name: f1_01.mp3
+    Preload: 1
+    _id: 2fd53f60-9d44-4f68-a76f-b2069d77ec90
+  - Clip: {fileID: 8300000, guid: ad1986e5852218b41ba8dd5b2dbcca93, type: 3}
+    Key: beep
+    FolderPath: Game\Audio\
+    Name: beep.mp3
+    Preload: 1
+    _id: 9a089869-e858-4b9a-a0b2-da4e018eb4a0
+  - Clip: {fileID: 8300000, guid: b5c68d121c5f8ef44b431fb4bf27c031, type: 3}
+    Key: f1_02
+    FolderPath: Game\Audio\
+    Name: f1_02.mp3
+    Preload: 1
+    _id: 139f8189-49c3-4de4-8e8a-ed58d25f54f7
+  - Clip: {fileID: 8300000, guid: 48c63c19f01da2a49b27c77c5196def8, type: 3}
+    Key: f1_03
+    FolderPath: Game\Audio\
+    Name: f1_03.mp3
+    Preload: 1
+    _id: 9e8ca196-5073-4b0f-9ab3-d249394ff0ab

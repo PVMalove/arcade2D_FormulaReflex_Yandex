@@ -63,12 +63,6 @@ namespace CodeBase.UI.HUD.SettingBar
             progressService.GetProgress().AudioControlData.EffectsOn = EffectsOn;
         }
 
-        public void ToggleMusic()
-        {
-            MusicOn = !MusicOn;
-            audioService.ToggleMusic(MusicOn);
-        }
-
         public void ToggleEffects()
         {
             EffectsOn = !EffectsOn;
@@ -86,7 +80,6 @@ namespace CodeBase.UI.HUD.SettingBar
         private void UpdateSettingState() 
         {
             audioService.ChangeVolume(AudioVolume);
-            audioService.ToggleMusic(MusicOn);
             audioService.ToggleEffects(EffectsOn);
         }
 

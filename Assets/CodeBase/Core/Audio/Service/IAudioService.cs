@@ -1,18 +1,18 @@
 using System;
 using CodeBase.Core.Services.ServiceLocator;
+using Plugins.Audio.Core;
 
 namespace CodeBase.Core.Audio.Service
 {
     public interface IAudioService : IService
     {
         event Action<bool> OnChangedMuteMusicState;
-        
-        // SourceAudio MusicSourceAudio { get; }
-        // SourceAudio FXSourceAudio { get; }
-
-        void ChangeVolume(float value);
-        void ToggleMusic(bool isOn);
-        void ToggleEffects(bool isOn);
         event Action<bool> OnChangedMuteFXState;
+
+        SourceAudio FX_f_motor_SourceAudio { get; }
+        SourceAudio FX_lp_SourceAudio { get; }
+        SourceAudio FX_f_start_SourceAudio { get; }
+        void ChangeVolume(float value);
+        void ToggleEffects(bool isOn);
     }
 }

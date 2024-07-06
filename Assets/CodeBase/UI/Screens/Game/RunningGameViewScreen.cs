@@ -72,6 +72,7 @@ namespace CodeBase.UI.Screens.Game
         {
             foreach (var lightStrip in lightStrips)
             {
+                presenter.AudioService.FX_lp_SourceAudio.PlayOneShot("beep");
                 lightStrip.SetActive(true);
                 yield return new WaitForSeconds(LIGHT_ON_INTERVAL);
             }

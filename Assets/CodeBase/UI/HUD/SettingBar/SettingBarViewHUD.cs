@@ -42,11 +42,6 @@ namespace CodeBase.UI.HUD.SettingBar
             settingsObject.SetActive(!settingsObject.activeSelf);
         }
 
-        private void SoundOnClick()
-        {
-            setting.ToggleMusic();
-        }
-
         private void SFXOnClick()
         {
             setting.ToggleEffects();

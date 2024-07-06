@@ -11,7 +11,7 @@ namespace CodeBase.UI.HUD.SettingBar
         float AudioVolume { get; }
         bool MusicOn { get; }
         bool EffectsOn { get; }
-        void ToggleMusic();
+
         void ToggleEffects();
         void Enable();
         void Disable();

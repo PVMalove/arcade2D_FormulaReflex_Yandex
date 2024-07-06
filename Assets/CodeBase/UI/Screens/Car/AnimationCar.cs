@@ -81,6 +81,7 @@ namespace CodeBase.UI.Screens.Car
 
         private void AddCoinsAnimation()
         {
+            if (coinValue <= 0) return;
             targetCoins.gameObject.SetActive(true);
             sequence = Sequence.Create()
                 .Group(Tween.Scale(targetCoins, startValue: 0.9f,
@@ -99,10 +100,11 @@ namespace CodeBase.UI.Screens.Car
 
         private void ResetCarPosition()
         {
+            Tween.StopAll(this);
+            targetCoins.gameObject.SetActive(false);
             targetCar.anchoredPosition = new Vector2(0, targetCar.anchoredPosition.y);
             targetWheelFront.localEulerAngles = Vector3.zero;
             targetWheelRear.localEulerAngles = Vector3.zero;
-            targetCoins.gameObject.SetActive(false);
         }
     }
 }
