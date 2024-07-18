@@ -1,6 +1,8 @@
 ﻿using CodeBase.Core.Services.ServiceLocator;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
+using CodeBase.UI.Popup.CoinShop;
+using CodeBase.UI.Popup.RestorePurchase;
 using CodeBase.UI.Root;
 using CodeBase.UI.Screens.Car;
 using CodeBase.UI.Screens.Game;
@@ -22,5 +24,7 @@ namespace CodeBase.UI.Services.Factories
         EndedGameViewScreen CreateEndedGameView();
         LeaderboardViewScreen CreateLeaderboardView();
         StoreViewScreen CreateStoreView();
+        CoinShopView CreateCoinShopView();
+        RestorePurchaseView CreateRestorePurchaseView();
     }
 }

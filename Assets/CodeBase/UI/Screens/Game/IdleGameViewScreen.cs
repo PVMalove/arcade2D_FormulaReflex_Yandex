@@ -1,7 +1,10 @@
-﻿using CodeBase.Core.StaticData.UI.Shop;
+﻿using System.Globalization;
+using CodeBase.Core.StaticData.UI.Shop;
 using CodeBase.UI.Screens.Base;
+using PrimeTween;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 
 namespace CodeBase.UI.Screens.Game
@@ -11,13 +14,13 @@ namespace CodeBase.UI.Screens.Game
         [SerializeField] private Button startGameButton;
         [SerializeField] private Button openSkinsShopButton;
         [SerializeField] private Button openLeaderboardButton;
+        [SerializeField] private Button openCoinShopButton;
         [SerializeField] private Text bestTimeText;
         [SerializeField] private GameObject bestTimeObject;
         [SerializeField] private Text coinsAmountText;
-        
+        [SerializeField] private RectTransform targetCoins;
         [SerializeField] private GameObject notifyObject;
-        
-         
+
         private IGamePresenter presenter;
 
         protected override void Initialize(IGamePresenter presenter)
@@ -36,7 +39,11 @@ namespace CodeBase.UI.Screens.Game
             startGameButton.onClick.AddListener(OnStartGame);
             openSkinsShopButton.onClick.AddListener(OnOpenSkinsShop);
             openLeaderboardButton.onClick.AddListener(OnOpenLeaderboard);
-            
+            openCoinShopButton.onClick.AddListener(OnOpenCoinShop);
+
+            YandexGame.PurchaseSuccessEvent += PurchaseOnContinue;
+            YandexGame.ConsumePurchases();
+
             BestTimeChanged();
             OnCoinsAmountChanged();
         }
@@ -49,6 +56,9 @@ namespace CodeBase.UI.Screens.Game
             startGameButton.onClick.RemoveListener(OnStartGame);
             openSkinsShopButton.onClick.RemoveListener(OnOpenSkinsShop);
             openLeaderboardButton.onClick.RemoveListener(OnOpenLeaderboard);
+            openCoinShopButton.onClick.RemoveListener(OnOpenCoinShop);
+
+            YandexGame.PurchaseSuccessEvent -= PurchaseOnContinue;
         }
 
         protected override void Cleanup()
@@ -68,8 +78,13 @@ namespace CodeBase.UI.Screens.Game
             presenter.OpenShop();
         }
 
-        private void OnOpenLeaderboard() => 
+        private void OnOpenLeaderboard() =>
             presenter.OpenLeaderboard();
+
+        private void OnOpenCoinShop()
+        {
+            presenter.OpenCoinShop();
+        }
 
         private void BestTimeChanged()
         {
@@ -86,9 +101,25 @@ namespace CodeBase.UI.Screens.Game
 
         private void OnCoinsAmountChanged()
         {
-            coinsAmountText.text = presenter.CoinsAmount;
+            int startCoinValue = int.Parse(coinsAmountText.text);
+            int endCoinValue = int.Parse(presenter.CoinsAmount);
+
+            Sequence.Create()
+                .Group(Tween.Scale(targetCoins, startValue: 0.9f,
+                    endValue: 1.2f,
+                    duration: 0.25f,
+                    Ease.InOutQuad))
+                .Group(Tween.Custom(coinsAmountText, startCoinValue, endCoinValue, 1, UpdateCoinsText))
+                .Chain(Tween.Scale(targetCoins, startValue: 1.2f,
+                    endValue: 1f,
+                    duration: 0.25f,
+                    Ease.InOutQuad));
+
             CheckNotify();
         }
+
+        private void UpdateCoinsText(Text target, float newValue) =>
+            coinsAmountText.text = Mathf.Floor(newValue).ToString(CultureInfo.InvariantCulture);
 
         private void CheckNotify()
         {
@@ -97,14 +128,25 @@ namespace CodeBase.UI.Screens.Game
             {
                 if (presenter.SkinsData.TryGetValue((CarType)i, out CarStoreItemConfig value))
                 {
-                    if (int.TryParse(presenter.CoinsAmount , out int coinsAmount))
-                        if (coinsAmount>= value.RequiredCoins)
+                    if (int.TryParse(presenter.CoinsAmount, out int coinsAmount))
+                        if (coinsAmount >= value.RequiredCoins)
                         {
                             if (i == 0) continue;
+                            if (presenter.IsPlayerOwnCar((CarType)i)) continue;
                             notifyObject.SetActive(true);
                             return;
                         }
                 }
+            }
+        }
+
+        private void PurchaseOnContinue(string id)
+        {
+            presenter.Log($"PurchaseRecovery: id - {id}");
+            if (id == "AddCoin")
+            {
+                presenter.Log("Purchase restore active");
+                presenter.OpenRestorePurchase();
             }
         }
     }

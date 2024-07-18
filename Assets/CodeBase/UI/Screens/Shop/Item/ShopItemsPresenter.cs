@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using CodeBase.Core.Infrastructure.AssetManagement;
-using CodeBase.Core.Infrastructure.Factories;
 using CodeBase.Core.Services.PoolService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.SaveLoadService;

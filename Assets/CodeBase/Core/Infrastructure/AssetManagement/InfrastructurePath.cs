@@ -19,10 +19,15 @@
         public const string EndedGameViewScreen = "UI/Screen/EndedGameView";
         public const string LeaderboardViewScreen = "UI/Screen/LeaderboardView";
         public const string StoreViewScreen = "UI/Screen/StoreView";
+        
+        public const string CoinShopViewPopup = "UI/Popup/CoinShopView";
+        public const string RestorePurchaseViewPopup = "UI/Popup/RestorePurchaseView";
 
         //Configs
         public const string AllSpriteCarConfigPath = "Configs/AllSpriteCar_Config";
         public const string ConfigPath = "Configs";
+
+
         
     }
 }

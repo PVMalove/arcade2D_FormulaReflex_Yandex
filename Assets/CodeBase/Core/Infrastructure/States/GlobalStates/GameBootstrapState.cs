@@ -13,6 +13,9 @@ using CodeBase.Core.Services.StaticDataService;
 using CodeBase.UI.HUD.Base;
 using CodeBase.UI.HUD.Service;
 using CodeBase.UI.HUD.Supplier;
+using CodeBase.UI.Popup.Base;
+using CodeBase.UI.Popup.Service;
+using CodeBase.UI.Popup.Supplier;
 using CodeBase.UI.Screens.Base;
 using CodeBase.UI.Screens.Service;
 using CodeBase.UI.Screens.Supplier;
@@ -88,6 +91,12 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             
             services.RegisterSingle<IScreenService>(new ScreenService( 
                 services.Single<IFrameSupplier<ScreenName, UnityFrame>>()));
+            
+            services.RegisterSingle<IFrameSupplier<PopupName, UnityFrame>>(new PopupSupplier(
+                services.Single<IUIFactory>()));
+            
+            services.RegisterSingle<IPopupService>(new PopupService( 
+                services.Single<IFrameSupplier<PopupName, UnityFrame>>()));
 
             services.RegisterSingle<ISaveService>(new SaveService(
                 services.Single<IGameFactory>(),

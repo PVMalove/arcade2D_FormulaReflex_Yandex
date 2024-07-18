@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using CodeBase.Core.Audio.Service;
 using CodeBase.Core.Data;
+using CodeBase.Core.Services.LogService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.StaticDataService;
 using CodeBase.Core.StaticData.UI.Shop;
+using CodeBase.UI.Popup.Service;
 using CodeBase.UI.Screens.Car;
 using CodeBase.UI.Screens.Service;
 using UnityEngine;
@@ -19,11 +21,13 @@ namespace CodeBase.UI.Screens.Game
         public event Action<Sprite> ChangedSelectedCar;
 
         private readonly IScreenService screenService;
+        private readonly IPopupService popupService;
         private readonly IPersistentProgressService progressService;
         private readonly ISaveService saveService;
         private readonly IAudioService audioService;
         private readonly IStaticDataService staticDataService;
         private readonly ICarPresenter carPresenter;
+        private readonly ILogService log;
 
         private Dictionary<CarType, CarStoreItemConfig> skinsData;
         
@@ -39,18 +43,22 @@ namespace CodeBase.UI.Screens.Game
         public Dictionary<CarType, CarStoreItemConfig> SkinsData => skinsData;
 
         public GamePresenter(IScreenService screenService,
+            IPopupService popupService,
             IPersistentProgressService progressService,
             ISaveService saveService,
             IAudioService audioService,
             IStaticDataService staticDataService,
-            ICarPresenter carPresenter)
+            ICarPresenter carPresenter,
+            ILogService log)
         {
             this.screenService = screenService;
+            this.popupService = popupService;
             this.progressService = progressService;
             this.saveService = saveService;
             this.audioService = audioService;
             this.staticDataService = staticDataService;
             this.carPresenter = carPresenter;
+            this.log = log;
         }
         
         public void Subscribe()
@@ -117,6 +125,16 @@ namespace CodeBase.UI.Screens.Game
         {
             screenService.ShowShopView();
         }
+        
+        public void OpenCoinShop()
+        {
+            popupService.ShowCoinShop();
+        }
+
+        public void OpenRestorePurchase()
+        {
+            popupService.ShowRestorePurchase();
+        } 
 
         public void SetStartTime(float time)
         {
@@ -134,6 +152,12 @@ namespace CodeBase.UI.Screens.Game
             progress.CoinData.CoinsAmount = coinsAmount;
             progress.BestTimeData.Value = bestTime;
         }
+        
+        public bool IsPlayerOwnCar(CarType storeItemType) =>
+            progressService.IsPlayerOwnCar(storeItemType);
+
+        public void Log(string text, object context = null) => 
+            log.Log(text,context);
 
         private void OnCoinsAmountChanged()
         {

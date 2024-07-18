@@ -15,3 +15,4 @@ MonoBehaviour:
   <Type>k__BackingField: 2
   <CarSprite>k__BackingField: {fileID: -1799119710, guid: 834c0340acaf919409d6235d84321805, type: 3}
   <RequiredCoins>k__BackingField: 1350
+  <IsOpened>k__BackingField: 0

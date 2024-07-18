@@ -1,6 +1,8 @@
 ﻿using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.SettingBar;
+using CodeBase.UI.Popup.CoinShop;
+using CodeBase.UI.Popup.RestorePurchase;
 using CodeBase.UI.Root;
 using CodeBase.UI.Screens.Car;
 using CodeBase.UI.Screens.Game;
@@ -78,6 +80,18 @@ namespace CodeBase.UI.Services.Factories
         {
             GameObject view = assetProvider.Instantiate(InfrastructurePath.StoreViewScreen);
             return view.GetComponent<StoreViewScreen>();
+        }
+        
+        public CoinShopView CreateCoinShopView()
+        {
+            GameObject view = assetProvider.Instantiate(InfrastructurePath.CoinShopViewPopup);
+            return view.GetComponent<CoinShopView>();
+        }
+
+        public RestorePurchaseView CreateRestorePurchaseView()
+        {
+            GameObject view = assetProvider.Instantiate(InfrastructurePath.RestorePurchaseViewPopup);
+            return view.GetComponent<RestorePurchaseView>();
         }
     }
 }

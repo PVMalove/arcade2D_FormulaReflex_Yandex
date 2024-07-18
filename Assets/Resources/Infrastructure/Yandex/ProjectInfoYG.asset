@@ -304,6 +304,12 @@ MonoBehaviour:
     imageURI: https://justplaygames.ru/public/Paymant3.png
     priceValue: 30
     consumed: 1
+  - id: AddCoin
+    title: Coin
+    description: Product - Coin
+    imageURI: https://justplaygames.ru/public/Paymant3.png
+    priceValue: 30
+    consumed: 1
   metricaEnable: 0
   metricaCounterID: 0
   debug: 1

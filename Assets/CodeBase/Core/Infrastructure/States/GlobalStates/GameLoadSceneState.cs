@@ -7,6 +7,7 @@ using CodeBase.Core.Services.LogService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.UI.HUD.BuildInfo;
 using CodeBase.UI.HUD.Service;
+using CodeBase.UI.Popup.Service;
 using CodeBase.UI.Screens.Service;
 using CodeBase.UI.Services.Factories;
 using UnityEngine;
@@ -23,6 +24,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
         private readonly IUIFactory uiFactory;
         private readonly IHUDService hudService;
         private readonly IScreenService screenService;
+        private readonly IPopupService popupService;
         private readonly ILogService log;
         
         private BuildInfoConfig buildInfoConfig;
@@ -35,6 +37,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             IUIFactory uiFactory, 
             IHUDService hudService, 
             IScreenService screenService,
+            IPopupService popupService,
             ILogService log)
         {
             this.globalStateMachine = globalStateMachine;
@@ -45,6 +48,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             this.uiFactory = uiFactory;
             this.hudService = hudService;
             this.screenService = screenService;
+            this.popupService = popupService;
             this.log = log;
         }
 
@@ -73,6 +77,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
             //hudService.ShowBuildInfo(buildInfoConfig);
             
             screenService.InitializePresenter();
+            popupService.InitializePresenter();
             LoadProgressReader();
             
             screenService.ShowCarView();

@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using CodeBase.Core.Audio.Service;
 using CodeBase.Core.Infrastructure.AssetManagement;
+using CodeBase.Core.Services.LogService;
 using CodeBase.Core.Services.PoolService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.Randomizer;
 using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.ServiceLocator;
 using CodeBase.Core.Services.StaticDataService;
+using CodeBase.UI.Popup.Service;
 using CodeBase.UI.Screens.Base;
 using CodeBase.UI.Screens.Car;
 using CodeBase.UI.Screens.Game;
@@ -42,11 +44,13 @@ namespace CodeBase.UI.Screens.Service
             
             gamePresenter = new GamePresenter(
                 AllServices.Container.Single<IScreenService>(),
+                AllServices.Container.Single<IPopupService>(),
                 AllServices.Container.Single<IPersistentProgressService>(),
                 AllServices.Container.Single<ISaveService>(),
                 AllServices.Container.Single<IAudioService>(),
                 AllServices.Container.Single<IStaticDataService>(),
-                carPresenter);
+                carPresenter,
+                AllServices.Container.Single<ILogService>());
             RegisterProgress(gamePresenter);
 
             leaderboardPresenter = new LeaderboardPresenter(

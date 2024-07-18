@@ -10,6 +10,7 @@ using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.ServiceLocator;
 using CodeBase.Core.Services.StaticDataService;
 using CodeBase.UI.HUD.Service;
+using CodeBase.UI.Popup.Service;
 using CodeBase.UI.Screens.Service;
 using CodeBase.UI.Services.Factories;
 
@@ -33,6 +34,7 @@ namespace CodeBase.Core.Infrastructure.States.Infrastructure
                 services.Single<IUIFactory>(),
                 services.Single<IHUDService>(),
                 services.Single<IScreenService>(),
+                services.Single<IPopupService>(),
                 services.Single<ILogService>()));
             RegisterState(new GameLoopState(services.Single<ILogService>()));
         }

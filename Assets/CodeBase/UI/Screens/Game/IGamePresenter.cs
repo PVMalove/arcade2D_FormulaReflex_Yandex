@@ -27,5 +27,9 @@ namespace CodeBase.UI.Screens.Game
         void SetStartTime(float time);
         void OpenLeaderboard();
         void OpenShop();
+        void OpenCoinShop();
+        bool IsPlayerOwnCar(CarType storeItemType);
+        void Log(string text, object context = null);
+        void OpenRestorePurchase();
     }
 }
