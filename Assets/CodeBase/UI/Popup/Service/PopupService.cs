@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CodeBase.Core.Services.ProgressService;
+using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.ServiceLocator;
 using CodeBase.UI.Popup.Base;
 using CodeBase.UI.Popup.CoinShop;
@@ -30,7 +31,8 @@ namespace CodeBase.UI.Popup.Service
                 );
             
             restorePurchasePresenter = new RestorePurchasePresenter(
-                AllServices.Container.Single<IPersistentProgressService>()
+                AllServices.Container.Single<IPersistentProgressService>(),
+                AllServices.Container.Single<ISaveService>()
                 );
         }
 

@@ -5,22 +5,23 @@ using YG;
 
 public class TimerBeforeAdsYG : MonoBehaviour
 {
-    [SerializeField, 
-        Tooltip("Объект таймера перед показом рекламы. Он будет активироваться и деактивироваться в нужное время.")]
-    private GameObject secondsPanelObject;
     [SerializeField,
-        Tooltip("Массив объектов, которые будут показываться по очереди через секунду. Сколько объектов вы поместите в массив, столько секунд будет отчитываться перед показом рекламы.\n\nНапример, поместите в массив три объекта: певый с текстом '3', второй с текстом '2', третий с текстом '1'.\nВ таком случае произойдёт отчет трёх секунд с показом объектов с цифрами перед рекламой.")]
+     Tooltip("Объект таймера перед показом рекламы. Он будет активироваться и деактивироваться в нужное время.")]
+    private GameObject secondsPanelObject;
+
+    [SerializeField,
+     Tooltip(
+         "Массив объектов, которые будут показываться по очереди через секунду. Сколько объектов вы поместите в массив, столько секунд будет отчитываться перед показом рекламы.\n\nНапример, поместите в массив три объекта: певый с текстом '3', второй с текстом '2', третий с текстом '1'.\nВ таком случае произойдёт отчет трёх секунд с показом объектов с цифрами перед рекламой.")]
     private GameObject[] secondObjects;
 
-    [SerializeField,
-        Tooltip("Работа таймера в реальном времени, независимо от time scale.")]
-    private bool realtimeSeconds;
+    [SerializeField, Tooltip("Пазуа с помощью компонента ViewingAdsYG.")]
+    private bool pauseTo_ViewingAdsYG = true;
 
-    [Space(20)]
-    [SerializeField]
-    private UnityEvent onShowTimer; 
-    [SerializeField]
-    private UnityEvent onHideTimer;
+    [Space(20)] [SerializeField] private UnityEvent onShowTimer;
+    [SerializeField] private UnityEvent onHideTimer;
+    [SerializeField] private UnityEvent doPause;
+
+    private int objSecCounter;
 
     private void Start()
     {
@@ -38,10 +39,10 @@ public class TimerBeforeAdsYG : MonoBehaviour
 
     IEnumerator CheckTimerAd()
     {
-        bool checking = true;
-        while (checking)
+        while (true)
         {
-            if (YandexGame.timerShowAd >= YandexGame.Instance.infoYG.fullscreenAdInterval)
+            if (YandexGame.timerShowAd >= YandexGame.Instance.infoYG.fullscreenAdInterval
+                && Time.timeScale != 0)
             {
                 onShowTimer?.Invoke();
                 objSecCounter = 0;
@@ -49,21 +50,22 @@ public class TimerBeforeAdsYG : MonoBehaviour
                     secondsPanelObject.SetActive(true);
 
                 StartCoroutine(TimerAdShow());
-                yield return checking = false;
+                yield break;
             }
 
-            if (!realtimeSeconds)
-                yield return new WaitForSeconds(1.0f);
-            else
-                yield return new WaitForSecondsRealtime(1.0f);
+            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSecondsRealtime(1.0f);
         }
     }
 
-    int objSecCounter;
     IEnumerator TimerAdShow()
     {
-        bool process = true;
-        while (process)
+        if (pauseTo_ViewingAdsYG)
+            ViewingAdsYG.onPause?.Invoke(true);
+
+        doPause?.Invoke();
+
+        while (true)
         {
             if (objSecCounter < secondObjects.Length)
             {
@@ -73,10 +75,7 @@ public class TimerBeforeAdsYG : MonoBehaviour
                 secondObjects[objSecCounter].SetActive(true);
                 objSecCounter++;
 
-                if (!realtimeSeconds)
-                    yield return new WaitForSeconds(1.0f);
-                else
-                    yield return new WaitForSecondsRealtime(1.0f);
+                yield return new WaitForSecondsRealtime(1.0f);
             }
 
             if (objSecCounter == secondObjects.Length)
@@ -87,28 +86,27 @@ public class TimerBeforeAdsYG : MonoBehaviour
                 while (!YandexGame.nowFullAd)
                     yield return null;
 
-                secondsPanelObject.SetActive(false);
-                onHideTimer?.Invoke();
-                objSecCounter = 0;
-                StartCoroutine(CheckTimerAd());
-                process = false;
+                RestartTimer();
+                yield break;
             }
         }
     }
 
     IEnumerator BackupTimerClosure()
     {
-        if (!realtimeSeconds)
-            yield return new WaitForSeconds(2.5f);
-        else
-            yield return new WaitForSecondsRealtime(2.5f);
-        
+        yield return new WaitForSecondsRealtime(2.5f);
+
         if (objSecCounter != 0)
         {
-            secondsPanelObject.SetActive(false);
-            onHideTimer?.Invoke();
-            objSecCounter = 0;
-            StopCoroutine(TimerAdShow());
+            RestartTimer();
         }
+    }
+
+    private void RestartTimer()
+    {
+        secondsPanelObject.SetActive(false);
+        onHideTimer?.Invoke();
+        objSecCounter = 0;
+        StartCoroutine(CheckTimerAd());
     }
 }

@@ -130,11 +130,11 @@ namespace CodeBase.UI.Screens.Game
         {
             popupService.ShowCoinShop();
         }
-
-        public void OpenRestorePurchase()
+        
+        public void ShowRestorePurchase()
         {
             popupService.ShowRestorePurchase();
-        } 
+        }
 
         public void SetStartTime(float time)
         {

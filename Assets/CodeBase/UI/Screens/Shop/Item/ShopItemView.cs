@@ -58,16 +58,16 @@ namespace CodeBase.UI.Screens.Shop.Item
 
         public void Lock()
         {
+            itemIcon.color = new Color(1f, 1f, 1f, 0.7f);
             coinsContainer.SetActive(true);
-            //lockImage.gameObject.SetActive(true);
             buyButton.gameObject.SetActive(true);
             selectButton.gameObject.SetActive(false);
         }
 
         public void Unlock()
         {
+            itemIcon.color = new Color(1f, 1f, 1f, 1f);
             coinsContainer.SetActive(false);
-            //lockImage.gameObject.SetActive(false);
             buyButton.gameObject.SetActive(false);
             selectButton.gameObject.SetActive(true);
         }

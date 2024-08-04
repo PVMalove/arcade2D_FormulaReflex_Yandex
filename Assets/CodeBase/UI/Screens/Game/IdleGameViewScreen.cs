@@ -40,10 +40,10 @@ namespace CodeBase.UI.Screens.Game
             openSkinsShopButton.onClick.AddListener(OnOpenSkinsShop);
             openLeaderboardButton.onClick.AddListener(OnOpenLeaderboard);
             openCoinShopButton.onClick.AddListener(OnOpenCoinShop);
-
-            YandexGame.PurchaseSuccessEvent += PurchaseOnContinue;
-            YandexGame.ConsumePurchases();
-
+            
+            YandexGame.GetUnprocessedPurchasesEvent += PurchaseRecovery;
+            YandexGame.CheckUnprocessedPurchases();
+            
             BestTimeChanged();
             OnCoinsAmountChanged();
         }
@@ -57,8 +57,7 @@ namespace CodeBase.UI.Screens.Game
             openSkinsShopButton.onClick.RemoveListener(OnOpenSkinsShop);
             openLeaderboardButton.onClick.RemoveListener(OnOpenLeaderboard);
             openCoinShopButton.onClick.RemoveListener(OnOpenCoinShop);
-
-            YandexGame.PurchaseSuccessEvent -= PurchaseOnContinue;
+            YandexGame.GetUnprocessedPurchasesEvent -= PurchaseRecovery;
         }
 
         protected override void Cleanup()
@@ -139,14 +138,14 @@ namespace CodeBase.UI.Screens.Game
                 }
             }
         }
-
-        private void PurchaseOnContinue(string id)
+        
+        private void PurchaseRecovery(string id)
         {
-            presenter.Log($"PurchaseRecovery: id - {id}");
+            presenter.Log($"PurchaseRecovery: id - {id}", this);
             if (id == "AddCoin")
             {
-                presenter.Log("Purchase restore active");
-                presenter.OpenRestorePurchase();
+                presenter.Log("Purchase restore active",this);
+                presenter.ShowRestorePurchase();
             }
         }
     }

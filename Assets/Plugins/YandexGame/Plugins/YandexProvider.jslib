@@ -103,6 +103,10 @@ mergeInto(LibraryManager.library,
 		ConsumePurchases();
 	},
 	
+    CheckUnprocessedPurchasesInternal: function () {
+        CheckUnprocessedPurchases();
+    },
+	
 	PromptShowInternal: function()
 	{
 		PromptShow();

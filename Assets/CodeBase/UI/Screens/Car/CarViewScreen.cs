@@ -26,9 +26,9 @@ namespace CodeBase.UI.Screens.Car
             if (presenter is null) return;
             presenter.Subscribe();
             presenter.ChangedSelectedCar += OnSelectedCarChanged;
+            presenter.ResetCarAnimation += OnResetAnimation;
             presenter.CoinsAmount += ChangeCoinAmountText;
             presenter.PlayCarAnimation += OnPlayAnimation;
-            presenter.ResetCarAnimation += OnResetAnimation;
             OnSelectedCarChanged(presenter.SelectedCar);
         }
 
@@ -36,9 +36,9 @@ namespace CodeBase.UI.Screens.Car
         {
             base.UnsubscribeUpdates();
             if (presenter is null) return;
+            presenter.ResetCarAnimation -= OnResetAnimation;
             presenter.CoinsAmount -= ChangeCoinAmountText;
             presenter.PlayCarAnimation -= OnPlayAnimation;
-            presenter.ResetCarAnimation -= OnResetAnimation;
             presenter.Unsubscribe();
         }
 
@@ -51,7 +51,9 @@ namespace CodeBase.UI.Screens.Car
         private void OnPlayAnimation(string type) => 
             animationCar.PlayAnimation(type);
 
-        private void OnResetAnimation() => 
+        private void OnResetAnimation()
+        {
             animationCar.ResetAnimation();
+        }
     }
 }

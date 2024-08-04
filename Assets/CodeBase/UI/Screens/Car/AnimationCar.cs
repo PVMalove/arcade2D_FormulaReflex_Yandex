@@ -44,12 +44,12 @@ namespace CodeBase.UI.Screens.Car
         [ContextMenu("Reset_Animation")]
         public void ResetAnimation()
         {
-            Tween.StopAll(this);
-            Sequence.Create()
-                .Group(Tween.UIAnchoredPositionX(targetCar, endValue: 0f, duration: 0.25f, Ease.InQuart));
+            sequence.Stop();
+            targetCoins.gameObject.SetActive(false);
             targetWheelFront.localEulerAngles = Vector3.zero;
             targetWheelRear.localEulerAngles = Vector3.zero;
-            targetCoins.gameObject.SetActive(false);
+            Sequence.Create()
+                .Group(Tween.UIAnchoredPositionX(targetCar, endValue: 0f, duration: 0.1f, Ease.InQuart));
         }
 
         private void PlayLostGameAnimation()
@@ -89,12 +89,12 @@ namespace CodeBase.UI.Screens.Car
                     duration: 0.25f,
                     Ease.InOutQuad))
                 .Group(Tween.Custom(coinsAmountText, 0, coinValue, 1, UpdateCoinsText))
-                .Chain(Tween.Scale(targetCoins, startValue: 1.2f, 
-                    endValue: 1f, 
-                    duration: 0.25f, 
+                .Chain(Tween.Scale(targetCoins, startValue: 1.2f,
+                    endValue: 1f,
+                    duration: 0.25f,
                     Ease.InOutQuad));
         }
-        
+
         private void UpdateCoinsText(Text target, float newValue) => 
             target.text = Mathf.Floor(newValue).ToString(CultureInfo.InvariantCulture);
 

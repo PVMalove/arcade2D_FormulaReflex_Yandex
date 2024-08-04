@@ -1,5 +1,6 @@
 using CodeBase.Core.Infrastructure.States.Infrastructure;
 using CodeBase.Core.Services.LogService;
+using YG;
 
 namespace CodeBase.Core.Infrastructure.States.GlobalStates
 {
@@ -15,6 +16,7 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
         public void Enter()
         {
             log.LogState("Enter", this);
+            YandexGame.GameReadyAPI();
         }
 
         public void Exit()

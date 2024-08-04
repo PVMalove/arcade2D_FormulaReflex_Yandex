@@ -1,4 +1,5 @@
 ﻿using CodeBase.UI.Screens.Base;
+using CodeBase.UI.Screens.Service;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,8 @@ namespace CodeBase.UI.Screens.Game
     {
         [SerializeField] private Button restartGameButton;
         [SerializeField] private Text bestTimeText;
-        
+        [SerializeField] private TimerAds timerAds;
+
         private IGamePresenter presenter;
 
         protected override void Initialize(IGamePresenter presenter)
@@ -33,6 +35,14 @@ namespace CodeBase.UI.Screens.Game
 
         private void OnRestartGame()
         {
+            timerAds.CheckTimerAd();
+            
+            if (timerAds.IsAdActive)
+            {
+                timerAds.StartAdCountdown();
+                return;
+            }
+            
             Hide();
             presenter.RestartGame();
         }

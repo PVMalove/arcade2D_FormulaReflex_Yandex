@@ -1,4 +1,5 @@
-﻿using CodeBase.Core.Infrastructure.AssetManagement;
+﻿using System;
+using CodeBase.Core.Infrastructure.AssetManagement;
 using CodeBase.Core.Infrastructure.Factories;
 using CodeBase.Core.Infrastructure.SceneManagement;
 using CodeBase.Core.Infrastructure.States.Infrastructure;
@@ -11,6 +12,7 @@ using CodeBase.UI.Popup.Service;
 using CodeBase.UI.Screens.Service;
 using CodeBase.UI.Services.Factories;
 using UnityEngine;
+using YG;
 
 namespace CodeBase.Core.Infrastructure.States.GlobalStates
 {
