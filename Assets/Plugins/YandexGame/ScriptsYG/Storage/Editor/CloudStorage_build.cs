@@ -7,7 +7,7 @@ namespace YG.EditorScr.BuildModify
     {
         public static void CloudStorage()
         {
-            string initFunction = "cloudSaves = await LoadCloud();\nconsole.log('[INDEX] -> Init storage SDK');";
+            string initFunction = "cloudSaves = await LoadCloud();\nconsole.log('[INDEX] -> Initialization storage SDK');";
             AddIndexCode(initFunction, CodeType.init);
 
             string donorPatch = Application.dataPath + "/Plugins/YandexGame/ScriptsYG/Storage/Editor/CloudStorage_js.js";

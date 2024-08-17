@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 namespace YG
 {
+    [HelpURL("https://www.notion.so/PluginYG-d457b23eee604b7aa6076116aab647ed#178130fecabe4b3f81118dfe0fd88ccf")]
     public class ReviewYG : MonoBehaviour
     {
         [Tooltip("Открывать окно авторизации, если пользователь не авторизован.")]

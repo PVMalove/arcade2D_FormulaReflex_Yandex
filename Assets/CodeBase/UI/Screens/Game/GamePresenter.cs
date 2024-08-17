@@ -104,7 +104,7 @@ namespace CodeBase.UI.Screens.Game
             {
                 coinsCount = (int)(100 / timeDiff);
                 bestTime = timeDiff;
-                YandexGame.NewLBScoreTimeConvert("BestTimeRecord2", bestTime);
+                YandexGame.NewLBScoreTimeConvert("RecordTime", bestTime);
             }
             
             progressService.AddCoins(coinsCount);

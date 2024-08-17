@@ -52,8 +52,11 @@ namespace YG
             dropdown.ClearOptions();
             dropdown.AddOptions(QualitySettings.names.ToList());
             dropdown.value = QualitySettings.GetQualityLevel();
+        }
 
-            SwitchLanguage(YandexGame.savesData.language);
+        private void Start()
+        {
+            SwitchLanguage(YandexGame.lang);
         }
 
         private void OnEnable() => YandexGame.SwitchLangEvent += SwitchLanguage;
@@ -270,7 +273,7 @@ namespace YG
             }
         }
 
-        private void SwithFont(Font[] fontArray)
+        void SwithFont(Font[] fontArray)
         {
             Font font = labelText.font;
 
@@ -294,7 +297,7 @@ namespace YG
             itemText.font = font;
         }
 
-        private void FontSizeCorrect(int[] fontSizeArray)
+        void FontSizeCorrect(int[] fontSizeArray)
         {
             labelText.fontSize = labelBaseFontSize;
             itemText.fontSize = itemBaseFontSize;

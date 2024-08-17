@@ -8,9 +8,9 @@ namespace YG
     [HelpURL("https://www.notion.so/PluginYG-d457b23eee604b7aa6076116aab647ed#4968547185c2460fb70fd6eceaf101d4")]
     public class DebuggingModeYG : MonoBehaviour
     {
-        [Tooltip("?payload=\nР­С‚Рѕ Р·РЅР°С‡РµРЅРёРµ, РєРѕС‚РѕСЂРѕРµ Р’С‹ Р±СѓРґРµС‚Рµ РїРµСЂРµРґР°РІР°С‚СЊ СЃ РїРѕРјРѕС‰СЊСЋ Deep Linking. РњРѕР¶РµС‚Рµ РЅР°РїРёСЃР°С‚СЊ СЃР»РѕРІРѕ, РЅР°РїСЂРёРјРµСЂ, debug Рё РґРѕР±Р°РІРёС‚СЊ СЃРІРѕР№ РїР°СЂРѕР»СЊ, РЅР°РїСЂРёРјРµСЂ, 123. РџРѕР»СѓС‡РёС‚СЃСЏ debug123.")]
+        [Tooltip("?payload=\nЭто значение, которое Вы будете передавать с помощью Deep Linking. Можете написать слово, например, debug и добавить свой пароль, например, 123. Получится debug123.")]
         public string payloadPassword = "debug123";
-        [Tooltip("РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїР°РЅРµР»Рё СѓРїСЂР°РІР»РµРЅРёСЏ РІ Unity Editor")]
+        [Tooltip("Отображение панели управления в Unity Editor")]
         public bool debuggingInEditor;
 
         [Serializable]
@@ -70,7 +70,6 @@ namespace YG
                     "\nplayerId - " + playerId +
                     "\nauth - " + YandexGame.auth +
                     "\nSDKEnabled - " + YandexGame.SDKEnabled +
-                    "\ninitializedLB - " + YandexGame.initializedLB +
                     "\nphotoSize - " + YandexGame.photoSize +
                     "\ndomain - " + YandexGame.EnvironmentData.domain +
                     "\ndeviceType - " + YandexGame.EnvironmentData.deviceType +
@@ -83,7 +82,9 @@ namespace YG
                     "\nbrowserLang - " + YandexGame.EnvironmentData.browserLang +
                     "\npayload - " + YandexGame.EnvironmentData.payload +
                     "\npromptCanShow - " + YandexGame.EnvironmentData.promptCanShow +
-                    "\nreviewCanShow - " + YandexGame.EnvironmentData.reviewCanShow;
+                    "\nreviewCanShow - " + YandexGame.EnvironmentData.reviewCanShow +
+                    "\nplatform - " + YandexGame.EnvironmentData.platform +
+                    "\nbrowser - " + YandexGame.EnvironmentData.browser;
             }
         }
 
@@ -94,12 +95,12 @@ namespace YG
 
         public void AuthCheckButton()
         {
-            GameObject.FindObjectOfType<YandexGame>()._RequestAuth();
+            GameObject.FindAnyObjectByType<YandexGame>()._RequestAuth();
         }
 
         public void AuthDialogButton()
         {
-            GameObject.FindObjectOfType<YandexGame>()._OpenAuthDialog();
+            GameObject.FindAnyObjectByType<YandexGame>()._OpenAuthDialog();
         }
 
         public void FullAdButton()
@@ -138,7 +139,7 @@ namespace YG
 
         public void RedefineLangButton()
         {
-            GameObject.FindObjectOfType<YandexGame>()._LanguageRequest();
+            GameObject.FindAnyObjectByType<YandexGame>()._LanguageRequest();
         }
 
         public void SwitchLanguage(Text text)

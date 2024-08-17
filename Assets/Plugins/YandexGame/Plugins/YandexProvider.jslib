@@ -5,21 +5,6 @@ mergeInto(LibraryManager.library,
 		InitGame();
 	},
 
-	InitLeaderboard: function ()
-	{
-		InitLeaderboard();
-	},
-	
-	SetLeaderboardScores: function (nameLB, score)
-	{
-		SetLeaderboardScores(UTF8ToString(nameLB), score);
-	},
-	
-	GetLeaderboardScores: function (nameLB, maxPlayers, quantityTop, quantityAround, photoSizeLB, auth)
-	{
-		GetLeaderboardScores(UTF8ToString(nameLB), maxPlayers, quantityTop, quantityAround, UTF8ToString(photoSizeLB), auth);
-	},
-
 	FullAdShow: function ()
 	{
 		FullAdShow();
@@ -34,78 +19,6 @@ mergeInto(LibraryManager.library,
 	{
 		Review();
 	},
-	
-	ActivityRTB1: function(state)
-	{
-		ActivityRTB1(state);
-	},
-	
-	ActivityRTB2: function(state)
-	{
-		ActivityRTB2(state);
-	},
-	
-	ExecuteCodeRTB1: function()
-	{
-		ExecuteCodeRTB1();
-	},
-	
-	ExecuteCodeRTB2: function()
-	{
-		ExecuteCodeRTB2();
-	},
-	
-	RecalculateRTB1: function(_width, _height, _left, _top)
-	{
-		RecalculateRTB1(
-			UTF8ToString(_width),
-			UTF8ToString(_height),
-			UTF8ToString(_left),
-			UTF8ToString(_top));
-	},
-	
-	RecalculateRTB2: function(_width, _height, _left, _top)
-	{
-		RecalculateRTB2(
-			UTF8ToString(_width),
-			UTF8ToString(_height),
-			UTF8ToString(_left),
-			UTF8ToString(_top));
-	},
-	
-	PaintRBTInternal: function(rbt)
-	{
-		PaintRBT(UTF8ToString(rbt));
-	},
-	
-	StaticRBTDeactivate: function()
-	{
-		StaticRBTDeactivate();
-	},
-	
-	BuyPaymentsInternal: function(id)
-	{
-		BuyPayments(UTF8ToString(id));
-	},
-	
-	GetPaymentsInternal: function()
-	{
-		GetPayments();
-	},
-	
-	ConsumePurchaseInternal: function(id)
-	{
-		ConsumePurchase(UTF8ToString(id));
-	},
-	
-	ConsumePurchasesInternal: function()
-	{
-		ConsumePurchases();
-	},
-	
-    CheckUnprocessedPurchasesInternal: function () {
-        CheckUnprocessedPurchases();
-    },
 	
 	PromptShowInternal: function()
 	{
@@ -128,10 +41,57 @@ mergeInto(LibraryManager.library,
 	
 	OpenURL: function (url) {
 		window.open(UTF8ToString(url), "_blank");
+	},
 	
-		//var a = document.createElement("a");
-		//a.setAttribute("href", UTF8ToString(url));
-		//a.setAttribute("target", "_blank");
-		//a.click();
+	GameplayStart_js: function () {
+		if (ysdk !== null && ysdk.features !== undefined && ysdk.features.GameplayAPI !== undefined) {
+			ysdk.features.GameplayAPI.start();
+		}
+		else {
+			if (ysdk == null) console.error('Gameplay start rejected. The SDK is not initialized!');
+			else console.error('Gameplay start undefined!');
+		}
+	},
+	
+	GameplayStop_js: function () {
+		if (ysdk !== null && ysdk.features !== undefined && ysdk.features.GameplayAPI !== undefined) {
+			ysdk.features.GameplayAPI.stop();
+		}
+		else {
+			if (ysdk == null) console.error('Gameplay stop rejected. The SDK is not initialized!');
+			else console.error('Gameplay stop undefined!');
+		}
+	},
+	
+	ServerTime_js: function() {
+        if (ysdk !== null) {
+            var serverTime = ysdk.serverTime().toString();
+            var lengthBytes = lengthBytesUTF8(serverTime) + 1;
+            var stringOnWasmHeap = _malloc(lengthBytes);
+            stringToUTF8(serverTime, stringOnWasmHeap, lengthBytes);
+            return stringOnWasmHeap;
+        }
+        return 0;
+    },
+	
+	SetFullscreen_js: function (fullscreen) {
+		if (ysdk !== null) {
+			if (fullscreen) {
+				if (ysdk.screen.fullscreen.status != 'on')
+					ysdk.screen.fullscreen.request();
+			}
+			else if (ysdk.screen.fullscreen.status != 'off')
+				ysdk.screen.fullscreen.exit();
+		}
+	},
+	
+	IsFullscreen_js: function () {
+		if (ysdk !== null) {
+			if (ysdk.screen.fullscreen.status == 'on')
+				return true;
+			else
+				return false;
+		}
+		return false;
 	}
 });

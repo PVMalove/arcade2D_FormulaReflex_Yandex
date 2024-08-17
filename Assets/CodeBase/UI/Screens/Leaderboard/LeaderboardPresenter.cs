@@ -42,6 +42,7 @@ namespace CodeBase.UI.Screens.Leaderboard
         private void GetThisPlayerDataRank(LBData data)
         {
             thisPlayerDataRank = data.thisPlayer.rank - 1;
+            Debug.Log($"thisPlayerDataRank: {thisPlayerDataRank}");
         }
 
         private void CreateRandomSprite(int count)

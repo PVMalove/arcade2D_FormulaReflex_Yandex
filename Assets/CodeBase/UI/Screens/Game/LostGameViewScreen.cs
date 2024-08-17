@@ -40,6 +40,8 @@ namespace CodeBase.UI.Screens.Game
             if (timerAds.IsAdActive)
             {
                 timerAds.StartAdCountdown();
+                Hide();
+                presenter.RestartGame();
                 return;
             }
             

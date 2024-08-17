@@ -22,11 +22,13 @@ MonoBehaviour:
     name: Player this
     uniqueID: 000
     photo: https://justplaygames.ru/public/icon_player.png
+    payingStatus: paying
+    serverTime: 1721201231000
   AdWhenLoadingScene: 0
   showFirstAd: 1
   rewardedAfterClosing: 1
   adDisplayCalls: 0
-  fullscreenAdInterval: 70
+  fullscreenAdInterval: 120
   durationOfAdSimulation: 1
   loadAdWithDelaySimulation: 0
   testErrorOfRewardedAdsInEditor: 0
@@ -131,67 +133,47 @@ MonoBehaviour:
     thisPlayer:
       rank: 0
       score: 0
-  - technoName: BestTimeRecord2
-    entries: "Best Time Record\nName: time\n1. \u0441\u043A\u0440\u044B\u0442: 10\n2.
-      Max: 15\n3. Maria: 23"
+  - technoName: RecordTime
+    entries: "RecordTime\nName: time\n1. \u0441\u043A\u0440\u044B\u0442: 10\n2. Max:
+      15\n3. Maria: 23"
     isDefault: 1
     isInvertSortOrder: 1
     decimalOffset: 4
     type: numeric
     players:
-    - rank: 1
-      name: anonymous
-      score: 2
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 789
     - rank: 2
       name: Max
-      score: 1
+      score: 400
       photo: https://justplaygames.ru/public/icon_player.png
       uniqueID: 987
     - rank: 3
       name: Maria
-      score: 62000
+      score: 620
       photo: https://justplaygames.ru/public/icon_player.png
       uniqueID: 891
     - rank: 4
-      name: Player4
-      score: 122000
+      name: Cosmic
+      score: 1220
       photo: https://justplaygames.ru/public/icon_player.png
       uniqueID: 321
     - rank: 5
-      name: Player this
-      score: 127000
+      name: Frosted Flame
+      score: 1270
       photo: https://justplaygames.ru/public/icon_player.png
       uniqueID: 000
     - rank: 6
-      name: Player6
-      score: 340000
+      name: Lunar Echo
+      score: 3400
       photo: https://justplaygames.ru/public/icon_player.png
       uniqueID: 321
-    - rank: 6
-      name: Player6
-      score: 340000
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 321
-    - rank: 6
-      name: Player6
-      score: 340000
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 321
-    - rank: 6
-      name: Player6
-      score: 340000
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 321
-    - rank: 6
-      name: Player6
-      score: 340000
+    - rank: 7
+      name: Lunar Echo2
+      score: 3405
       photo: https://justplaygames.ru/public/icon_player.png
       uniqueID: 321
     thisPlayer:
-      rank: 4
-      score: 10
+      rank: 1
+      score: 700
   LocalizationEnable: 1
   callingLanguageCheck: 0
   translateMethod: 0
@@ -286,29 +268,14 @@ MonoBehaviour:
     de: 
     hi: 
   purshasesSimulation:
-  - id: gun
-    title: Gun
-    description: Product - Gun
-    imageURI: https://justplaygames.ru/public/Paymant1.png
-    priceValue: 5
-    consumed: 1
-  - id: armor
-    title: Armor
-    description: Product - Armor
-    imageURI: https://justplaygames.ru/public/Paymant2.png
-    priceValue: 10
-    consumed: 1
-  - id: grenade
-    title: Grenade
-    description: Product - Grenade
-    imageURI: https://justplaygames.ru/public/Paymant3.png
-    priceValue: 30
-    consumed: 1
   - id: AddCoin
     title: Coin
-    description: Product - Coin
+    description: +1000
     imageURI: https://justplaygames.ru/public/Paymant3.png
-    priceValue: 30
+    price: 30 YAN
+    priceValue: 15
+    priceCurrencyCode: YAN
+    currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
     consumed: 1
   metricaEnable: 0
   metricaCounterID: 0
@@ -318,5 +285,3 @@ MonoBehaviour:
   backgroundImageFormat: 1
   pixelRatioEnable: 0
   pixelRatioValue: 1
-  loadGameRun: 0
-  staticRBTInGame: 0

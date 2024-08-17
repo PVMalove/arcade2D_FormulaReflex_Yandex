@@ -35,7 +35,8 @@ function InitPlayer(sendback) {
                                 "playerAuth": "resolved",
                                 "playerName": playerName,
                                 "playerId": player.getUniqueID(),
-                                "playerPhoto": playerPhoto
+                                "playerPhoto": playerPhoto,
+                                "payingStatus": player.getPayingStatus()
                             };
                             if (sendback)
                                 myGameInstance.SendMessage('YandexGame', 'SetInitializationSDK', JSON.stringify(authJson));
@@ -49,7 +50,7 @@ function InitPlayer(sendback) {
                     });
             }
         } catch (e) {
-            console.error('[INDEX] -> CRASH init Player: ', e.message);
+            console.error('CRASH init Player: ', e.message);
             if (sendback)
                 myGameInstance.SendMessage('YandexGame', 'SetInitializationSDK', NotAuthorized());
             resolve(NotAuthorized());
@@ -62,7 +63,8 @@ function NotAuthorized() {
         "playerAuth": "rejected",
         "playerName": "unauthorized",
         "playerId": "unauthorized",
-        "playerPhoto": "null"
+        "playerPhoto": "unknown",
+        "payingStatus": player.getPayingStatus()
     };
     return JSON.stringify(authJson);
 }
@@ -77,7 +79,7 @@ function OpenAuthDialog() {
                     });
             });
         } catch (e) {
-            console.log('[INDEX] -> CRASH Open Auth Dialog: ', e.message);
+            console.log('CRASH Open Auth Dialog: ', e.message);
         }
     }
 }

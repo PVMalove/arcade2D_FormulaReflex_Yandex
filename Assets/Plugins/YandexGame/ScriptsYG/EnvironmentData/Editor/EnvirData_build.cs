@@ -7,7 +7,7 @@ namespace YG.EditorScr.BuildModify
     {
         public static void EnvirData()
         {
-            string initFunction = "environmentData = await RequestingEnvironmentData();\nconsole.log('[INDEX] -> Init environment SDK');";
+            string initFunction = "environmentData = await RequestingEnvironmentData();\nconsole.log('[INDEX] -> Initialization environment SDK');";
             AddIndexCode(initFunction, CodeType.init);
 
             string donorPatch = Application.dataPath + "/Plugins/YandexGame/ScriptsYG/EnvironmentData/Editor/EnvirData_js.js";

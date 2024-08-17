@@ -22,7 +22,8 @@ namespace YG
         private static Action onResetProgress;
         private static TaskCompletionSource<string> CompletionSource { get; set; }
         private enum DataState { Exist, NotExist, Broken };
-
+        private static bool isResetProgress;
+        
 #region Internal methods
         [DllImport("__Internal")]
         private static extern string InitCloudStorage_js();
@@ -37,7 +38,7 @@ namespace YG
         
 #endregion Internal methods         
 
-        [InitYG]
+        [InitBaisYG]
         public static void InitCloudStorage()
         {
 #if !UNITY_EDITOR
@@ -46,6 +47,16 @@ namespace YG
 #else
             LoadProgress();
 #endif
+        }
+        
+        [StartYG]
+        private static void OnResetProgress()
+        {
+            if (isResetProgress)
+            {
+                isResetProgress = false;
+                onResetProgress?.Invoke();
+            }
         }
 
 #region Technical Data
@@ -91,7 +102,6 @@ namespace YG
 #else
                     savesData = JsonUtility.FromJson<SavesYG>(json);
 #endif
-                    AfterLoading();
                 }
                 else
                 {
@@ -131,9 +141,9 @@ public static void SaveLocal()
     Message("Save Local technical data");
 #if !UNITY_EDITOR
 #if YG_NEWTONSOFT_FOR_SAVES
-            SaveToLocalStorage("savesData", JsonConvert.SerializeObject(savesData));
+            LocalStorage.SetKey("savesData", JsonConvert.SerializeObject(savesData));
 #else
-            SaveToLocalStorage("savesData", JsonUtility.ToJson(savesData));
+            LocalStorage.SetKey("savesData", JsonUtility.ToJson(savesData));
 #endif
 #endif
 }
@@ -157,23 +167,24 @@ public static void SaveLocal()
 #else
             LoadEditor();
 #endif
+            if (savesData.idSave > 0)
+                GetDataInvoke();
         }
 
         private static void LoadLocal()
         {
             Message("Load Local technical data");
 
-            if (!HasKey("savesData"))
+            if (!LocalStorage.HasKey("savesData"))
                 ResetSaveProgress();
             else
             {
 #if YG_NEWTONSOFT_FOR_SAVES
-                savesData = JsonConvert.DeserializeObject<SavesYG>(LoadFromLocalStorage("savesData"));
+                savesData = JsonConvert.DeserializeObject<SavesYG>(LocalStorage.GetKey("savesData"));
 #else
-                savesData = JsonUtility.FromJson<SavesYG>(LoadFromLocalStorage("savesData"));
+                savesData = JsonUtility.FromJson<SavesYG>(LocalStorage.GetKey("savesData"));
 #endif
             }
-            AfterLoading();
         }
 #endregion Load technical data
  #region Reset technical data
@@ -182,9 +193,17 @@ public static void SaveLocal()
         private void _ResetSaveProgress()
         {
             Message("Reset Save Progress");
-            savesData = new SavesYG { isFirstSession = false };
-            onResetProgress?.Invoke();
-            GetDataInvoke();
+            int idSave = savesData.idSave;
+            savesData = new SavesYG { idSave = idSave, isFirstSession = false };
+            if (Time.unscaledTime < 0.5f)
+            {
+                isResetProgress = true;
+            }
+            else
+            {
+                onResetProgress?.Invoke();
+                GetDataInvoke();
+            }
         }
 #endregion Reset technical data
 #endregion Technical Data
@@ -200,7 +219,7 @@ public static void SaveLocal()
             if (!infoYG.saveCloud || (infoYG.saveCloud && infoYG.localSaveSync))
             {
                 Message($"Start save player progress to json local - Data: {saveData}");
-                SaveLocalPlayerData(saveData);
+                LocalStorage.SetKey(PLAYER_DATA_PATH, saveData);
                 SaveLocal();
             }
 
@@ -223,7 +242,7 @@ public static void SaveLocal()
             if (!infoYG.saveCloud)
             {
                 Message("Start load local player saves");
-                return LoadLocalPlayerData();
+                return LocalStorage.GetKey(PLAYER_DATA_PATH);
             }
             else
             { 
@@ -316,19 +335,19 @@ public static void SaveLocal()
                         : "Load Cloud technical data Complete! Local saves are disabled.");
 
                     savesData = cloudData;
-                    AfterLoading();
+                    //AfterLoading();
                 }
                 return;
             }
 
-            if (HasKey("savesData"))
+            if (LocalStorage.HasKey("savesData"))
             {
                 try
                 {
 #if YG_NEWTONSOFT_FOR_SAVES
-                    localData = JsonConvert.DeserializeObject<SavesYG>(LoadFromLocalStorage("savesData"));
+                    localData = JsonConvert.DeserializeObject<SavesYG>(LocalStorage.GetKey("savesData"));
 #else
-                    localData = JsonUtility.FromJson<SavesYG>(LoadFromLocalStorage("savesData"));
+                    localData = JsonUtility.FromJson<SavesYG>(LocalStorage.GetKey("savesData"));
 #endif
                 }
                 catch (Exception e)
@@ -356,13 +375,13 @@ public static void SaveLocal()
                         Message($"Load local technical data Complete! ID Cloud Save: {cloudData.idSave}, ID Local Save: {localData.idSave}");
                         savesData = localData;
                     }
-                    AfterLoading();
+                    //AfterLoading();
                     break;
                 }
                 case DataState.Exist:
                     savesData = cloudData;
                     Message("Load cloud technical data Complete! Local Data - " + localDataState);
-                    AfterLoading();
+                    //AfterLoading();
                     break;
                 default:
                 {
@@ -370,7 +389,7 @@ public static void SaveLocal()
                     {
                         savesData = localData;
                         Message("Load local technical data Complete! Cloud Data - " + cloudDataState);
-                        AfterLoading();
+                        //AfterLoading();
                     }
                     else if (cloudDataState == DataState.Broken ||
                              (cloudDataState == DataState.Broken && localDataState == DataState.Broken))
@@ -384,7 +403,7 @@ public static void SaveLocal()
                         savesData = JsonUtility.FromJson<SavesYG>(data);
 #endif
                         Message("Cloud saves technical data Partially Restored!");
-                        AfterLoading();
+                        //AfterLoading();
                     }
                     else if (localDataState == DataState.Broken)
                     {
@@ -392,12 +411,12 @@ public static void SaveLocal()
                         Message("Local saves technical data - Broken! Data Recovering...");
                         ResetSaveProgress();
 #if YG_NEWTONSOFT_FOR_SAVES
-                        savesData = JsonConvert.DeserializeObject<SavesYG>(LoadFromLocalStorage("savesData"));
+                        savesData = JsonConvert.DeserializeObject<SavesYG>(LocalStorage.GetKey("savesData"));
 #else
-                        savesData = JsonUtility.FromJson<SavesYG>(LoadFromLocalStorage("savesData"));
+                        savesData = JsonUtility.FromJson<SavesYG>(LocalStorage.GetKey("savesData"));
 #endif
                         Message("Local saves technical data Partially Restored!");
-                        AfterLoading();
+                        //AfterLoading();
                     }
                     else
                     {
@@ -452,11 +471,11 @@ public static void SaveLocal()
                 return;
             }
 
-            if (HasKey(PLAYER_DATA_PATH))
+            if (LocalStorage.HasKey(PLAYER_DATA_PATH))
             {
                 try
                 {
-                    localPlayerData = LoadFromLocalStorage(PLAYER_DATA_PATH);
+                    localPlayerData = LocalStorage.GetKey(PLAYER_DATA_PATH);
                 }
                 catch (Exception e)
                 {
@@ -513,7 +532,7 @@ public static void SaveLocal()
                         Message("Cloud Saves - " + cloudPlayerDataState);
                         Message("Local Saves - Broken! Data Recovering...");
 
-                        string storage = LoadFromLocalStorage(PLAYER_DATA_PATH);
+                        string storage = LocalStorage.GetKey(PLAYER_DATA_PATH);
                         CompletionSource.TrySetResult(storage);
                         Message("Local Saves Partially Restored!");
                     }
@@ -529,12 +548,12 @@ public static void SaveLocal()
         
 #endregion Loading progress
 #region Helper methods
-        private static void AfterLoading()
-        {
-            Message($"After loading Data");
-            GetDataInvoke();
-            Message($"After loading Data complete: SDKEnabled:{_SDKEnabled}, GetDataEvent: {GetDataEvent}");
-        }
+        // private static void AfterLoading()
+        // {
+        //     Message($"After loading Data");
+        //     GetDataInvoke();
+        //     Message($"After loading Data complete: SDKEnabled:{_SDKEnabled}, GetDataEvent: {GetDataEvent}");
+        // }
         
         private string ParsingData(string data)
         {

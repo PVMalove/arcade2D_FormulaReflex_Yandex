@@ -11,6 +11,7 @@ namespace CodeBase.UI.Popup.CoinShop
         
         [SerializeField] private Button videoAdRevive;
         [SerializeField] private GameObject shopYAN;
+        [SerializeField] private PurchaseYG purchasePrefab;
         
         private ICoinShopPresenter presenter;
         
@@ -24,10 +25,13 @@ namespace CodeBase.UI.Popup.CoinShop
         {
             base.SubscribeUpdates();
             if (presenter is null) return;
-            
-            if(!YandexGame.auth)
-                shopYAN.SetActive(false);
 
+            if (YandexGame.auth)
+            {
+                UpdatePurchases();
+                shopYAN.SetActive(true);
+            }
+            
             YandexGame.PurchaseSuccessEvent += PurchaseOnContinue;
             YandexGame.CloseVideoEvent += RewardedOnContinue;
             YandexGame.PurchaseFailedEvent += PurchaseFailed;
@@ -36,14 +40,13 @@ namespace CodeBase.UI.Popup.CoinShop
             closeScreenButton.onClick.AddListener(CloseScreen);
         }
 
-
         protected override void UnsubscribeUpdates()
         {            
             base.UnsubscribeUpdates();
             if (presenter is null) return;
-            
-            YandexGame.CloseVideoEvent -= RewardedOnContinue;
+
             YandexGame.PurchaseSuccessEvent -= PurchaseOnContinue;
+            YandexGame.CloseVideoEvent -= RewardedOnContinue;
             YandexGame.PurchaseFailedEvent -= PurchaseFailed;
             
             videoAdRevive.onClick.RemoveListener(OpenRewardAd);
@@ -70,6 +73,12 @@ namespace CodeBase.UI.Popup.CoinShop
         private void PurchaseFailed(string obj)
         {
             Debug.Log($"[YandexGame] Purchase failed {obj}");
+        }
+        
+        private void UpdatePurchases()
+        {
+            purchasePrefab.data = YandexGame.purchases[0];
+            purchasePrefab.UpdateEntries();
         }
         
         private void CloseScreen()

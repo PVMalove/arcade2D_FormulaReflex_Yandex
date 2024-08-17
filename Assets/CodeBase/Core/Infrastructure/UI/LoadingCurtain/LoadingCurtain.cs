@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace CodeBase.Core.Infrastructure.UI.LoadingCurtain
@@ -13,7 +12,6 @@ namespace CodeBase.Core.Infrastructure.UI.LoadingCurtain
 
         public void Show()
         {
-            Debug.Log("LoadingCurtain -> Show");
             gameObject.SetActive(true);
             сurtain.alpha = 1;
         }
@@ -21,7 +19,6 @@ namespace CodeBase.Core.Infrastructure.UI.LoadingCurtain
         public void Hide()
         {
             StartCoroutine(FadeIn());
-            Debug.Log("LoadingCurtain -> Hide");
         }
 
         private void OnDisable()

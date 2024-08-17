@@ -7,7 +7,7 @@ namespace YG.EditorScr.BuildModify
     {
         public static void AuthPlayer()
         {
-            string initFunction = "playerData = await InitPlayer();\nconsole.log('[INDEX] -> Init player SDK');";
+            string initFunction = "playerData = await InitPlayer();\nconsole.log('[INDEX] -> Initialization player SDK');";
             AddIndexCode(initFunction, CodeType.init);
 
             string donorPatch = Application.dataPath + "/Plugins/YandexGame/ScriptsYG/Authorization/Editor/Auth_js.js";
