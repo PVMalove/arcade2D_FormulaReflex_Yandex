@@ -27,5 +27,9 @@ mergeInto(LibraryManager.library,
 	BuyPayments_js: function(id)
 	{
 		BuyPayments(UTF8ToString(id));
-	}
+	},
+	
+    CheckUnprocessedPurchasesInternal: function () {
+        CheckUnprocessedPurchases();
+    }
 });

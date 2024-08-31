@@ -126,10 +126,10 @@ namespace YG
 
         private static void Message(string message)
         {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
             if (Instance.infoYG.debug)
-#endif
-                Debug.Log(message);
+//#endif
+                Debug.Log($"[YandexGame] -> {message}");
         }
 
         public static void GetDataInvoke()

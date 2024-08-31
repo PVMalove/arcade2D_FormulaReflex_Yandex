@@ -165,5 +165,25 @@ namespace YG
             PurchaseSuccessEvent = null;
             PurchaseFailedEvent = null;
         }
+        
+        [DllImport("__Internal")]
+        private static extern void CheckUnprocessedPurchasesInternal();
+        
+        public static void CheckUnprocessedPurchases()
+        {
+            Message("Check unprocessed purchases");
+#if !UNITY_EDITOR
+            CheckUnprocessedPurchasesInternal();
+#endif
+        }
+        
+        public static Action<string> GetUnprocessedPurchasesEvent;
+        
+        public void UnprocessedPurchases(string purchaseID)
+        {
+            Message($"Unprocessed purchase detected: id - {purchaseID}");
+            GetUnprocessedPurchasesEvent?.Invoke(purchaseID);
+            Message($"[CheckUnprocessedPurchases] GetUnprocessedPurchasesEvent - {GetUnprocessedPurchasesEvent}");
+        }
     }
 }

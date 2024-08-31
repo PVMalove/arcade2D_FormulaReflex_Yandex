@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using CodeBase.Core.Audio.Service;
 using CodeBase.Core.Infrastructure.AssetManagement;
+using CodeBase.Core.Infrastructure.States.Infrastructure;
 using CodeBase.Core.Services.LogService;
 using CodeBase.Core.Services.PoolService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.Randomizer;
+using CodeBase.Core.Services.RestartGameService;
 using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.ServiceLocator;
 using CodeBase.Core.Services.StaticDataService;
@@ -54,6 +56,7 @@ namespace CodeBase.UI.Screens.Service
             RegisterProgress(gamePresenter);
 
             leaderboardPresenter = new LeaderboardPresenter(
+                AllServices.Container.Single<IRestartGameService>(),
                 AllServices.Container.Single<IPersistentProgressService>(),
                 AllServices.Container.Single<IRandomService>(),
                 AllServices.Container.Single<IAssetProvider>());

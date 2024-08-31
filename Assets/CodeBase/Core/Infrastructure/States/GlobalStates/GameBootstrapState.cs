@@ -7,6 +7,7 @@ using CodeBase.Core.Services.LogService;
 using CodeBase.Core.Services.PoolService;
 using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.Randomizer;
+using CodeBase.Core.Services.RestartGameService;
 using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.ServiceLocator;
 using CodeBase.Core.Services.StaticDataService;
@@ -21,7 +22,7 @@ using CodeBase.UI.Screens.Service;
 using CodeBase.UI.Screens.Supplier;
 using CodeBase.UI.Services.Factories;
 using CodeBase.UI.Services.Infrastructure;
-using UnityEngine;
+
 
 namespace CodeBase.Core.Infrastructure.States.GlobalStates
 {
@@ -46,18 +47,17 @@ namespace CodeBase.Core.Infrastructure.States.GlobalStates
 
         public async void Enter()
         {
-            Debug.Log("[StateMachine] - GameBootstrapState: Enter");
             await sceneLoader.Load(SceneNames.BoostrapScene);
             globalStateMachine.Enter<GameLoadingState>();
         }
 
         public void Exit()
-        {
-            Debug.Log("[StateMachine] - GameBootstrapState: Exit");
-        }
+        { }
 
         private void RegisterServices()
         {
+            services.RegisterSingle<IRestartGameService>(new RestartGameService(globalStateMachine));
+            
             services.RegisterSingle<IStateMachine>(globalStateMachine);
             
             services.RegisterSingle<ILogService>(new LogService());

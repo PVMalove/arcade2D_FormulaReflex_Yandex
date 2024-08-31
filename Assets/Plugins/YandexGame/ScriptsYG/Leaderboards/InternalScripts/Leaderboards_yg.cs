@@ -79,7 +79,7 @@ namespace YG
                 NoData();
             }
 #else
-            Message("Get Leaderboard - " + nameLB);
+            Message("Get Leaderboard -> " + nameLB);
 
             if (Instance.infoYG.leaderboardEnable)
             {

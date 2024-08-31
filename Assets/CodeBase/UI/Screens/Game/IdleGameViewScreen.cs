@@ -41,8 +41,8 @@ namespace CodeBase.UI.Screens.Game
             openLeaderboardButton.onClick.AddListener(OnOpenLeaderboard);
             openCoinShopButton.onClick.AddListener(OnOpenCoinShop);
             
-            // YandexGame.GetUnprocessedPurchasesEvent += PurchaseRecovery;
-            // YandexGame.CheckUnprocessedPurchases();
+            YandexGame.GetUnprocessedPurchasesEvent += PurchaseRecovery;
+            YandexGame.CheckUnprocessedPurchases();
             
             BestTimeChanged();
             OnCoinsAmountChanged();
@@ -57,7 +57,7 @@ namespace CodeBase.UI.Screens.Game
             openSkinsShopButton.onClick.RemoveListener(OnOpenSkinsShop);
             openLeaderboardButton.onClick.RemoveListener(OnOpenLeaderboard);
             openCoinShopButton.onClick.RemoveListener(OnOpenCoinShop);
-            //YandexGame.GetUnprocessedPurchasesEvent -= PurchaseRecovery;
+            YandexGame.GetUnprocessedPurchasesEvent -= PurchaseRecovery;
         }
 
         protected override void Cleanup()

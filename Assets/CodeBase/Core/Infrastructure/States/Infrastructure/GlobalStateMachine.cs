@@ -9,10 +9,14 @@ using CodeBase.Core.Services.ProgressService;
 using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.ServiceLocator;
 using CodeBase.Core.Services.StaticDataService;
+using CodeBase.UI.HUD.Base;
 using CodeBase.UI.HUD.Service;
+using CodeBase.UI.Popup.Base;
 using CodeBase.UI.Popup.Service;
+using CodeBase.UI.Screens.Base;
 using CodeBase.UI.Screens.Service;
 using CodeBase.UI.Services.Factories;
+using CodeBase.UI.Services.Infrastructure;
 
 namespace CodeBase.Core.Infrastructure.States.Infrastructure
 {
@@ -36,7 +40,11 @@ namespace CodeBase.Core.Infrastructure.States.Infrastructure
                 services.Single<IScreenService>(),
                 services.Single<IPopupService>(),
                 services.Single<ILogService>()));
-            RegisterState(new GameLoopState(services.Single<ILogService>()));
+            RegisterState(new GameLoopState(
+                services.Single<IFrameSupplier<HUDName, UnityFrame>>(),
+                services.Single<IFrameSupplier<ScreenName, UnityFrame>>(),
+                services.Single<IFrameSupplier<PopupName, UnityFrame>>(),
+                services.Single<ILogService>()));
         }
         
         public void Start() => Enter<GameBootstrapState>();

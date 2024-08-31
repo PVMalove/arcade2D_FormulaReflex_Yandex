@@ -34,6 +34,11 @@ namespace CodeBase.UI.Services.Infrastructure
                 cashedFrames.Remove(name);                 
             }
         }
+
+        public void AllUnloadFrame()
+        {
+            cashedFrames.Clear();
+        }
         
         private bool TryFindName(TValue frame, out TKey name)
         {
@@ -49,5 +54,7 @@ namespace CodeBase.UI.Services.Infrastructure
         }
 
         protected abstract TValue InstantiateFrame(TKey key);
+        
+        
     }
 }

@@ -23,6 +23,7 @@ namespace CodeBase.UI.Screens.Game
         {
             base.SubscribeUpdates();
             if (presenter is null) return;
+            timerAds.EndShowAdCountdown += OnRestartGame;
             restartGameButton.onClick.AddListener(OnRestartGame);
             bestTimeText.text = presenter.BestTime;
         }
@@ -30,6 +31,7 @@ namespace CodeBase.UI.Screens.Game
         protected override void UnsubscribeUpdates()
         {
             if (presenter is null) return;
+            timerAds.EndShowAdCountdown -= OnRestartGame;
             restartGameButton.onClick.RemoveListener(OnRestartGame);
         }
 
@@ -40,8 +42,6 @@ namespace CodeBase.UI.Screens.Game
             if (timerAds.IsAdActive)
             {
                 timerAds.StartAdCountdown();
-                Hide();
-                presenter.RestartGame();
                 return;
             }
             

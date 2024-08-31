@@ -10,5 +10,6 @@ namespace CodeBase.UI.Screens.Leaderboard
         int ThisPlayerDataRank { get; }
         void Subscribe();
         void Unsubscribe();
+        void RestartGame();
     }
 }

@@ -1,14 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using YG;
+
 
 namespace CodeBase.UI.Screens.Service
 {
     public class TimerAds : MonoBehaviour
     {
+        public event Action EndShowAdCountdown;
+        
         [SerializeField] private GameObject secondsPanelObject;
         [SerializeField] private GameObject[] secondObjects;
-
+        
         private bool isAdActive;
         private int objSecCounter;
 
@@ -27,7 +31,6 @@ namespace CodeBase.UI.Screens.Service
         {
             isAdActive = YandexGame.timerShowAd > YandexGame.Instance.infoYG.fullscreenAdInterval
                          && Time.timeScale != 0;
-            Debug.Log($"!!! [{isAdActive}] - До запроса к показу рекламы в середине игры {YandexGame.Instance.infoYG.fullscreenAdInterval - YandexGame.timerShowAd:00.0} сек.");
         }
         public void StartAdCountdown() => 
             StartCoroutine(ShowAdCountdown());
@@ -49,6 +52,7 @@ namespace CodeBase.UI.Screens.Service
             yield return new WaitUntil(() => YandexGame.nowFullAd);
             
             secondsPanelObject.SetActive(false);
+            EndShowAdCountdown?.Invoke();
         }
     }
 }

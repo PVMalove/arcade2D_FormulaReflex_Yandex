@@ -9,7 +9,7 @@ namespace CodeBase.Core.Infrastructure.AssetManagement
     {
         public async Task<TAsset> LoadAsync<TAsset>(string path) where TAsset : Object
         {
-            var request = Resources.LoadAsync<TAsset>(path);
+            ResourceRequest request = Resources.LoadAsync<TAsset>(path);
             while (!request.isDone)
             {
                 await Task.Yield();

@@ -16,11 +16,11 @@ MonoBehaviour:
   playerPhotoSize: 0
   autoGameReadyAPI: 0
   playerInfoSimulation:
-    authorized: 1
+    authorized: 0
     isMobile: 0
     language: ru
-    name: Player this
-    uniqueID: 000
+    name: Malove
+    uniqueID: 345
     photo: https://justplaygames.ru/public/icon_player.png
     payingStatus: paying
     serverTime: 1721201231000
@@ -41,98 +41,8 @@ MonoBehaviour:
     objectName: YandexGame
     methodName: _SaveProgress
   leaderboardEnable: 1
-  saveScoreAnonymousPlayers: 1
+  saveScoreAnonymousPlayers: 0
   leaderboardSimulation:
-  - technoName: advanced
-    entries: 'Test LeaderBoard
-
-      Name: advanced
-
-      1. anonymous: 10
-
-      2.
-      Ivan: 15
-
-      3. Tanya: 23'
-    isDefault: 0
-    isInvertSortOrder: 0
-    decimalOffset: 0
-    type: numeric
-    players:
-    - rank: 1
-      name: anonymous
-      score: 10
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 123
-    - rank: 2
-      name: Ivan
-      score: 15
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 321
-    - rank: 3
-      name: Tanya
-      score: 23
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 456
-    - rank: 4
-      name: Player4
-      score: 30
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 321
-    - rank: 5
-      name: Player this
-      score: 40
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 000
-    - rank: 6
-      name: Player6
-      score: 50
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 321
-    thisPlayer:
-      rank: 2
-      score: 10
-  - technoName: simple
-    entries: "Test LeaderBoard\nName: simple\n1. \u0441\u043A\u0440\u044B\u0442:
-      10\n2. Max: 15\n3. Maria: 23"
-    isDefault: 0
-    isInvertSortOrder: 0
-    decimalOffset: 0
-    type: numeric
-    players:
-    - rank: 1
-      name: anonymous
-      score: 10
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 123
-    - rank: 2
-      name: Ivan
-      score: 15
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 321
-    - rank: 3
-      name: Tanya
-      score: 23
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 456
-    - rank: 4
-      name: player4
-      score: 30
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 321
-    - rank: 5
-      name: playerThis
-      score: 40
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 000
-    - rank: 6
-      name: player6
-      score: 50
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 321
-    thisPlayer:
-      rank: 0
-      score: 0
   - technoName: RecordTime
     entries: "RecordTime\nName: time\n1. \u0441\u043A\u0440\u044B\u0442: 10\n2. Max:
       15\n3. Maria: 23"
@@ -141,38 +51,33 @@ MonoBehaviour:
     decimalOffset: 4
     type: numeric
     players:
+    - rank: 0
+      name: 1
+      score: 500
+      photo: 
+      uniqueID: 123
+    - rank: 1
+      name: 2
+      score: 600
+      photo: 
+      uniqueID: 234
     - rank: 2
-      name: Max
-      score: 400
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 987
+      name: 3
+      score: 700
+      photo: 
+      uniqueID: 345
     - rank: 3
-      name: Maria
-      score: 620
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 891
+      name: 4
+      score: 800
+      photo: 
+      uniqueID: 456
     - rank: 4
-      name: Cosmic
-      score: 1220
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 321
-    - rank: 5
-      name: Frosted Flame
-      score: 1270
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 000
-    - rank: 6
-      name: Lunar Echo
-      score: 3400
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 321
-    - rank: 7
-      name: Lunar Echo2
-      score: 3405
-      photo: https://justplaygames.ru/public/icon_player.png
-      uniqueID: 321
+      name: 5
+      score: 900
+      photo: 
+      uniqueID: 567
     thisPlayer:
-      rank: 1
+      rank: 3
       score: 700
   LocalizationEnable: 1
   callingLanguageCheck: 0
@@ -272,14 +177,14 @@ MonoBehaviour:
     title: Coin
     description: +1000
     imageURI: https://justplaygames.ru/public/Paymant3.png
-    price: 30 YAN
+    price: "30 \u042F\u043D"
     priceValue: 15
-    priceCurrencyCode: YAN
+    priceCurrencyCode: "\u042F\u043D"
     currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
     consumed: 1
   metricaEnable: 0
   metricaCounterID: 0
-  debug: 1
+  debug: 0
   archivingBuild: 1
   logoImageFormat: 1
   backgroundImageFormat: 1

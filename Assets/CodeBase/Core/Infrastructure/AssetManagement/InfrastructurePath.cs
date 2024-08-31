@@ -26,8 +26,5 @@
         //Configs
         public const string AllSpriteCarConfigPath = "Configs/AllSpriteCar_Config";
         public const string ConfigPath = "Configs";
-
-
-        
     }
 }

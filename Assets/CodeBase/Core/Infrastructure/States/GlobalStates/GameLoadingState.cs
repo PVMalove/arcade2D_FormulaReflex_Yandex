@@ -10,8 +10,6 @@ using CodeBase.Core.Services.SaveLoadService;
 using CodeBase.Core.Services.StaticDataService;
 using CodeBase.Core.StaticData.Infrastructure;
 using CodeBase.Core.StaticData.UI.Shop;
-using PrimeTween;
-using UnityEngine;
 
 
 namespace CodeBase.Core.Infrastructure.States.GlobalStates

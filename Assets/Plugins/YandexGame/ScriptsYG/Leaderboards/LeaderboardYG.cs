@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.UI;
@@ -140,6 +141,7 @@ namespace YG
                         SpawnPlayersList(lbData);
                     }
                 }
+
                 onUpdateData.Invoke();
             }
         }

@@ -794,7 +794,6 @@ GameObject:
   - component: {fileID: 3927023435964868809}
   - component: {fileID: 7799911655730433893}
   - component: {fileID: 8774893212848676949}
-  - component: {fileID: 3380345116351646451}
   - component: {fileID: 3009569875526742588}
   m_Layer: 5
   m_Name: LeaderboardView
@@ -844,62 +843,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closeScreenButton: {fileID: 7863166844014505670}
+  content: {fileID: 5442635109585627114}
   yandexRegistrationButton: {fileID: 1850215856803953975}
   yandexRegistrationObject: {fileID: 8624908314895138665}
   rootSpawnPlayersData: {fileID: 825358740548995921}
---- !u!114 &3380345116351646451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3881416574119471450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 423e13a42d313f948a13bcedae13febe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameLB: RecordTime
-  maxQuantityPlayers: 10
-  quantityTop: 8
-  quantityAround: 1
-  updateLBMethod: 1
-  entriesText: {fileID: 0}
-  advanced: 1
-  rootSpawnPlayersData: {fileID: 825358740548995921}
-  playerDataPrefab: {fileID: 2992649275149282190, guid: 57fc3abea474e9b4183f7fde150fe662, type: 3}
-  playerPhoto: 0
-  isHiddenPlayerPhoto: {fileID: 0}
-  timeTypeConvert: 1
-  decimalSize: 4
-  onUpdateData:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3528980384710955886}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8774893212848676949}
-        m_TargetAssemblyTypeName: CodeBase.UI.Screens.Leaderboard.LeaderboardViewScreen,
-          Assembly-CSharp
-        m_MethodName: SetImageCarList
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!225 &3009569875526742588
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1334,13 +1281,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5043830911653819863}
+  - component: {fileID: 7816522710228200073}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5043830911653819863
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1366,6 +1314,59 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7816522710228200073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5442635109585627114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 423e13a42d313f948a13bcedae13febe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameLB: RecordTime
+  maxQuantityPlayers: 10
+  quantityTop: 3
+  quantityAround: 7
+  updateLBMethod: 1
+  entriesText: {fileID: 0}
+  advanced: 1
+  rootSpawnPlayersData: {fileID: 825358740548995921}
+  playerDataPrefab: {fileID: 2992649275149282190, guid: 57fc3abea474e9b4183f7fde150fe662, type: 3}
+  playerPhoto: 0
+  isHiddenPlayerPhoto: {fileID: 0}
+  timeTypeConvert: 1
+  decimalSize: 4
+  onUpdateData:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3528980384710955886}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8774893212848676949}
+        m_TargetAssemblyTypeName: CodeBase.UI.Screens.Leaderboard.LeaderboardViewScreen,
+          Assembly-CSharp
+        m_MethodName: SetImageCarList
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5511025412635283165
 GameObject:
   m_ObjectHideFlags: 0

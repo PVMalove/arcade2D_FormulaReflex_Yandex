@@ -1,3 +1,6 @@
+using CodeBase.UI.HUD.Base;
+using CodeBase.UI.Services.Infrastructure;
+
 namespace CodeBase.Core.Services.ServiceLocator
 {
     public class AllServices

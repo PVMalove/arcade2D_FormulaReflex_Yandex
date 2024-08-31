@@ -24,14 +24,19 @@ namespace CodeBase.UI.Popup.CoinShop
         protected override void SubscribeUpdates()
         {
             base.SubscribeUpdates();
-            if (presenter is null) return;
 
+            if (presenter is null) return;
+            
             if (YandexGame.auth)
             {
                 UpdatePurchases();
                 shopYAN.SetActive(true);
             }
-            
+            else
+            {
+                shopYAN.SetActive(false);
+            }
+
             YandexGame.PurchaseSuccessEvent += PurchaseOnContinue;
             YandexGame.CloseVideoEvent += RewardedOnContinue;
             YandexGame.PurchaseFailedEvent += PurchaseFailed;

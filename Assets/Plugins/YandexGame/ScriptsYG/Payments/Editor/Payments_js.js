@@ -129,3 +129,21 @@ function ConsumePurchases() {
         console.error('CRASH Consume purchases: ', e.message);
     }
 }
+
+function CheckUnprocessedPurchases() {
+    try {
+        if (payments != null) {
+            console.log('Check unprocessed purchases');
+            payments.getPurchases().then(purchases => purchases.forEach(ConsumePurchase));
+        } else console.log('Check unprocessed purchases: payments == null');
+    } catch (e) {
+        console.error('CRASH Check unprocessed purchases: ', e.message);
+    }
+}
+
+function ConsumePurchase(purchase) {
+    console.log('Check Unprocessed Purchases: id - ', purchase.productID);
+    myGameInstance.SendMessage('YandexGame', 'UnprocessedPurchases', purchase.productID);
+    payments.consumePurchase(purchase.purchaseToken)
+    console.log('Unprocessed purchase deleted');
+}
